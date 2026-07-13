@@ -24,7 +24,7 @@ const NAV_ITEMS: NavItem[] = [
 export default function Navbar() {
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-neutral-900 bg-neutral-950/80 backdrop-blur-md"
+      className="sticky top-0 z-50 w-full border-b border-zinc-900 bg-neutral-950/80 backdrop-blur-md"
       role="banner"
     >
       <nav

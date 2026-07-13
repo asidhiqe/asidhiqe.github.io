@@ -11,7 +11,7 @@ import AirportTimeline from "./AirportTimeline";
  *
  * Operational Precision visual guidelines:
  * - High-contrast layout optimized for dark background (#09090B).
- * - Asymmetric two-column cards stacked vertically, separated by neutral-900 border.
+ * - Asymmetric two-column cards stacked vertically, separated by zinc-900 border.
  * - Challenge statements are the visual centerpieces of each card (h3 display font).
  */
 export default function FeaturedWork() {
@@ -19,22 +19,22 @@ export default function FeaturedWork() {
 
   return (
     <section
-      className="w-full py-20 md:py-28 border-b border-neutral-900"
+      className="w-full py-20 md:py-28 border-b border-zinc-900"
       aria-labelledby="featured-work-heading"
     >
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto px-6">
 
         {/* ── Section header row ────────────────────────────────────── */}
         <div className="mb-4 flex items-center justify-between">
           <h2
             id="featured-work-heading"
-            className="text-[10px] font-bold uppercase tracking-widest text-neutral-500"
+            className="text-[9px] font-bold uppercase tracking-widest text-neutral-500"
           >
             Selected Work
           </h2>
           <Link
             href="/#work"
-            className="text-xs font-semibold uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
+            className="text-xs font-semibold uppercase tracking-wider text-neutral-450 transition-colors duration-200 hover:text-white"
             aria-label="View all case studies"
           >
             View all work →
@@ -95,19 +95,19 @@ function FeaturedCard({
     <article
       className={cn(
         "grid grid-cols-1 gap-8 py-12 lg:grid-cols-[220px_1fr] lg:gap-16",
-        !isFirst && "border-t border-neutral-900"
+        !isFirst && "border-t border-zinc-900"
       )}
       aria-labelledby={challengeId}
     >
       {/* ── Left column: metadata ──────────────────────────────────── */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col items-start gap-6">
         
         {/* Domain chips */}
         <div className="flex flex-wrap gap-2">
           {project.domains.map((domain) => (
             <span
               key={domain}
-              className="rounded-full border border-neutral-850 bg-neutral-900/40 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-400"
+              className="rounded-full border border-zinc-900 bg-neutral-900/40 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-neutral-400 font-mono"
             >
               {domain}
             </span>
@@ -116,7 +116,7 @@ function FeaturedCard({
 
         {/* Role & Year */}
         <div className="flex flex-col gap-1">
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-neutral-500 font-semibold">
             {project.role}
           </p>
           <p className="text-xs text-neutral-500 font-mono">
@@ -127,7 +127,7 @@ function FeaturedCard({
         {/* Impact outcome - design-centric */}
         {project.outcome !== null && (
           <div>
-            <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+            <p className="mb-1 text-[9px] font-bold uppercase tracking-wider text-neutral-500">
               Contribution
             </p>
             <p className="text-xs leading-relaxed text-zinc-400">

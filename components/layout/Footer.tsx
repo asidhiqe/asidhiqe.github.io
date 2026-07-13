@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full border-t border-neutral-900 bg-neutral-950"
+      className="w-full border-t border-zinc-900 bg-neutral-950"
       role="contentinfo"
     >
       {/* ── Main footer body ──────────────────────────────────────── */}
@@ -97,7 +97,7 @@ export default function Footer() {
       </div>
 
       {/* ── Copyright bar ─────────────────────────────────────────── */}
-      <div className="border-t border-neutral-900 py-4">
+      <div className="border-t border-zinc-900 py-4">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6">
           <p className="text-[10px] tracking-wide text-neutral-500">
             © {year} Aboobacker Sidhiqe. All rights reserved.

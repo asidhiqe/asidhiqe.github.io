@@ -55,6 +55,7 @@ export const metadata: Metadata = {
  * - <html>  — loads font variables, forces dark mode, enables antialiasing
  * - Skip to content link — WCAG 2.1 AAA keyboard accessibility landmark
  * - <Navbar>  — sticky top chrome
+ * - CAD Grid Wrapper — border-x frame outlining the central 5xl content path
  * - <main>   — holds id="main-content" matching skip link
  * - <Footer>  — site footer
  */
@@ -76,10 +77,27 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        
         <Navbar />
-        <main id="main-content" className="flex-1 focus:outline-none">
-          {children}
-        </main>
+
+        {/* ── CAD Blueprint Grid Shell ──
+            Creates a thin vertical border-x frame down the central page width.
+            Reinforces the visual identity of 'Operational Precision'. */}
+        <div className="relative mx-auto w-full max-w-5xl border-x border-zinc-900 bg-neutral-950/20 flex-1 flex flex-col">
+          
+          {/* Corner blueprint crosshair markings */}
+          <span className="absolute -top-1 -left-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
+          <span className="absolute -top-1 -right-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
+
+          <main id="main-content" className="flex-1 focus:outline-none w-full">
+            {children}
+          </main>
+
+          <span className="absolute -bottom-1 -left-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
+          <span className="absolute -bottom-1 -right-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
+
+        </div>
+
         <Footer />
       </body>
     </html>
