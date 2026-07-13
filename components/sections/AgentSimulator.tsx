@@ -8,11 +8,8 @@ type SimState = "nominal" | "override" | "loop";
 /**
  * AgentSimulator — homepage signature interaction.
  *
- * Operational Precision style:
- * - Stark technical blueprint visualization
- * - Pure SVG-based node path rendering
- * - Live status console readout (aria-live polite)
- * - Optimized for card-grid integration (no outer borders / rounded corners)
+ * Visual style: Operational Precision.
+ * Optimized responsively: p-4 on mobile to prevent excessive scrolling.
  */
 export default function AgentSimulator() {
   const [activeState, setActiveState] = useState<SimState>("nominal");
@@ -33,16 +30,16 @@ export default function AgentSimulator() {
       case "override":
         return overrideResolved
           ? "Intervention Complete: Operator redirected task manually. Agent execution path updated."
-          : "System Alert: Agent confidence dropped to 52%. Execution halted at context boundary. Operator input required.";
+          : "System Alert: Agent confidence dropped to 52%. Execution halted. Operator input required.";
       case "loop":
         return loopResetted
-          ? "Recovery Executed: Circular task execution terminated. Agent parameters adjusted to default state."
-          : "System Error: Silent loop detected (Run time > 120s with duplicate operations). Operator override available.";
+          ? "Recovery Executed: Circular task execution terminated. Agent parameters reset."
+          : "System Error: Silent loop detected. Operator override available.";
     }
   };
 
   return (
-    <div className="w-full p-6 font-mono select-none">
+    <div className="w-full p-4 md:p-6 font-mono select-none">
       
       {/* ── Simulator Header ── */}
       <div className="mb-6 flex flex-col justify-between gap-3 border-b border-zinc-900 pb-4 sm:flex-row sm:items-center">
@@ -61,7 +58,7 @@ export default function AgentSimulator() {
               type="button"
               onClick={() => handleStateChange(state)}
               className={cn(
-                "rounded border px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer",
+                "rounded border px-2.5 py-1 text-[8px] font-bold uppercase tracking-wider transition-all duration-155 cursor-pointer",
                 activeState === state
                   ? "border-cyan-400 bg-cyan-950/40 text-cyan-400"
                   : "border-zinc-800 text-neutral-500 hover:border-neutral-700 hover:text-white"
@@ -74,7 +71,7 @@ export default function AgentSimulator() {
       </div>
 
       {/* ── Operational Schematic (SVG) ── */}
-      <div className="relative mb-6 flex items-center justify-center rounded border border-zinc-900/60 bg-neutral-950/10 py-8 px-4">
+      <div className="relative mb-6 flex items-center justify-center rounded border border-zinc-900/60 bg-neutral-950/10 py-6 px-3 sm:py-8 sm:px-4">
         <svg
           viewBox="0 0 500 160"
           className="w-full max-w-[420px] text-neutral-700 overflow-visible"
@@ -188,7 +185,7 @@ export default function AgentSimulator() {
             cy="80"
             r="8"
             className={cn(
-              "fill-neutral-950 stroke-neutral-755 transition-all duration-300",
+              "fill-neutral-950 stroke-neutral-750 transition-all duration-300",
               activeState === "nominal" && "stroke-emerald-500 fill-emerald-950/20",
               activeState === "override" && "stroke-amber-500 fill-amber-950/20",
               activeState === "loop" && "stroke-rose-500 fill-rose-950/20"
@@ -268,10 +265,10 @@ export default function AgentSimulator() {
       {/* ── Control Console Readout (Aria-live) ── */}
       <div className="flex flex-col gap-4 rounded border border-zinc-900 bg-neutral-950/40 p-4">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+          <span className="text-[9px] font-bold uppercase tracking-wider text-neutral-500">
             System Log Output
           </span>
-          <span className="text-[10px] font-mono text-neutral-500">
+          <span className="text-[9px] font-mono text-neutral-500">
             Status: {activeState.toUpperCase()}
           </span>
         </div>

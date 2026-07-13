@@ -9,7 +9,7 @@ type TimelineState = "conflict" | "resolved";
  * AirportTimeline — Interactive airport gate schedule visualizer.
  *
  * Visual style: Operational Precision.
- * Optimized for grid layout cell flushing.
+ * Optimized responsively: p-4 on mobile screens.
  */
 export default function AirportTimeline() {
   const [activeState, setActiveState] = useState<TimelineState>("conflict");
@@ -21,7 +21,7 @@ export default function AirportTimeline() {
   };
 
   return (
-    <div className="w-full p-6 font-mono select-none">
+    <div className="w-full p-4 md:p-6 font-mono select-none">
       
       {/* Header */}
       <div className="mb-6 flex flex-col justify-between gap-3 border-b border-zinc-900 pb-4 sm:flex-row sm:items-center">
@@ -43,7 +43,7 @@ export default function AirportTimeline() {
               type="button"
               onClick={() => setActiveState(state)}
               className={cn(
-                "rounded border px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer",
+                "rounded border px-2.5 py-1 text-[8px] font-bold uppercase tracking-wider transition-all duration-155 cursor-pointer",
                 activeState === state
                   ? "border-cyan-400 bg-cyan-950/40 text-cyan-400"
                   : "border-zinc-800 text-neutral-500 hover:border-neutral-700 hover:text-white"
@@ -56,7 +56,7 @@ export default function AirportTimeline() {
       </div>
 
       {/* SVG Timeline Grid */}
-      <div className="relative mb-6 flex items-center justify-center rounded border border-zinc-900/60 bg-neutral-950/10 py-6 px-4">
+      <div className="relative mb-6 flex items-center justify-center rounded border border-zinc-900/60 bg-neutral-950/10 py-6 px-3 sm:py-8 sm:px-4">
         <svg
           viewBox="0 0 500 160"
           className="w-full max-w-[420px] text-neutral-800 overflow-visible"
@@ -136,7 +136,7 @@ export default function AirportTimeline() {
           <button
             type="button"
             onClick={() => setActiveState("resolved")}
-            className="w-full rounded bg-rose-950/20 border border-rose-500/60 py-2 text-[9px] font-bold uppercase tracking-wider text-rose-400 hover:bg-rose-900/40 transition-colors duration-150 cursor-pointer"
+            className="w-full rounded bg-rose-950/20 border border-rose-500/60 py-2 text-[9px] font-bold uppercase tracking-wider text-rose-400 hover:bg-rose-900/40 transition-colors duration-155 cursor-pointer"
           >
             Resolve Overlap Conflict (Shift UA901 to Gate 12)
           </button>

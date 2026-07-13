@@ -11,14 +11,14 @@ import AirportTimeline from "./AirportTimeline";
  *
  * Operational Precision visual guidelines:
  * - Cards redesigned as fully enclosed grid modules with internal borders.
- * - Simulators are integrated cleanly as grid cells, removing the floating-widget look.
+ * - Spacing optimized responsively to maintain density on mobile (p-4) and breathing room on desktop (p-6/p-8).
  */
 export default function FeaturedWork() {
   const projects = getFeaturedProjects();
 
   return (
     <section
-      className="w-full py-20 md:py-28 border-b border-zinc-900"
+      className="w-full py-16 md:py-28 border-b border-zinc-900"
       aria-labelledby="featured-work-heading"
     >
       <div className="mx-auto px-6">
@@ -33,7 +33,7 @@ export default function FeaturedWork() {
           </h2>
           <Link
             href="/#work"
-            className="text-xs font-semibold uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
+            className="text-xs font-semibold uppercase tracking-wider text-neutral-450 transition-colors duration-200 hover:text-white"
             aria-label="View all case studies"
           >
             View all work →
@@ -41,7 +41,7 @@ export default function FeaturedWork() {
         </div>
 
         {/* ── Design thesis — section framing ──────────────────────── */}
-        <p className="mb-16 max-w-xl text-base leading-relaxed text-zinc-400">
+        <p className="mb-12 md:mb-16 max-w-xl text-sm md:text-base leading-relaxed text-zinc-400">
           Three curated systems. Each project examines a specific challenge in
           expert utility—designing interfaces where the primary constraints are cognitive limits,
           system safety, and the time required to make an informed decision.
@@ -95,8 +95,8 @@ function FeaturedCard({
       className="mb-12 w-full grid grid-cols-1 lg:grid-cols-[240px_1fr] border border-zinc-900 bg-neutral-950/10"
       aria-labelledby={challengeId}
     >
-      {/* ── Left Column: Metadata Context (Split cell) ── */}
-      <div className="p-6 border-b lg:border-b-0 lg:border-r border-zinc-900 flex flex-col justify-between gap-8 bg-neutral-950/30">
+      {/* ── Left Column: Metadata Context ── */}
+      <div className="p-4 md:p-6 border-b lg:border-b-0 lg:border-r border-zinc-900 flex flex-col justify-between gap-6 bg-neutral-950/30">
         
         {/* Top block: Domain tags */}
         <div className="flex flex-wrap gap-1.5">
@@ -111,8 +111,8 @@ function FeaturedCard({
         </div>
 
         {/* Middle block: Role and year */}
-        <div className="flex flex-col gap-1">
-          <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-500">
+        <div className="flex flex-col gap-0.5">
+          <span className="text-[8px] font-bold uppercase tracking-widest text-neutral-550">
             Design Context
           </span>
           <p className="text-xs text-neutral-400 font-medium">
@@ -126,7 +126,7 @@ function FeaturedCard({
         {/* Bottom block: Contribution notes */}
         {project.outcome !== null && (
           <div className="border-t border-zinc-900/40 pt-4 w-full">
-            <span className="mb-1 block text-[9px] font-bold uppercase tracking-widest text-neutral-500">
+            <span className="mb-1 block text-[8px] font-bold uppercase tracking-widest text-neutral-550">
               Diagnostic Outcome
             </span>
             <p className="text-xs leading-relaxed text-zinc-400">
@@ -141,17 +141,17 @@ function FeaturedCard({
       <div className="flex flex-col">
         
         {/* Cell 1: Challenge & Difficulty */}
-        <div className="p-6 border-b border-zinc-900 flex flex-col items-start gap-4">
+        <div className="p-4 md:p-6 border-b border-zinc-900 flex flex-col items-start gap-4">
           {/* Challenge statement (Card headline) */}
           <h3
             id={challengeId}
-            className="font-display text-xl font-bold leading-snug text-zinc-100 md:text-2xl"
+            className="font-display text-lg font-bold leading-snug text-zinc-100 md:text-2xl"
           >
             {project.challenge}
           </h3>
 
           {/* Why difficult (Insight) */}
-          <p className="text-sm leading-relaxed text-zinc-400">
+          <p className="text-xs md:text-sm leading-relaxed text-zinc-400">
             {project.difficulty}
           </p>
         </div>
