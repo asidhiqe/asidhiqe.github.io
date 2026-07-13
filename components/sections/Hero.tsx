@@ -1,5 +1,6 @@
 import Link from "next/link";
 import IndustryChips from "./IndustryChips";
+import { Typewriter } from "../ui";
 
 /**
  * Hero — homepage above-the-fold landing section.
@@ -58,7 +59,7 @@ export default function Hero() {
             className="font-display leading-[1.05] text-5xl font-bold tracking-tight text-zinc-500 md:text-6xl lg:text-7xl"
             aria-label="for expert decisions."
           >
-            for expert decisions.
+            for <Typewriter />
           </p>
         </div>
 
