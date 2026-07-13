@@ -9,7 +9,7 @@ type WorkflowState = "siloed" | "unified";
  * DoctorWorkflow — Interactive clinical workflow comparison widget.
  *
  * Visual style: Operational Precision.
- * Demonstrates: Consolidation of siloed systems to reduce context-switching.
+ * Optimized for layout cell flushing.
  */
 export default function DoctorWorkflow() {
   const [activeState, setActiveState] = useState<WorkflowState>("siloed");
@@ -21,32 +21,32 @@ export default function DoctorWorkflow() {
   };
 
   return (
-    <div className="w-full rounded-lg border border-neutral-900 bg-neutral-950 p-5 font-mono select-none">
+    <div className="w-full p-6 font-mono select-none">
       
       {/* Header */}
-      <div className="mb-6 flex flex-col justify-between gap-3 border-b border-neutral-900 pb-4 sm:flex-row sm:items-center">
+      <div className="mb-6 flex flex-col justify-between gap-3 border-b border-zinc-900 pb-4 sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
           <span className={cn(
-            "h-2 w-2 rounded-full animate-pulse",
+            "h-1.5 w-1.5 rounded-full animate-pulse",
             activeState === "siloed" ? "bg-amber-500" : "bg-cyan-400"
           )} />
-          <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
             Clinical Workspace Map
           </span>
         </div>
         
         {/* Toggle buttons */}
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           {(["siloed", "unified"] as const).map((state) => (
             <button
               key={state}
               type="button"
               onClick={() => setActiveState(state)}
               className={cn(
-                "rounded border px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer",
+                "rounded border px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer",
                 activeState === state
                   ? "border-cyan-400 bg-cyan-950/40 text-cyan-400"
-                  : "border-neutral-800 text-neutral-500 hover:border-neutral-700 hover:text-white"
+                  : "border-zinc-800 text-neutral-500 hover:border-neutral-700 hover:text-white"
               )}
             >
               {state === "siloed" ? "Siloed (Original)" : "Unified Workbench"}
@@ -56,7 +56,7 @@ export default function DoctorWorkflow() {
       </div>
 
       {/* SVG Workflow Diagram */}
-      <div className="relative mb-6 flex items-center justify-center rounded border border-neutral-900/60 bg-neutral-950/20 py-8 px-4">
+      <div className="relative mb-6 flex items-center justify-center rounded border border-zinc-900/60 bg-neutral-950/10 py-8 px-4">
         <svg
           viewBox="0 0 500 160"
           className="w-full max-w-[420px] text-neutral-700 overflow-visible"
@@ -100,17 +100,17 @@ export default function DoctorWorkflow() {
               <circle cx="250" cy="80" r="3" className="fill-cyan-400 animate-ping" />
 
               {/* Unified Node Layout */}
-              <circle cx="50" cy="80" r="6" className="fill-neutral-950 stroke-neutral-700" />
+              <circle cx="50" cy="80" r="6" className="fill-neutral-950 stroke-neutral-750" />
               <text x="50" y="62" textAnchor="middle" className="text-[7px] fill-neutral-500 font-sans font-bold">Patient Round</text>
 
               <g className="translate-x-[200px] translate-y-[45px]">
-                <rect x="0" y="0" width="100" height="70" rx="3" className="fill-neutral-950 stroke-cyan-400" />
+                <rect x="0" y="0" width="100" height="70" rx="3" className="fill-neutral-950 stroke-cyan-500/40" />
                 <text x="50" y="20" textAnchor="middle" className="text-[8px] fill-cyan-400 font-sans font-bold uppercase tracking-wider">Workbench</text>
                 <text x="50" y="40" textAnchor="middle" className="text-[6px] fill-neutral-500 font-sans">EMR + Labs + PACS</text>
                 <text x="50" y="52" textAnchor="middle" className="text-[6px] fill-neutral-500 font-sans">Integrated Context</text>
               </g>
 
-              <circle cx="450" cy="80" r="6" className="fill-neutral-950 stroke-neutral-700" />
+              <circle cx="450" cy="80" r="6" className="fill-neutral-950 stroke-neutral-750" />
               <text x="450" y="62" textAnchor="middle" className="text-[7px] fill-neutral-500 font-sans font-bold">Action Signed</text>
             </>
           )}
@@ -118,7 +118,7 @@ export default function DoctorWorkflow() {
       </div>
 
       {/* Log output */}
-      <div className="rounded border border-neutral-900 bg-neutral-950 p-4">
+      <div className="rounded border border-zinc-900 bg-neutral-950/40 p-4">
         <p className="text-xs leading-relaxed text-zinc-300 min-h-[36px]">
           {getStatusMessage()}
         </p>

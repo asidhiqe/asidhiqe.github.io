@@ -10,9 +10,8 @@ import AirportTimeline from "./AirportTimeline";
  * FeaturedWork — Selected Work grid section.
  *
  * Operational Precision visual guidelines:
- * - High-contrast layout optimized for dark background (#09090B).
- * - Asymmetric two-column cards stacked vertically, separated by zinc-900 border.
- * - Challenge statements are the visual centerpieces of each card (h3 display font).
+ * - Cards redesigned as fully enclosed grid modules with internal borders.
+ * - Simulators are integrated cleanly as grid cells, removing the floating-widget look.
  */
 export default function FeaturedWork() {
   const projects = getFeaturedProjects();
@@ -34,7 +33,7 @@ export default function FeaturedWork() {
           </h2>
           <Link
             href="/#work"
-            className="text-xs font-semibold uppercase tracking-wider text-neutral-450 transition-colors duration-200 hover:text-white"
+            className="text-xs font-semibold uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
             aria-label="View all case studies"
           >
             View all work →
@@ -50,11 +49,10 @@ export default function FeaturedWork() {
 
         {/* ── Card list ─────────────────────────────────────────────── */}
         <div className="flex flex-col">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <FeaturedCard
               key={project.id}
               project={project}
-              isFirst={index === 0}
             />
           ))}
         </div>
@@ -70,10 +68,8 @@ export default function FeaturedWork() {
 
 function FeaturedCard({
   project,
-  isFirst,
 }: {
   project: FeaturedProject;
-  isFirst: boolean;
 }) {
   const challengeId = `project-${project.id}-challenge`;
 
@@ -91,32 +87,35 @@ function FeaturedCard({
     }
   };
 
+  // Check if this project has an active simulator widget
+  const hasSimulator = ["agent-control-tower", "doctor-workbench", "airport-analytics"].includes(project.id);
+
   return (
     <article
-      className={cn(
-        "grid grid-cols-1 gap-8 py-12 lg:grid-cols-[220px_1fr] lg:gap-16",
-        !isFirst && "border-t border-zinc-900"
-      )}
+      className="mb-12 w-full grid grid-cols-1 lg:grid-cols-[240px_1fr] border border-zinc-900 bg-neutral-950/10"
       aria-labelledby={challengeId}
     >
-      {/* ── Left column: metadata ──────────────────────────────────── */}
-      <div className="flex flex-col items-start gap-6">
+      {/* ── Left Column: Metadata Context (Split cell) ── */}
+      <div className="p-6 border-b lg:border-b-0 lg:border-r border-zinc-900 flex flex-col justify-between gap-8 bg-neutral-950/30">
         
-        {/* Domain chips */}
-        <div className="flex flex-wrap gap-2">
+        {/* Top block: Domain tags */}
+        <div className="flex flex-wrap gap-1.5">
           {project.domains.map((domain) => (
             <span
               key={domain}
-              className="rounded-full border border-zinc-900 bg-neutral-900/40 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-neutral-400 font-mono"
+              className="rounded-full border border-zinc-900/60 bg-neutral-900/40 px-2.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-neutral-400 font-mono"
             >
               {domain}
             </span>
           ))}
         </div>
 
-        {/* Role & Year */}
+        {/* Middle block: Role and year */}
         <div className="flex flex-col gap-1">
-          <p className="text-xs text-neutral-500 font-semibold">
+          <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-500">
+            Design Context
+          </span>
+          <p className="text-xs text-neutral-400 font-medium">
             {project.role}
           </p>
           <p className="text-xs text-neutral-500 font-mono">
@@ -124,12 +123,12 @@ function FeaturedCard({
           </p>
         </div>
 
-        {/* Impact outcome - design-centric */}
+        {/* Bottom block: Contribution notes */}
         {project.outcome !== null && (
-          <div>
-            <p className="mb-1 text-[9px] font-bold uppercase tracking-wider text-neutral-500">
-              Contribution
-            </p>
+          <div className="border-t border-zinc-900/40 pt-4 w-full">
+            <span className="mb-1 block text-[9px] font-bold uppercase tracking-widest text-neutral-500">
+              Diagnostic Outcome
+            </span>
             <p className="text-xs leading-relaxed text-zinc-400">
               {project.outcome}
             </p>
@@ -138,50 +137,49 @@ function FeaturedCard({
 
       </div>
 
-      {/* ── Right column: narrative ────────────────────────────────── */}
-      <div className="flex flex-col items-start">
+      {/* ── Right Column: Narrative & Simulator ── */}
+      <div className="flex flex-col">
         
-        {/* Challenge statement (Card headline) */}
-        <h3
-          id={challengeId}
-          className="font-display text-xl font-bold leading-snug text-zinc-100 md:text-2xl"
-        >
-          {project.challenge}
-        </h3>
+        {/* Cell 1: Challenge & Difficulty */}
+        <div className="p-6 border-b border-zinc-900 flex flex-col items-start gap-4">
+          {/* Challenge statement (Card headline) */}
+          <h3
+            id={challengeId}
+            className="font-display text-xl font-bold leading-snug text-zinc-100 md:text-2xl"
+          >
+            {project.challenge}
+          </h3>
 
-        {/* Why difficult (Insight) */}
-        <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-          {project.difficulty}
-        </p>
+          {/* Why difficult (Insight) */}
+          <p className="text-sm leading-relaxed text-zinc-400">
+            {project.difficulty}
+          </p>
+        </div>
 
-        {/* Project-Specific Simulators (Signature Experiences) */}
-        {project.id === "agent-control-tower" && (
-          <div className="mt-8 w-full max-w-xl">
-            <AgentSimulator />
+        {/* Cell 2: Integrated Simulator Screen (Flush) */}
+        {hasSimulator && (
+          <div className="w-full border-b border-zinc-900 bg-neutral-950/20">
+            {project.id === "agent-control-tower" && <AgentSimulator />}
+            {project.id === "doctor-workbench" && <DoctorWorkflow />}
+            {project.id === "airport-analytics" && <AirportTimeline />}
           </div>
         )}
 
-        {project.id === "doctor-workbench" && (
-          <div className="mt-8 w-full max-w-xl">
-            <DoctorWorkflow />
-          </div>
-        )}
+        {/* Cell 3: Card Footer / CTA Controls */}
+        <div className="p-4 bg-neutral-950/40 flex items-center justify-between">
+          <Link
+            href={`/#work`} // Temporary placeholder anchor link for Sprint 1 / Phase 1
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
+            aria-label="Inspect design case study"
+          >
+            {getCardCta()}
+            <span aria-hidden="true">→</span>
+          </Link>
 
-        {project.id === "airport-analytics" && (
-          <div className="mt-8 w-full max-w-xl">
-            <AirportTimeline />
-          </div>
-        )}
-
-        {/* CTA */}
-        <Link
-          href={`/#work`} // Temporary placeholder anchor link for Sprint 1 / Phase 1
-          className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
-          aria-label="Inspect design case study"
-        >
-          {getCardCta()}
-          <span aria-hidden="true">→</span>
-        </Link>
+          <span className="hidden sm:inline font-mono text-[8px] text-zinc-700 uppercase tracking-widest selection:bg-transparent">
+            [inspect_system_flow]
+          </span>
+        </div>
 
       </div>
     </article>

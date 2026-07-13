@@ -12,9 +12,7 @@ type SimState = "nominal" | "override" | "loop";
  * - Stark technical blueprint visualization
  * - Pure SVG-based node path rendering
  * - Live status console readout (aria-live polite)
- * - Zero external animation libraries for performance
- *
- * Demonstrates: AI trust design, system observability, exception loops.
+ * - Optimized for card-grid integration (no outer borders / rounded corners)
  */
 export default function AgentSimulator() {
   const [activeState, setActiveState] = useState<SimState>("nominal");
@@ -44,29 +42,29 @@ export default function AgentSimulator() {
   };
 
   return (
-    <div className="w-full rounded-lg border border-neutral-900 bg-neutral-950 p-5 font-mono select-none">
+    <div className="w-full p-6 font-mono select-none">
       
       {/* ── Simulator Header ── */}
-      <div className="mb-6 flex flex-col justify-between gap-3 border-b border-neutral-900 pb-4 sm:flex-row sm:items-center">
+      <div className="mb-6 flex flex-col justify-between gap-3 border-b border-zinc-900 pb-4 sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
-          <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
             AI Observability Console
           </span>
         </div>
         
         {/* Simulation Controls */}
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           {(["nominal", "override", "loop"] as const).map((state) => (
             <button
               key={state}
               type="button"
               onClick={() => handleStateChange(state)}
               className={cn(
-                "rounded border px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer",
+                "rounded border px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer",
                 activeState === state
                   ? "border-cyan-400 bg-cyan-950/40 text-cyan-400"
-                  : "border-neutral-800 text-neutral-500 hover:border-neutral-700 hover:text-white"
+                  : "border-zinc-800 text-neutral-500 hover:border-neutral-700 hover:text-white"
               )}
             >
               {state}
@@ -76,7 +74,7 @@ export default function AgentSimulator() {
       </div>
 
       {/* ── Operational Schematic (SVG) ── */}
-      <div className="relative mb-6 flex items-center justify-center rounded border border-neutral-900/60 bg-neutral-950/20 py-8 px-4">
+      <div className="relative mb-6 flex items-center justify-center rounded border border-zinc-900/60 bg-neutral-950/10 py-8 px-4">
         <svg
           viewBox="0 0 500 160"
           className="w-full max-w-[420px] text-neutral-700 overflow-visible"
@@ -173,7 +171,7 @@ export default function AgentSimulator() {
             cx="50"
             cy="80"
             r="6"
-            className="fill-neutral-900 stroke-neutral-700 transition-colors duration-300"
+            className="fill-neutral-900 stroke-neutral-750 transition-colors duration-300"
           />
           <text
             x="50"
@@ -190,7 +188,7 @@ export default function AgentSimulator() {
             cy="80"
             r="8"
             className={cn(
-              "fill-neutral-950 stroke-neutral-700 transition-all duration-300",
+              "fill-neutral-950 stroke-neutral-755 transition-all duration-300",
               activeState === "nominal" && "stroke-emerald-500 fill-emerald-950/20",
               activeState === "override" && "stroke-amber-500 fill-amber-950/20",
               activeState === "loop" && "stroke-rose-500 fill-rose-950/20"
@@ -211,7 +209,7 @@ export default function AgentSimulator() {
             cy="30"
             r="6"
             className={cn(
-              "fill-neutral-900 stroke-neutral-700 transition-colors duration-300",
+              "fill-neutral-900 stroke-neutral-750 transition-colors duration-300",
               activeState === "nominal" && "stroke-emerald-500 fill-emerald-950/20",
               activeState === "override" && overrideResolved && "stroke-zinc-600"
             )}
@@ -231,7 +229,7 @@ export default function AgentSimulator() {
             cy="80"
             r="6"
             className={cn(
-              "fill-neutral-900 stroke-neutral-700 transition-colors duration-300",
+              "fill-neutral-900 stroke-neutral-750 transition-colors duration-300",
               activeState === "override" && !overrideResolved && "stroke-amber-400 fill-amber-950/40 animate-pulse",
               activeState === "override" && overrideResolved && "stroke-emerald-500 fill-emerald-950/20"
             )}
@@ -251,7 +249,7 @@ export default function AgentSimulator() {
             cy="130"
             r="6"
             className={cn(
-              "fill-neutral-900 stroke-neutral-700 transition-colors duration-300",
+              "fill-neutral-900 stroke-neutral-750 transition-colors duration-300",
               activeState === "loop" && !loopResetted && "stroke-rose-500 fill-rose-950/40",
               activeState === "loop" && loopResetted && "stroke-neutral-800"
             )}
@@ -268,7 +266,7 @@ export default function AgentSimulator() {
       </div>
 
       {/* ── Control Console Readout (Aria-live) ── */}
-      <div className="flex flex-col gap-4 rounded border border-neutral-900/60 bg-neutral-950 p-4">
+      <div className="flex flex-col gap-4 rounded border border-zinc-900 bg-neutral-950/40 p-4">
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">
             System Log Output
@@ -290,7 +288,7 @@ export default function AgentSimulator() {
           <button
             type="button"
             onClick={() => setOverrideResolved(true)}
-            className="w-full rounded bg-amber-950/40 border border-amber-500/60 py-2 text-[10px] font-bold uppercase tracking-wider text-amber-400 hover:bg-amber-900/40 transition-colors duration-150 cursor-pointer"
+            className="w-full rounded bg-amber-950/20 border border-amber-500/40 py-2 text-[9px] font-bold uppercase tracking-wider text-amber-400 hover:bg-amber-900/40 transition-colors duration-150 cursor-pointer"
           >
             Approve Manual Redirect Override
           </button>
@@ -300,7 +298,7 @@ export default function AgentSimulator() {
           <button
             type="button"
             onClick={() => setLoopResetted(true)}
-            className="w-full rounded bg-rose-950/40 border border-rose-500/60 py-2 text-[10px] font-bold uppercase tracking-wider text-rose-400 hover:bg-rose-900/40 transition-colors duration-150 cursor-pointer"
+            className="w-full rounded bg-rose-950/20 border border-rose-500/60 py-2 text-[9px] font-bold uppercase tracking-wider text-rose-400 hover:bg-rose-900/40 transition-colors duration-150 cursor-pointer"
           >
             Terminate Loop (Manual Kill Signal)
           </button>
