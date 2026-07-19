@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
-import { Navbar, Footer } from "@/components/layout";
+import { Navbar, Footer, AltitudeTimeline } from "@/components/layout";
 import "./globals.css";
 
 /*
@@ -68,6 +68,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} dark bg-[#09090b] text-[#f4f4f5] h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
         {/* Skip Navigation Link for Screen Readers and Keyboard Navigation (WCAG AAA) */}
@@ -79,6 +80,8 @@ export default function RootLayout({
         </a>
         
         <Navbar />
+        
+        <AltitudeTimeline />
 
         {/* ── CAD Blueprint Grid Shell ──
             Creates a thin vertical border-x frame down the central page width.

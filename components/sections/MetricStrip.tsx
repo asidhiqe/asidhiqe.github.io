@@ -9,6 +9,7 @@
 export default function MetricStrip() {
   return (
     <section
+      id="metrics"
       className="w-full border-y border-zinc-900 bg-neutral-950/20 py-6 md:py-8"
       aria-label="Experience metrics"
     >

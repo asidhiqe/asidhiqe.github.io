@@ -24,6 +24,7 @@ export default function Footer() {
 
   return (
     <footer
+      id="footer"
       className="w-full border-t border-zinc-900 bg-neutral-950"
       role="contentinfo"
     >

@@ -18,6 +18,7 @@ import { Typewriter } from "../ui";
 export default function Hero() {
   return (
     <section
+      id="hero"
       className="w-full py-20 md:py-28"
       aria-labelledby="hero-heading"
     >

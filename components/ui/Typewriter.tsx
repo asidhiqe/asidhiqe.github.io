@@ -62,11 +62,12 @@ export default function Typewriter() {
   return (
     <span className="relative inline-block align-top">
       {/* Hidden placeholder to reserve space and prevent layout shifts */}
-      <span className="invisible pointer-events-none select-none block" aria-hidden="true">
+      <span className="invisible pointer-events-none select-none block whitespace-nowrap" aria-hidden="true">
         human-AI collaboration.
+        <span className="ml-1.5 inline-block w-[3px]" />
       </span>
       {/* Active typewriter animation */}
-      <span className="absolute top-0 left-0 w-full block">
+      <span className="absolute top-0 left-0 w-full block whitespace-nowrap">
         <span>{displayedText}</span>
         <span
           className="ml-1.5 inline-block w-[3px] h-[0.85em] bg-zinc-500 cursor-blink align-baseline"
