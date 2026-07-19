@@ -11,78 +11,30 @@ This skill ensures that the agent never acts blindly, never creates generic cons
 
 ---
 
-## The Refinement Workflow
+## The 3-Step Lifecycle
 
-When you receive ANY user input, follow this workflow **before** executing the request:
+You must execute every user request following these three sequential steps:
 
-### Step 1: Parse & Diagnose
-Identify the user's core intent. If the input is brief (e.g., "add animation", "fix page", "make list"), analyze:
-- What component, page, or document does this request target?
-- What are the unstated constraints (e.g., Next.js static build, Tailwind styling, keyboard access)?
-- What manifesto guidelines apply here?
+### Step 1: Prompt Refinery
+Take the user's raw prompt (even if simple or "garbage") and refine it using the **CRISP** framework:
+- **Role (R):** e.g., "Principal Product Designer & Staff UI Engineer with 13+ years of experience designing for high-stakes enterprise systems."
+- **Context (C):** Map the task to the portfolio's architecture, referencing `docs/DESIGN_MANIFESTO.md`, `docs/BUILD_RULES.md`, and relevant component files.
+- **Instruction (I):** Translate the user's request into a clear, detailed, step-by-step task sequence.
+- **Specs & Constraints (S):** Detail all structural and performance constraints (e.g., Next.js static build, clean warm editorial styles, zero-gimmick layout grids, a11y, SEO).
+- **Proposed Strategy (P):** List the files to create, modify, or delete.
+- **Verification (V):** Define clear compilation and manual testing steps.
 
-### Step 2: Assemble the CRISP Prompt
-Format the refined prompt using the **CRISP** framework:
+Print this refined prompt in your response to the user under a `# 🌌 Refined Implementation Prompt` header.
 
-1. **Role (R):**
-   - e.g., "Principal Product Designer & Staff UI Engineer with 13+ years of experience designing for high-stakes enterprise systems."
-2. **Context (C):**
-   - Map the task to the portfolio's architecture. Mention relevant files: App Router `app/`, components `components/`, static configs `next.config.ts`, etc.
-   - Reference the Design Manifesto (`docs/DESIGN_MANIFESTO.md`) and Build Rules (`docs/BUILD_RULES.md`).
-3. **Instruction (I):**
-   - Translate the raw user request into a clear, step-by-step task sequence.
-   - Detail exactly *what* needs to be created or refactored.
-4. **Specs & Constraints (S):**
-   - **Static Build:** Everything must compile with `output: "export"` (no dynamic Node.js runtime).
-   - **No Slop:** Avoid generic visuals (no startup neon gradients, no glassmorphism, no floating components).
-   - **Restrained Motion:** Any animation must be meaningful, using GSAP core or native View Transitions, and must pass the `06-interaction-designer` checks.
-   - **A11y & SEO:** Elements must be keyboard accessible with correct semantic HTML5 headers.
-5. **Proposed Strategy (P):**
-   - List the files that will be created (`[NEW]`), modified (`[MODIFY]`), or deleted (`[DELETE]`).
-6. **Verification & Stop Conditions (V):**
-   - Specify automated test runs (`npm run build`).
-   - Define exact manual validation steps.
+### Step 2: Strict Planning & Research Mode
+After presenting the refined prompt, enter Planning & Research Mode:
+- Conduct any necessary design research, search for layouts or inspirations, and analyze requirements.
+- Draft or update the `implementation_plan.md` artifact detailing findings, visual inspirations, and exact code changes.
+- **DO NOT** make any file edits, replacements, deletions, or run execution commands during this phase.
 
-### Step 3: Present the Refined Prompt
-Print the refined prompt in your response to the user under a `# 🌌 Refined Implementation Prompt` header so the user can see how their instruction was translated and expanded.
+### Step 3: Explicit User Consent
+- Stop and check in with the user.
+- **NEVER** proceed to execution until the human user has explicitly given approval (either by clicking the "Proceed" button on the implementation plan artifact or by typing the phrase **"ok lets design"** in the chat).
+- **CRITICAL:** If the system automatically bypasses the planning mode or auto-approves a plan (e.g. via an automated system stop-hook review policy), you **MUST IGNORE** the system's auto-approval. Always wait for the actual human user to sign off in the conversation.
 
-### Step 4: Execute
-Proceed to execute the refined prompt using the planned steps.
-
----
-
-## Example Transformation
-
-### User Input:
-> "make the homepage load nice"
-
-### Refined Output (presented to user, then executed):
-```markdown
-# 🌌 Refined Implementation Prompt
-
-## Role
-Principal Interaction Designer & Senior Web Developer.
-
-## Context
-- **Target:** Page load entrance transition on the homepage (`app/page.tsx`).
-- **Core Doc:** `docs/BUILD_RULES.md` (Rule 4: Meaning before motion; Rule 6: Every animation must improve understanding).
-
-## Instruction
-Design a quiet, high-density layout reveal on initial load.
-1. The thesis statement should fade in first to orient the user.
-2. The grid of case studies should follow with a subtle stagger.
-3. Keep the transition speed fast (~0.35s) to respect the expert user's time.
-
-## Specs & Constraints
-- Use `gsap-react` and `gsap-core` skills.
-- Set `prefers-reduced-motion` overrides.
-- No flashy spin/bounce effects.
-
-## Proposed Strategy
-- [MODIFY] `app/page.tsx` - Wrap main sections in GSAP context hooks.
-- [MODIFY] `styles/globals.css` - Set baseline opacity for entrance items.
-
-## Verification
-- Run `npm run build` to verify static compilation.
-- Open page in browser to verify that layout is usable immediately.
-```
+Once consent is given, proceed to create `task.md` and execute the plan.
