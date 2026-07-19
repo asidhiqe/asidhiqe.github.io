@@ -54,7 +54,7 @@ export default function MetricStrip() {
     <section
       id="metrics"
       ref={containerRef}
-      className="w-full border-y border-border bg-background/50 py-10 relative overflow-hidden"
+      className="w-full border-y border-border bg-background/70 py-10 relative overflow-hidden"
       aria-label="Experience metrics"
     >
       {/* Structural Crosshair Corner Markings */}
@@ -63,7 +63,7 @@ export default function MetricStrip() {
       <span className="blueprint-corner blueprint-corner-bl" aria-hidden="true" />
       <span className="blueprint-corner blueprint-corner-br" aria-hidden="true" />
 
-      <div className="mx-auto grid grid-cols-3 text-center divide-x divide-border/50">
+      <div className="mx-auto max-w-4xl grid grid-cols-3 text-center divide-x divide-border/50">
         
         {/* Metric 1: Years Active */}
         <div className="flex flex-col items-center justify-center">

@@ -16,7 +16,7 @@ export default function ManifestoBlock() {
       <div className="mx-auto px-6">
         
         {/* Section label */}
-        <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-muted">
+        <p className="section-kicker mb-4">
           Design Philosophy
         </p>
 
@@ -29,16 +29,19 @@ export default function ManifestoBlock() {
               id="manifesto-heading"
               className="font-display text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl"
             >
-              I don’t design screens.
-              <br />
-              I design decision-making systems.
+              I design systems that help experts move with clarity.
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-muted">
-              Enterprise platforms are naturally complex. Traditional design advice
-              focuses on visual reduction—often hiding information that experts need to
-              make critical evaluations. Good design is not minimal; it is appropriate,
-              organizing complexity to reduce operational uncertainty.
+              Complex products do not become easier by hiding information. They become easier when information is organized into predictable, trustworthy patterns. That is the core of my work: reducing uncertainty without stripping away the context people need.
             </p>
+            <div className="mt-8 rounded border border-border bg-background/60 p-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-accent">
+                Thesis
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/90">
+                The best enterprise software feels invisible because it supports judgment, not distraction.
+              </p>
+            </div>
           </div>
 
           {/* Right: Key pillars */}

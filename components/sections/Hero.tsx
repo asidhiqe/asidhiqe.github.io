@@ -30,7 +30,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="w-full py-16 md:py-24 border-b border-border relative overflow-hidden"
+      className="w-full py-20 md:py-28 border-b border-border relative overflow-hidden"
       aria-labelledby="hero-heading"
       ref={containerRef}
     >
@@ -45,11 +45,11 @@ export default function Hero() {
           <p className="text-xs font-semibold uppercase tracking-widest text-muted flex items-center gap-2">
             <span>[SYS_INIT]</span>
             <span className="h-1.5 w-[1px] bg-border" />
-            <span>Systems & Product Design Leader</span>
+            <span>Principal Product Designer</span>
           </p>
           <a
             href="mailto:hello@aboobacker.design"
-            className="self-start inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 hover:border-accent hover:text-accent transition-colors duration-200"
+            className="self-start inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 hover:border-accent hover:text-accent transition-colors duration-200"
           >
             <span
               className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent"
@@ -65,21 +65,19 @@ export default function Hero() {
         <div className="mb-8 gsap-hero-item">
           <h1
             id="hero-heading"
-            className="font-display leading-[1.15] text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl max-w-4xl"
+            className="font-display leading-[1.08] text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl max-w-4xl"
           >
-            Designing systems for people who make{" "}
+            Designing decision systems for people who make{" "}
             <span className="font-serif italic font-normal text-accent block sm:inline">
               consequential decisions
             </span>{" "}
-            every day.
+            under pressure.
           </h1>
         </div>
 
         {/* Supporting paragraph */}
         <p className="mb-10 max-w-2xl text-sm sm:text-base leading-relaxed text-muted gsap-hero-item">
-          Over the past 13+ years, I have engineered product interfaces and workflows for healthcare clinicians, 
-          airport controllers, financial analysts, and operators supervising autonomous AI fleets. 
-          My work translates complex, high-frequency technical streams into transparent, decision-ready software.
+          For 13+ years, I have shaped enterprise products for clinicians, operators, analysts, and teams steering AI systems in real time. The goal is always the same: turn complexity into confident action.
         </p>
 
         {/* CTA Buttons */}
@@ -101,7 +99,7 @@ export default function Hero() {
 
         {/* Domain Focus Chips */}
         <div className="border-t border-border pt-8 gsap-hero-item">
-          <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-muted">
+          <p className="section-kicker mb-4">
             Domain Focus
           </p>
           <IndustryChips />

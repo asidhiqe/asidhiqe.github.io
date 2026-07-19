@@ -101,7 +101,7 @@ export default function AboutSection() {
       <div className="mx-auto px-6">
         
         {/* Section label */}
-        <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-muted">
+        <p className="section-kicker mb-4">
           Executive Journey
         </p>
 
@@ -118,14 +118,10 @@ export default function AboutSection() {
                 Aboobacker Sidhiqe
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-muted">
-                I am a Principal Product Designer specializing in enterprise systems. 
-                My work focuses on the intersection of human cognitive limits and complex 
-                workflows. Over the last 13+ years, I have designed software in highly regulated 
-                and operational domains where user errors carry significant real-world costs.
+                I am a Principal Product Designer focused on enterprise systems where clarity, trust, and precision matter. Over the last 13+ years, I have designed software for regulated and operational environments where user decisions have direct consequences.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                I believe the role of a design leader is to ask difficult questions, challenge 
-                system assumptions, and create cross-functional alignment that moves products forward.
+                My work sits at the intersection of product strategy, systems thinking, and interface design. I help teams create products that are intelligible under pressure and strong enough to scale.
               </p>
             </div>
 
@@ -145,7 +141,7 @@ export default function AboutSection() {
 
           {/* Right: Chronological Logbook Timeline */}
           <div className="lg:col-span-7 border-l border-border/50 pl-8 lg:pl-12">
-            <h3 className="mb-8 text-[10px] font-bold uppercase tracking-wider text-muted font-mono">
+            <h3 className="mb-8 text-[10px] font-bold uppercase tracking-[0.24em] text-muted font-mono">
               Chronological Logbook
             </h3>
 

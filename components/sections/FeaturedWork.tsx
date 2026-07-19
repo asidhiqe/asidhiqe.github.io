@@ -55,7 +55,7 @@ export default function FeaturedWork() {
         <div className="mb-4 flex items-center justify-between">
           <h2
             id="featured-work-heading"
-            className="text-[9px] font-bold uppercase tracking-widest text-muted"
+            className="section-kicker"
           >
             Selected Case Studies
           </h2>
@@ -69,9 +69,8 @@ export default function FeaturedWork() {
         </div>
 
         {/* Design thesis — section framing */}
-        <p className="mb-12 md:mb-16 max-w-xl text-sm md:text-base leading-relaxed text-muted">
-          Three selected projects demonstrating systems engineering in high-stakes utilities. 
-          Each case study explores the mitigation of cognitive fatigue, system opacity, and decision-making friction.
+        <p className="mb-12 md:mb-16 max-w-2xl text-sm md:text-base leading-relaxed text-muted">
+          Three selected projects that show how product thinking, operational context, and interface design work together in complex environments.
         </p>
 
         {/* Card list */}
@@ -130,7 +129,7 @@ function FeaturedCard({
 
   return (
     <article
-      className="w-full grid grid-cols-1 lg:grid-cols-[260px_1fr] border border-border bg-background/40 rounded-lg shadow-sm overflow-hidden hover-blueprint relative"
+      className="w-full grid grid-cols-1 lg:grid-cols-[260px_1fr] border border-border bg-background/80 rounded-none overflow-hidden hover-blueprint relative"
       aria-labelledby={challengeId}
     >
       {/* Precision Blueprint Corner Markers */}
