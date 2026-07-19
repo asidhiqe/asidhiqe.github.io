@@ -3,112 +3,90 @@
 import { useState } from "react";
 import { cn } from "@/lib";
 
-type TimelineState = "conflict" | "resolved";
-
 export default function AirportTimeline() {
-  const [activeState, setActiveState] = useState<TimelineState>("conflict");
-
-  const getStatusMessage = () => {
-    return activeState === "conflict"
-      ? "Conflict Alert: Flight LH402 arrival delayed. Overlaps with UA901 at Gate 11. Overlap duration: 18 minutes."
-      : "Conflict Resolved: Flight UA901 redirected to Gate 12. Gate conflict resolved. Ground assets updated.";
-  };
+  const [activeTab, setActiveTab] = useState<"conflict" | "resolved">("conflict");
 
   return (
-    <div className="w-full p-4 md:p-6 font-mono select-none text-foreground">
+    <div className="w-full p-4 md:p-5 font-mono text-foreground select-none text-[10px]">
       
-      {/* Header */}
-      <div className="mb-6 flex flex-col justify-between gap-3 border-b border-border pb-4 sm:flex-row sm:items-center">
-        <div className="flex items-center gap-3">
-          <span className={cn(
-            "h-2 w-2 rounded-full animate-pulse",
-            activeState === "conflict" ? "bg-rose-500" : "bg-teal-500"
-          )} />
-          <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
-            Real-Time Gate Allocation (Control Room Interface)
+      {/* ── Airport Operations Header ── */}
+      <div className="flex items-center justify-between border-b border-border/50 pb-3 mb-4">
+        <div className="flex items-center gap-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+          <span className="text-[8px] font-bold uppercase tracking-widest text-muted">
+            GRAYMATTER // AIRPORT_GATE_ALLOCATION
           </span>
         </div>
-        
-        {/* Toggle buttons */}
-        <div className="flex gap-1.5">
-          {(["conflict", "resolved"] as const).map((state) => (
+
+        {/* Tab Controls */}
+        <div className="flex gap-1">
+          {(["conflict", "resolved"] as const).map((tab) => (
             <button
-              key={state}
-              type="button"
-              onClick={() => setActiveState(state)}
+              key={tab}
+              onClick={() => setActiveTab(tab)}
               className={cn(
-                "rounded border px-2.5 py-1 text-[8px] font-bold uppercase tracking-wider transition-all duration-155 cursor-pointer",
-                activeState === state
+                "px-2 py-0.5 rounded-[2px] border text-[7px] font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer",
+                activeTab === tab
                   ? "border-accent bg-accent-tint text-accent"
                   : "border-border text-muted hover:border-accent/40 hover:text-foreground"
               )}
             >
-              {state === "conflict" ? "Gate Conflict" : "Resolve Conflict"}
+              {tab === "conflict" ? "Conflict State" : "Resolved State"}
             </button>
           ))}
         </div>
       </div>
 
-      {/* ── High-Fidelity Airport Gate Grid Gantt Chart ── */}
-      <div className="border border-border rounded-lg bg-background/30 p-4 mb-6">
+      {/* ── High-Fidelity Gantt Operations Grid ── */}
+      <div className="border border-border/40 rounded bg-background/40 p-3 mb-3 min-h-[140px]">
         
-        {/* Time ruler markings */}
-        <div className="grid grid-cols-5 text-[7px] text-muted border-b border-border/40 pb-2 mb-3 text-center pl-16">
+        {/* Time ruler scale */}
+        <div className="grid grid-cols-4 text-[7px] text-muted border-b border-border/20 pb-1.5 mb-2 pl-12 text-center">
           <span>08:00</span>
           <span>09:00</span>
           <span>10:00</span>
           <span>11:00</span>
-          <span>12:00</span>
         </div>
 
         {/* Schedule grid tracks */}
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           
           {/* Gate 10 track */}
-          <div className="flex items-center gap-3">
-            <span className="w-12 text-[8px] font-bold text-muted">GATE 10</span>
-            <div className="flex-1 h-8 bg-background/25 border border-border rounded relative">
-              <div className="absolute left-[10%] w-[40%] h-6 top-1 rounded bg-background border border-border flex items-center justify-center text-[8px] text-foreground/80 font-semibold">
+          <div className="flex items-center gap-2">
+            <span className="w-10 text-[7px] text-muted font-bold">GATE 10</span>
+            <div className="flex-1 h-6 bg-background/20 border border-border/30 rounded relative">
+              <div className="absolute left-[15%] w-[45%] h-4 top-1 rounded bg-background border border-border/40 flex items-center justify-center text-[7px] text-foreground font-semibold">
                 LH203 (Nominal)
               </div>
             </div>
           </div>
 
           {/* Gate 11 track */}
-          <div className="flex items-center gap-3">
-            <span className="w-12 text-[8px] font-bold text-muted">GATE 11</span>
-            <div className="flex-1 h-8 bg-background/25 border border-border rounded relative overflow-hidden sm:overflow-visible">
-              {/* LH402 Delayed Block */}
-              <div className={cn(
-                "absolute left-[20%] w-[50%] h-6 top-1 rounded border flex items-center justify-center text-[8px] font-semibold transition-all duration-300",
-                activeState === "conflict" 
-                  ? "bg-rose-500/10 border-rose-500 text-rose-500" 
-                  : "bg-background border-border text-foreground/80"
-              )}>
-                {activeState === "conflict" ? "LH402 (Delayed)" : "LH402"}
+          <div className="flex items-center gap-2">
+            <span className="w-10 text-[7px] text-muted font-bold">GATE 11</span>
+            <div className="flex-1 h-6 bg-background/20 border border-border/30 rounded relative">
+              <div className="absolute left-[20%] w-[35%] h-4 top-1 rounded bg-background border border-border/40 flex items-center justify-center text-[7px] text-foreground font-semibold">
+                LH402
               </div>
-
-              {/* UA901 overlapping block */}
-              {activeState === "conflict" ? (
-                <div className="absolute left-[62%] w-[30%] h-6 top-1 rounded bg-rose-500/20 border border-rose-500 text-rose-600 flex items-center justify-center text-[7px] font-bold animate-pulse shadow-sm shadow-rose-950/20">
+              
+              {activeTab === "conflict" ? (
+                <div className="absolute left-[52%] w-[30%] h-4 top-1 rounded bg-rose-500/10 border border-rose-500/30 text-rose-600 flex items-center justify-center text-[7px] font-bold animate-pulse">
                   UA901 (Conflict)
                 </div>
               ) : (
-                <span className="absolute left-[72%] top-2.5 text-[7px] text-muted uppercase tracking-wider font-bold">Slot Free</span>
+                <span className="absolute left-[60%] top-1.5 text-[6px] text-accent font-bold uppercase tracking-wider">Slot Cleared</span>
               )}
             </div>
           </div>
 
           {/* Gate 12 track */}
-          <div className="flex items-center gap-3">
-            <span className="w-12 text-[8px] font-bold text-muted">GATE 12</span>
-            <div className="flex-1 h-8 bg-background/25 border border-border rounded relative">
-              {activeState === "resolved" ? (
-                <div className="absolute left-[62%] w-[30%] h-6 top-1 rounded bg-accent-tint border border-accent/40 text-accent flex items-center justify-center text-[7px] font-bold shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="w-10 text-[7px] text-muted font-bold">GATE 12</span>
+            <div className="flex-1 h-6 bg-background/20 border border-border/30 rounded relative">
+              {activeTab === "resolved" && (
+                <div className="absolute left-[52%] w-[30%] h-4 top-1 rounded bg-accent-tint border border-accent/40 text-accent flex items-center justify-center text-[7px] font-bold">
                   UA901 (Reallocated)
                 </div>
-              ) : (
-                <span className="absolute left-4 top-2 text-[7px] text-muted">No schedule assignments</span>
               )}
             </div>
           </div>
@@ -117,28 +95,11 @@ export default function AirportTimeline() {
 
       </div>
 
-      {/* Log Output & Interactive Resolve Trigger */}
-      <div className="border border-border rounded bg-background/50 p-4">
-        <div className="flex items-center justify-between text-[8px] font-bold text-muted uppercase tracking-widest mb-2">
-          <span>Real-Time Controller log</span>
-          <span>Buffer: SYNC</span>
-        </div>
-        
-        <p className="text-xs leading-relaxed text-foreground min-h-[36px] font-mono">
-          {getStatusMessage()}
-        </p>
-
-        {activeState === "conflict" && (
-          <div className="mt-4">
-            <button
-              type="button"
-              onClick={() => setActiveState("resolved")}
-              className="w-full rounded bg-rose-500/10 border border-rose-500/30 py-2.5 text-[9px] font-bold uppercase tracking-wider text-rose-600 hover:bg-rose-500/20 transition-colors duration-150 cursor-pointer focus:outline-none"
-            >
-              Resolve Conflict (Shift UA901 to Gate 12)
-            </button>
-          </div>
-        )}
+      {/* Footer Metrics Readout */}
+      <div className="border border-border/40 rounded bg-background/50 p-2.5 flex items-center justify-between text-[7px] text-muted tracking-wider">
+        <span>AIRPORT: BLR_T2</span>
+        <span>OPS_ZONE: NORTH</span>
+        <span>AUDIT_CHECK: ACTIVE</span>
       </div>
 
     </div>

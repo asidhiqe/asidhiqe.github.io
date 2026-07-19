@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display, Geist_Mono } from "next/font/google";
-import { Navbar, Footer, AltitudeTimeline } from "@/components/layout";
+import { Navbar, Footer } from "@/components/layout";
 import "./globals.css";
 
 /*
@@ -88,34 +88,32 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex min-h-full flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200 bg-background text-foreground transition-colors duration-200">
+      <body className="flex min-h-full flex-col font-sans selection:bg-accent/25 selection:text-accent bg-background text-foreground transition-colors duration-200">
         {/* Skip Navigation Link for Screen Readers and Keyboard Navigation (WCAG AAA) */}
         <a
           href="#main-content"
-          className="sr-only fixed top-4 left-4 z-50 rounded-lg bg-neutral-900 border border-neutral-800 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-cyan-400 focus:not-sr-only focus:outline-none"
+          className="sr-only fixed top-4 left-4 z-50 rounded bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-background focus:not-sr-only focus:outline-none"
         >
           Skip to main content
         </a>
         
         <Navbar />
-        
-        <AltitudeTimeline />
 
         {/* ── CAD Blueprint Grid Shell ──
             Creates a thin vertical border-x frame down the central page width.
             Reinforces the visual identity of 'Operational Precision'. */}
-        <div className="relative mx-auto w-full max-w-5xl border-x border-zinc-900 bg-neutral-950/20 flex-1 flex flex-col">
+        <div className="relative mx-auto w-full max-w-5xl border-x border-border/40 bg-background/30 flex-1 flex flex-col">
           
           {/* Corner blueprint crosshair markings */}
-          <span className="absolute -top-1 -left-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
-          <span className="absolute -top-1 -right-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
+          <span className="absolute -top-1.5 -left-1 font-mono text-[8px] text-muted/30 selection:bg-transparent" aria-hidden="true">+</span>
+          <span className="absolute -top-1.5 -right-1 font-mono text-[8px] text-muted/30 selection:bg-transparent" aria-hidden="true">+</span>
 
           <main id="main-content" className="flex-1 focus:outline-none w-full">
             {children}
           </main>
 
-          <span className="absolute -bottom-1 -left-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
-          <span className="absolute -bottom-1 -right-1 font-mono text-[8px] text-zinc-700 selection:bg-transparent" aria-hidden="true">+</span>
+          <span className="absolute -bottom-1.5 -left-1 font-mono text-[8px] text-muted/30 selection:bg-transparent" aria-hidden="true">+</span>
+          <span className="absolute -bottom-1.5 -right-1 font-mono text-[8px] text-muted/30 selection:bg-transparent" aria-hidden="true">+</span>
 
         </div>
 

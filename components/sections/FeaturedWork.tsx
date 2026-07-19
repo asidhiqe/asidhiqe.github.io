@@ -1,29 +1,57 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { cn } from "@/lib";
-import { getFeaturedProjects } from "@/lib";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn, getFeaturedProjects } from "@/lib";
 import type { FeaturedProject } from "@/types";
 import AgentSimulator from "./AgentSimulator";
 import DoctorWorkflow from "./DoctorWorkflow";
 import AirportTimeline from "./AirportTimeline";
 
-/**
- * FeaturedWork — Selected Work grid section.
- *
- * Operational Precision visual guidelines:
- * - Cards redesigned as fully enclosed grid modules with internal borders.
- * - Spacing optimized responsively to maintain density on mobile (p-4) and breathing room on desktop (p-6/p-8).
- */
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function FeaturedWork() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const projects = getFeaturedProjects();
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Stagger reveal project cards on scroll
+      gsap.fromTo(
+        ".gsap-project-card",
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
+      id="work"
+      ref={containerRef}
       className="w-full py-16 md:py-24 border-b border-border"
       aria-labelledby="featured-work-heading"
     >
       <div className="mx-auto px-6">
 
-        {/* ── Section header row ────────────────────────────────────── */}
+        {/* Section header row */}
         <div className="mb-4 flex items-center justify-between">
           <h2
             id="featured-work-heading"
@@ -33,26 +61,25 @@ export default function FeaturedWork() {
           </h2>
           <Link
             href="/#work"
-            className="text-xs font-semibold uppercase tracking-wider text-muted transition-colors duration-200 hover:text-accent"
+            className="text-xs font-semibold uppercase tracking-wider text-muted transition-colors duration-200 hover:text-accent cursor-pointer"
             aria-label="View all case studies"
           >
             View all work →
           </Link>
         </div>
 
-        {/* ── Design thesis — section framing ──────────────────────── */}
+        {/* Design thesis — section framing */}
         <p className="mb-12 md:mb-16 max-w-xl text-sm md:text-base leading-relaxed text-muted">
           Three selected projects demonstrating systems engineering in high-stakes utilities. 
           Each case study explores the mitigation of cognitive fatigue, system opacity, and decision-making friction.
         </p>
 
-        {/* ── Card list ─────────────────────────────────────────────── */}
+        {/* Card list */}
         <div className="flex flex-col gap-16">
           {projects.map((project) => (
-            <FeaturedCard
-              key={project.id}
-              project={project}
-            />
+            <div key={project.id} className="gsap-project-card">
+              <FeaturedCard project={project} />
+            </div>
           ))}
         </div>
 
@@ -86,15 +113,33 @@ function FeaturedCard({
     }
   };
 
-  // Check if this project has an active simulator widget
+  const getSystemTag = () => {
+    switch (project.id) {
+      case "agent-control-tower":
+        return "[SYS_STATUS: ACTIVE // LOC: BOOMI_INTEGRATION]";
+      case "doctor-workbench":
+        return "[SYS_STATUS: DEPLOYED // LOC: CLINICAL_ERP]";
+      case "airport-analytics":
+        return "[SYS_STATUS: FORECAST // LOC: GRAYMATTER_BI]";
+      default:
+        return "[SYS_INTEGRITY_VERIFIED]";
+    }
+  };
+
   const hasSimulator = ["agent-control-tower", "doctor-workbench", "airport-analytics"].includes(project.id);
 
   return (
     <article
-      className="w-full grid grid-cols-1 lg:grid-cols-[260px_1fr] border border-border bg-background/40 rounded-lg shadow-sm overflow-hidden"
+      className="w-full grid grid-cols-1 lg:grid-cols-[260px_1fr] border border-border bg-background/40 rounded-lg shadow-sm overflow-hidden hover-blueprint relative"
       aria-labelledby={challengeId}
     >
-      {/* ── Left Column: Metadata Context ── */}
+      {/* Precision Blueprint Corner Markers */}
+      <span className="blueprint-corner blueprint-corner-tl" aria-hidden="true" />
+      <span className="blueprint-corner blueprint-corner-tr" aria-hidden="true" />
+      <span className="blueprint-corner blueprint-corner-bl" aria-hidden="true" />
+      <span className="blueprint-corner blueprint-corner-br" aria-hidden="true" />
+
+      {/* Left Column: Metadata Context */}
       <div className="p-6 border-b lg:border-b-0 lg:border-r border-border flex flex-col justify-between gap-8 bg-background/60">
         
         {/* Top block: Domain tags */}
@@ -136,12 +181,11 @@ function FeaturedCard({
 
       </div>
 
-      {/* ── Right Column: Narrative & Simulator ── */}
+      {/* Right Column: Narrative & Simulator */}
       <div className="flex flex-col">
         
         {/* Cell 1: Challenge & Difficulty */}
         <div className="p-6 border-b border-border flex flex-col items-start gap-4 bg-background/20">
-          {/* Challenge statement (Card headline) */}
           <h3
             id={challengeId}
             className="font-display text-xl font-bold leading-tight text-foreground md:text-2xl"
@@ -149,7 +193,6 @@ function FeaturedCard({
             {project.challenge}
           </h3>
 
-          {/* Why difficult (Insight) */}
           <p className="text-xs sm:text-sm leading-relaxed text-muted">
             {project.difficulty}
           </p>
@@ -168,7 +211,7 @@ function FeaturedCard({
         <div className="px-6 py-4 bg-background/40 flex items-center justify-between">
           <Link
             href={`/#work`} 
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent transition-colors duration-200 hover:opacity-85"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent transition-colors duration-200 hover:opacity-85 cursor-pointer"
             aria-label="Inspect design case study"
           >
             {getCardCta()}
@@ -176,7 +219,7 @@ function FeaturedCard({
           </Link>
 
           <span className="hidden sm:inline font-mono text-[8px] text-muted uppercase tracking-widest selection:bg-transparent">
-            [SYS_INTEGRITY_READOUT]
+            {getSystemTag()}
           </span>
         </div>
 

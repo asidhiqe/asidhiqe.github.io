@@ -70,3 +70,25 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+/* ── Prestige Aviation Blueprint Elements ── */
+.blueprint-corner {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border: 1px solid var(--border);
+  opacity: 0.25;
+  transition: all 0.25s ease;
+}
+
+.blueprint-corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.blueprint-corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.blueprint-corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.blueprint-corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.hover-blueprint:hover .blueprint-corner {
+  border-color: var(--accent);
+  opacity: 0.8;
+  width: 6px;
+  height: 6px;
+}
