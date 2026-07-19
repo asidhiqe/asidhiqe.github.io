@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { NavItem } from "@/types";
+import { ThemeToggle } from "../ui";
 
 /**
  * Site navigation items.
@@ -14,17 +15,11 @@ const NAV_ITEMS: NavItem[] = [
 
 /**
  * Navbar — global site header.
- *
- * Visual style: Operational Precision.
- * - Glassmorphism is avoided. Uses dark transparent background with blur.
- * - Sharp dividing border at the bottom.
- * - Monogram Logo ("AS") instead of repeating full name.
- * - Standard site widths (max-w-5xl) aligned with page grid.
  */
 export default function Navbar() {
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-zinc-900 bg-neutral-950/80 backdrop-blur-md"
+      className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md"
       role="banner"
     >
       <nav
@@ -34,7 +29,7 @@ export default function Navbar() {
         {/* ── Monogram Wordmark Logo ───────────────────────────────── */}
         <Link
           href="/"
-          className="font-display text-sm font-bold tracking-widest text-[#f4f4f5] transition-opacity duration-200 hover:opacity-60"
+          className="font-display text-sm font-bold tracking-widest text-foreground transition-opacity duration-200 hover:opacity-60"
           aria-label="AS — return to home"
         >
           AS
@@ -53,7 +48,7 @@ export default function Navbar() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-medium uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
+                  className="text-xs font-medium uppercase tracking-wider text-muted hover:text-foreground transition-colors duration-200"
                 >
                   {item.label}
                   <span className="sr-only"> (opens in new tab)</span>
@@ -63,7 +58,7 @@ export default function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-xs font-medium uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
+                  className="text-xs font-medium uppercase tracking-wider text-muted hover:text-foreground transition-colors duration-200"
                 >
                   {item.label}
                 </Link>
@@ -72,14 +67,17 @@ export default function Navbar() {
           )}
         </ul>
 
-        {/* ── CTA ───────────────────────────────────────────────────── */}
-        <a
-          href="mailto:hello@aboobacker.design"
-          className="hidden text-xs font-semibold uppercase tracking-wider text-white transition-colors duration-200 hover:text-cyan-400 md:block"
-          aria-label="Send Aboobacker an email"
-        >
-          Say hello →
-        </a>
+        {/* ── CTA & Theme controls ──────────────────────────────────── */}
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <a
+            href="mailto:hello@aboobacker.design"
+            className="hidden text-xs font-semibold uppercase tracking-wider text-foreground hover:text-accent transition-colors duration-200 md:block"
+            aria-label="Send Aboobacker an email"
+          >
+            Say hello →
+          </a>
+        </div>
       </nav>
     </header>
   );

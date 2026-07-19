@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display, Geist_Mono } from "next/font/google";
 import { Navbar, Footer, AltitudeTimeline } from "@/components/layout";
 import "./globals.css";
 
 /*
   Design System Fonts:
-  - Space Grotesk for display / headers (technical, high personality)
-  - Inter for sans-serif body copy (neutral, readable at scale)
+  - Playfair Display for editorial display/headers (classic, prestigious)
+  - Plus Jakarta Sans for sans-serif body copy (high-end modern sans, clean readability)
   - Geist Mono for tabular data / system status metrics
 */
-const inter = Inter({
-  variable: "--font-inter",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
@@ -67,10 +67,28 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} dark bg-[#09090b] text-[#f4f4f5] h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${playfairDisplay.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="flex min-h-full flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200 bg-background text-foreground transition-colors duration-200">
         {/* Skip Navigation Link for Screen Readers and Keyboard Navigation (WCAG AAA) */}
         <a
           href="#main-content"

@@ -161,16 +161,16 @@ export default function AltitudeTimeline() {
       {/* ── Operational Location Header ── */}
       <button
         onClick={() => handleLabelClick(activeSection)}
-        className="pointer-events-auto cursor-pointer border border-zinc-800/80 bg-neutral-950/90 hover:border-cyan-500/50 hover:bg-neutral-900 px-2 py-1 text-[8px] uppercase tracking-widest text-zinc-400 hover:text-cyan-400 backdrop-blur-md rounded-[2px] transition-all duration-200 shadow-sm"
+        className="pointer-events-auto cursor-pointer border border-border bg-background/95 hover:border-accent/50 hover:bg-accent-tint/10 px-2 py-1 text-[8px] uppercase tracking-widest text-muted hover:text-accent backdrop-blur-md rounded-[2px] transition-all duration-200 shadow-sm"
         title={`Current viewport location. Click to focus section.`}
       >
-        LOC: <span className="font-bold text-zinc-300">{SECTION_LABELS[activeSection] || activeSection}</span>
+        LOC: <span className="font-bold text-foreground">{SECTION_LABELS[activeSection] || activeSection}</span>
       </button>
 
       {/* ── Experience Scale Tape ── */}
       <div className="relative h-[250px] w-28 flex items-center justify-end">
         {/* Scale vertical bar */}
-        <div className="absolute right-[4px] top-0 bottom-0 w-[1px] bg-zinc-800/60" />
+        <div className="absolute right-[4px] top-0 bottom-0 w-[1px] bg-border/60" />
 
         {/* Dynamic scale tick marks */}
         {ticks.map((tickVal) => {
@@ -200,7 +200,7 @@ export default function AltitudeTimeline() {
                   else if (tickVal === 0) handleLabelClick("footer");
                 }}
                 className={`pointer-events-auto cursor-pointer absolute right-3 text-[7px] font-semibold transition-colors duration-200 ${
-                  isTarget ? "text-cyan-500/80 font-bold" : "text-zinc-600 hover:text-zinc-400"
+                  isTarget ? "text-accent font-bold" : "text-muted hover:text-foreground"
                 }`}
               >
                 {tickVal === 0 ? "START" : `${tickVal} YR`}
@@ -209,7 +209,7 @@ export default function AltitudeTimeline() {
               {/* Tick marker line */}
               <div
                 className={`h-[1px] ${
-                  isTarget ? "w-2 bg-cyan-500/70" : "w-1 bg-zinc-800"
+                  isTarget ? "w-2 bg-accent/70" : "w-1 bg-border"
                 } transition-all duration-200`}
               />
             </div>
@@ -222,17 +222,17 @@ export default function AltitudeTimeline() {
           style={{ top: `${scrollProgress * 100}%` }}
         >
           {/* Readout bubble */}
-          <div className="flex items-center gap-1 text-[10px] bg-neutral-950/95 border border-cyan-500/30 px-2 py-0.5 rounded-[2px] shadow-lg shadow-cyan-950/20 backdrop-blur-md">
-            <span className="font-bold text-cyan-400">
+          <div className="flex items-center gap-1 text-[10px] bg-background/95 border border-accent/30 px-2 py-0.5 rounded-[2px] shadow-md shadow-accent/5 backdrop-blur-md">
+            <span className="font-bold text-accent">
               {currentYears.toFixed(1)}
             </span>
-            <span className="text-[7px] font-bold text-cyan-500/60 uppercase">YRS</span>
+            <span className="text-[7px] font-bold text-accent/60 uppercase">YRS</span>
           </div>
 
           {/* Pointer Chevron pointing right towards scale */}
           <div className="w-1.5 h-1.5 flex items-center justify-center">
             <svg
-              className="w-1.5 h-1.5 text-cyan-400 fill-current drop-shadow-[0_0_2px_rgba(34,211,238,0.5)]"
+              className="w-1.5 h-1.5 text-accent fill-current"
               viewBox="0 0 8 8"
             >
               <path d="M0,4 L6,8 L6,0 Z" />
@@ -243,12 +243,12 @@ export default function AltitudeTimeline() {
 
       {/* ── Vertical Speed (V/S) indicator box ── */}
       <div
-        className={`border border-zinc-800/80 bg-neutral-950/90 px-2 py-0.5 text-[8px] uppercase tracking-wider backdrop-blur-md rounded-[2px] transition-colors duration-300 ${
-          verticalSpeed !== 0 ? "text-cyan-400 border-cyan-500/20" : "text-zinc-500"
+        className={`border border-border bg-background/95 px-2 py-0.5 text-[8px] uppercase tracking-wider backdrop-blur-md rounded-[2px] transition-colors duration-300 ${
+          verticalSpeed !== 0 ? "text-accent border-accent/20" : "text-muted"
         }`}
       >
         V/S:{" "}
-        <span className={`font-mono font-bold ${verticalSpeed !== 0 ? "text-cyan-300" : "text-zinc-400"}`}>
+        <span className={`font-mono font-bold ${verticalSpeed !== 0 ? "text-accent" : "text-muted"}`}>
           {verticalSpeed > 0 ? `+${verticalSpeed.toFixed(1)}` : verticalSpeed.toFixed(1)}
         </span>{" "}
         Y/MIN

@@ -1,12 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  /* Design System Palette — Slate / Zinc variant optimized for readability on #09090B */
-  --background: #09090b; /* Deep graphite surface */
-  --foreground: #f4f4f5; /* High contrast white-zinc for body text */
-  --muted: #a1a1aa;      /* Zinc-400 for subtext and metadata */
-  --border: #27272a;     /* Zinc-800 for structural lines and grids */
-  --accent: #22d3ee;     /* Cyan-400 for focused micro-interactions */
+  /* Premium Light Mode Editorial System */
+  --background: #fbfbfa; /* Warm off-white alabaster paper */
+  --foreground: #121212; /* Dark charcoal text */
+  --muted: #5e5e62;      /* Mid-gray for readability */
+  --border: #e6e6e2;     /* Architect line gray */
+  --accent: #0b6a60;     /* Deep refined teal-green */
+  --accent-tint: #f2f9f8; /* Soft mint highlight tint */
+}
+
+.dark {
+  /* Premium Dark Mode System */
+  --background: #09090b; /* Zinc-950 deep charcoal surface */
+  --foreground: #fafafa; /* Zinc-50 high contrast white */
+  --muted: #a1a1aa;      /* Zinc-400 secondary text */
+  --border: #27272a;     /* Zinc-800 borders */
+  --accent: #2dd4bf;     /* Minty teal for dark mode contrast */
+  --accent-tint: #0c2d2a; /* Dark mint background tint */
 }
 
 @theme inline {
@@ -14,27 +25,48 @@
   --color-foreground: var(--foreground);
   --color-border: var(--border);
   --color-accent: var(--accent);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --color-accent-tint: var(--accent-tint);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
   --font-mono: var(--font-mono);
 }
 
 body {
   background: var(--background);
-  /* CAD Blueprint Grid Mesh Backdrop: draws 4rem x 4rem squares in zinc-800 at 8% opacity */
+  /* CAD Grid Mesh Backdrop: clean blueprint styling */
   background-image: 
-    linear-gradient(to right, rgba(39, 39, 42, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(39, 39, 42, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(18, 18, 18, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 18, 18, 0.02) 1px, transparent 1px);
   background-size: 4rem 4rem;
   color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-image: 
+    linear-gradient(to right, rgba(250, 250, 250, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(250, 250, 250, 0.03) 1px, transparent 1px);
 }
 
 /* Global focus ring styling for WCAG AAA accessibility compliance */
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
+}
+
+/* Base custom classes for high-end editorial layouts */
+.editorial-title {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.editorial-sub {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }

@@ -36,13 +36,13 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="w-full py-20 md:py-28"
+      className="w-full py-20 md:py-24"
       aria-labelledby="about-heading"
     >
       <div className="mx-auto px-6">
         
         {/* Section label */}
-        <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-neutral-500">
+        <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-muted">
           Executive Summary
         </p>
 
@@ -53,25 +53,25 @@ export default function AboutSection() {
           <div className="lg:col-span-5">
             <h2
               id="about-heading"
-              className="font-display text-3xl font-bold leading-tight tracking-tight text-zinc-100"
+              className="font-display text-3xl font-bold leading-tight tracking-tight text-foreground"
             >
               Aboobacker Sidhiqe
             </h2>
-            <p className="mt-6 text-sm leading-relaxed text-zinc-400">
+            <p className="mt-6 text-sm leading-relaxed text-muted">
               I am a Principal Product Designer specializing in enterprise systems. 
               My work focuses on the intersection of human cognitive limits and complex 
               workflows. Over the last 13+ years, I have designed systems in highly regulated 
               and operational domains where user errors carry significant real-world costs.
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+            <p className="mt-4 text-sm leading-relaxed text-muted">
               I believe the role of a design leader is to ask difficult questions, challenge 
               system assumptions, and create cross-functional alignment that moves products forward.
             </p>
           </div>
 
           {/* Right: Timeline of Lessons */}
-          <div className="lg:col-span-7 border-l border-zinc-900 pl-8 lg:pl-12">
-            <h3 className="mb-8 text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+          <div className="lg:col-span-7 border-l border-border pl-8 lg:pl-12">
+            <h3 className="mb-8 text-[10px] font-bold uppercase tracking-wider text-muted">
               Lessons from 13+ Years in the Field
             </h3>
 
@@ -79,12 +79,12 @@ export default function AboutSection() {
               {lessons.map((item) => (
                 <div
                   key={item.domain}
-                  className="group relative flex flex-col gap-1 border-b border-zinc-900/60 pb-6"
+                  className="group relative flex flex-col gap-1 border-b border-border/60 pb-6"
                 >
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 font-mono">
+                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-accent font-mono">
                     [{item.code}] {item.domain}
                   </h4>
-                  <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                  <p className="mt-2 text-xs leading-relaxed text-muted">
                     {item.lesson}
                   </p>
                 </div>

@@ -1,101 +1,81 @@
 import Link from "next/link";
 import IndustryChips from "./IndustryChips";
-import { Typewriter } from "../ui";
 
 /**
  * Hero — homepage above-the-fold landing section.
  *
- * Visual style: Operational Precision.
- * Typography uses:
- * - font-display (Space Grotesk) for the main headers
- * - font-sans (Inter) for copy and metadata
- *
- * Copy decisions (aligned with DESIGN_MANIFESTO.md & BUILD_RULES.md):
- * - Primary headline: "Designing systems for expert decisions."
- * - Avoids visual duplication: Name is in navbar, status stands alone here.
- * - Single, focused CTA pointing to the work anchor to concentrate reading flow.
+ * Visual style: High-end Editorial, Swiss typography influence.
+ * Uses Lora/Playfair Display for high-status statement layout.
  */
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="w-full py-20 md:py-28"
+      className="w-full py-16 md:py-24 border-b border-border"
       aria-labelledby="hero-heading"
     >
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto px-6">
 
         {/* ── Top row: status status badge ─────────────────────────── */}
-        <div className="mb-8 flex items-center justify-between border-b border-neutral-900 pb-4">
-          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
-            Systems & UX Architect
+        <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-border pb-4">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+            Systems & Product Design Leader
           </p>
           <a
             href="mailto:hello@aboobacker.design"
-            className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-700 transition-colors duration-200"
+            className="self-start inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 hover:border-accent hover:text-accent transition-colors duration-200"
           >
             <span
-              className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500"
+              className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent"
               aria-hidden="true"
             />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+            <span className="text-[9px] font-bold uppercase tracking-wider">
               Available for opportunities
             </span>
           </a>
         </div>
 
         {/* ── Headline block ────────────────────────────────────────── */}
-        {/*
-          Tonal split using display typography (Space Grotesk).
-          Line 1 = primary statement. Line 2 = qualifying constraint.
-          Contrast: Zinc-100 on Zinc-500 (passes WCAG AA at large scales).
-        */}
         <div className="mb-8">
           <h1
             id="hero-heading"
-            className="font-display leading-[1.05] text-5xl font-bold tracking-tight text-zinc-100 md:text-6xl lg:text-7xl"
+            className="font-display leading-[1.1] text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl max-w-4xl"
           >
-            Designing systems
+            Designing systems for people who make{" "}
+            <span className="font-serif italic font-normal text-accent block sm:inline">
+              consequential decisions
+            </span>{" "}
+            every day.
           </h1>
-          <p
-            className="font-display leading-[1.05] text-5xl font-bold tracking-tight text-zinc-500 md:text-6xl lg:text-7xl"
-            aria-label="for expert decisions."
-          >
-            for <Typewriter />
-          </p>
         </div>
 
         {/* ── Supporting paragraph ──────────────────────────────────── */}
-        {/*
-          Grounded narrative focusing on high-stakes expert environments.
-          No fluff, no vague assertions.
-        */}
-        <p className="mb-10 max-w-2xl text-base leading-relaxed text-zinc-400">
-          I design software for professionals operating in environments where
-          information is high-frequency, conditions change rapidly, and decisions
-          carry significant real-world consequences—from clinics and control towers
-          to AI operations.
+        <p className="mb-10 max-w-2xl text-sm sm:text-base leading-relaxed text-muted">
+          Over the past 13+ years, I have engineered product interfaces and workflows for healthcare clinicians, 
+          airport controllers, financial analysts, and operators supervising autonomous AI fleets. 
+          My work translates complex, high-frequency technical streams into transparent, decision-ready software.
         </p>
 
         {/* ── CTA ──────────────────────────────────────────────────── */}
         <div className="mb-16 flex items-center gap-6">
           <Link
             href="/#work"
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-950 transition-opacity duration-200 hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded bg-foreground px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-background transition-opacity duration-200 hover:opacity-90"
           >
             Explore Selected Work
             <span aria-hidden="true">↓</span>
           </Link>
           <a
             href="mailto:hello@aboobacker.design"
-            className="text-xs font-bold uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
+            className="text-xs font-bold uppercase tracking-wider text-muted hover:text-foreground transition-colors duration-200"
           >
             Get in Touch →
           </a>
         </div>
 
-        {/* ── Industry chips ────────────────────────────────────────── */}
-        <div className="border-t border-neutral-900 pt-8">
-          <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+        {/* ── Domain Focus chips ────────────────────────────────────── */}
+        <div className="border-t border-border pt-8">
+          <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-muted">
             Domain Focus
           </p>
           <IndustryChips />

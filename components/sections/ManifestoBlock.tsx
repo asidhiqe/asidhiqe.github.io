@@ -10,13 +10,13 @@ export default function ManifestoBlock() {
   return (
     <section
       id="manifesto"
-      className="w-full py-20 md:py-28 border-b border-zinc-900"
+      className="w-full py-20 md:py-24 border-b border-border"
       aria-labelledby="manifesto-heading"
     >
       <div className="mx-auto px-6">
         
         {/* Section label */}
-        <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-neutral-500">
+        <p className="mb-4 text-[9px] font-bold uppercase tracking-widest text-muted">
           Design Philosophy
         </p>
 
@@ -27,13 +27,13 @@ export default function ManifestoBlock() {
           <div className="lg:col-span-7">
             <h2
               id="manifesto-heading"
-              className="font-display text-3xl font-bold leading-tight tracking-tight text-zinc-100 md:text-4xl"
+              className="font-display text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl"
             >
               I don’t design screens.
               <br />
               I design decision-making systems.
             </h2>
-            <p className="mt-6 text-sm leading-relaxed text-zinc-400">
+            <p className="mt-6 text-sm leading-relaxed text-muted">
               Enterprise platforms are naturally complex. Traditional design advice
               focuses on visual reduction—often hiding information that experts need to
               make critical evaluations. Good design is not minimal; it is appropriate,
@@ -42,23 +42,23 @@ export default function ManifestoBlock() {
           </div>
 
           {/* Right: Key pillars */}
-          <div className="flex flex-col justify-between gap-8 lg:col-span-5 border-l border-zinc-900 pl-8 lg:pl-12">
+          <div className="flex flex-col justify-between gap-8 lg:col-span-5 border-l border-border pl-8 lg:pl-12">
             <div className="flex flex-col gap-6">
               
               <div>
-                <h3 className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 font-mono">
+                <h3 className="text-[10px] font-bold uppercase tracking-wider text-accent font-mono">
                   [01] Organize, Don’t Hide
                 </h3>
-                <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                <p className="mt-2 text-xs leading-relaxed text-muted">
                   Hiding information increases risk in expert tools. Safest layouts are often information-dense.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-[10px] font-bold uppercase tracking-wider text-zinc-300 font-mono">
+                <h3 className="text-[10px] font-bold uppercase tracking-wider text-foreground/80 font-mono">
                   [02] Trust Over Delight
                 </h3>
-                <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                <p className="mt-2 text-xs leading-relaxed text-muted">
                   Trust is a UX problem. Systems build confidence through predictability and transparent feedback.
                 </p>
               </div>
@@ -67,7 +67,7 @@ export default function ManifestoBlock() {
 
             <Link
               href="/#about"
-              className="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-wider text-neutral-400 transition-colors duration-200 hover:text-white"
+              className="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-wider text-accent transition-colors duration-200 hover:opacity-80"
             >
               Read full manifesto →
             </Link>
