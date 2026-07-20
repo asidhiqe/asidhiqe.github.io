@@ -47,7 +47,7 @@ export default function Hero() {
   }, []);
 
   useGSAP(
-    () => {
+    (_, contextSafe) => {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       // Headline + eyebrow
@@ -73,13 +73,39 @@ export default function Hero() {
           { opacity: 0, y: 8 },
           { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 },
           "-=0.3"
-        )
-        .fromTo(
-          ".hero-cta",
-          { opacity: 0 },
-          { opacity: 1, duration: 0.4 },
-          "-=0.2"
         );
+
+      const stats = [
+        { el: ".stat-years", val: 13, suffix: "+" },
+        { el: ".stat-domains", val: 6, suffix: "" },
+        { el: ".stat-products", val: 20, suffix: "+" },
+      ];
+
+      stats.forEach((stat) => {
+        const obj = { value: 0 };
+        tl.to(
+          obj,
+          {
+            value: stat.val,
+            duration: 1.4,
+            ease: "power2.out",
+            onUpdate: () => {
+              const el = containerRef.current?.querySelector(stat.el);
+              if (el) {
+                (el as HTMLElement).innerText = Math.floor(obj.value) + stat.suffix;
+              }
+            },
+          },
+          "-=0.3"
+        );
+      });
+
+      tl.fromTo(
+        ".hero-cta",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4 },
+        "-=0.2"
+      );
 
       // SVG: draw paths
       const paths = containerRef.current?.querySelectorAll(".diagram-path");
@@ -110,6 +136,39 @@ export default function Hero() {
         { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08 },
         "-=0.6"
       );
+
+      // Magnetic hover CTA
+      if (contextSafe) {
+        const cta = containerRef.current?.querySelector(".hero-cta");
+        if (cta) {
+          const onMouseMove = contextSafe((e: MouseEvent) => {
+            const rect = (cta as HTMLElement).getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            gsap.to(cta, {
+              x: x * 0.25,
+              y: y * 0.25,
+              duration: 0.35,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          });
+
+          const onMouseLeave = contextSafe(() => {
+            gsap.to(cta, {
+              x: 0,
+              y: 0,
+              duration: 0.55,
+              ease: "elastic.out(1.1, 0.4)",
+              overwrite: "auto",
+            });
+          });
+
+          cta.addEventListener("mousemove", onMouseMove as EventListener);
+          cta.addEventListener("mouseleave", onMouseLeave);
+        }
+      }
     },
     { scope: containerRef }
   );
@@ -144,15 +203,15 @@ export default function Hero() {
 
         <div className="hero-meta" aria-label="Experience summary">
           <div className="hero-meta-item">
-            <span className="hero-meta-value">13+</span>
+            <span className="hero-meta-value stat-years">0+</span>
             <span className="hero-meta-label">Years</span>
           </div>
           <div className="hero-meta-item">
-            <span className="hero-meta-value">6</span>
+            <span className="hero-meta-value stat-domains">0</span>
             <span className="hero-meta-label">Domains</span>
           </div>
           <div className="hero-meta-item">
-            <span className="hero-meta-value">20+</span>
+            <span className="hero-meta-value stat-products">0+</span>
             <span className="hero-meta-label">Products</span>
           </div>
         </div>

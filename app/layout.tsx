@@ -25,7 +25,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <div className="film-grain" aria-hidden="true" />
+        {children}
+      </body>
     </html>
   );
 }

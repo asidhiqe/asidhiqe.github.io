@@ -1,6 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import ScrollReveal from "./ScrollReveal";
 
 const systems = [
@@ -43,6 +46,58 @@ const systems = [
 ];
 
 export default function SelectedWork() {
+  const bentoRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    (_, contextSafe) => {
+      if (!contextSafe) return;
+
+      const cards = bentoRef.current?.querySelectorAll(".work-card");
+      if (!cards) return;
+
+      cards.forEach((card) => {
+        const onMouseMove = contextSafe((e: MouseEvent) => {
+          const rect = (card as HTMLElement).getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const xc = rect.width / 2;
+          const yc = rect.height / 2;
+
+          const dx = (x - xc) / xc;
+          const dy = (y - yc) / yc;
+
+          gsap.to(card, {
+            rotateX: -dy * 4,
+            rotateY: dx * 4,
+            duration: 0.35,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+
+          (card as HTMLElement).style.setProperty("--glow-x", `${x}px`);
+          (card as HTMLElement).style.setProperty("--glow-y", `${y}px`);
+          (card as HTMLElement).style.setProperty("--glow-opacity", `1`);
+        });
+
+        const onMouseLeave = contextSafe(() => {
+          gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            duration: 0.65,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+          (card as HTMLElement).style.setProperty("--glow-opacity", `0`);
+        });
+
+        card.addEventListener("mousemove", onMouseMove as EventListener);
+        card.addEventListener("mouseleave", onMouseLeave);
+      });
+    },
+    { scope: bentoRef }
+  );
+
   return (
     <section id="selected-work" className="selected-work" aria-labelledby="work-title">
       <div className="section-header">
@@ -57,7 +112,7 @@ export default function SelectedWork() {
         </div>
       </div>
 
-      <div className="work-bento">
+      <div className="work-bento" ref={bentoRef}>
         {systems.map((system, idx) => (
           <ScrollReveal
             key={system.code}
@@ -66,6 +121,7 @@ export default function SelectedWork() {
             className={`work-card ${system.layout}`}
           >
             <Link href={`/work/${system.slug}`} className="work-card-inner" style={{ display: "flex", flexDirection: "column", height: "100%", width: "100%" }}>
+              <div className="work-card-glow" aria-hidden="true" />
               <div className="work-card-topline">
                 <span className="work-card-index">{system.code}</span>
                 <span className="work-card-domain">{system.domain}</span>

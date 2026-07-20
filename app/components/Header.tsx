@@ -1,11 +1,55 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const headerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    (_, contextSafe) => {
+      if (!contextSafe) return;
+
+      const links = headerRef.current?.querySelectorAll(
+        ".header-nav a, .header-wordmark, .theme-toggle-btn"
+      );
+
+      if (!links) return;
+
+      links.forEach((link) => {
+        const onMouseMove = contextSafe((e: MouseEvent) => {
+          const rect = (link as HTMLElement).getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          gsap.to(link, {
+            x: x * 0.35,
+            y: y * 0.35,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        });
+
+        const onMouseLeave = contextSafe(() => {
+          gsap.to(link, {
+            x: 0,
+            y: 0,
+            duration: 0.45,
+            ease: "elastic.out(1.1, 0.4)",
+            overwrite: "auto",
+          });
+        });
+
+        link.addEventListener("mousemove", onMouseMove as EventListener);
+        link.addEventListener("mouseleave", onMouseLeave);
+      });
+    },
+    { scope: headerRef }
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
