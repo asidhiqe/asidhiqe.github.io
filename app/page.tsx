@@ -1,35 +1,27 @@
-import {
-  Hero,
-  MetricStrip,
-  ManifestoBlock,
-  FeaturedWork,
-  AboutSection,
-} from "@/components/sections";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import SelectedWork from "./components/SelectedWork";
+import Experience from "./components/Experience";
+import About from "./components/About";
+import Footer from "./components/Footer";
 
-/**
- * Home page — /
- *
- * Composes page sections. No layout logic lives here.
- * The <main> landmark is owned by app/layout.tsx.
- *
- * Sprint 1 & 2 Completed:
- * - Hero (Curiosity)
- * - MetricStrip (Trust)
- * - ManifestoBlock (Thesis / Credibility)
- * - FeaturedWork (Evidence)
- * - AboutSection (Reflection / Human context)
- */
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <Hero />
-      <MetricStrip />
-      <ManifestoBlock />
-      {/* Target for skip link & navbar Work link */}
-      <div id="work">
-        <FeaturedWork />
-      </div>
-      <AboutSection />
-    </div>
+    <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      
+      <Header />
+
+      <main id="main-content">
+        <Hero />
+        <SelectedWork />
+        <Experience />
+        <About />
+      </main>
+
+      <Footer />
+    </>
   );
 }
