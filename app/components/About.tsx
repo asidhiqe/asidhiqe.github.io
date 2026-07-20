@@ -2,72 +2,115 @@
 
 import ScrollReveal from "./ScrollReveal";
 
-const principles = [
-  "Design for decisions, not interactions.",
-  "Organize complexity instead of hiding it.",
-  "Build trust before delight.",
-  "Consistency creates confidence.",
-  "Expert users deserve expert tools.",
-  "Accessibility is a quality standard, not a feature.",
+interface Job {
+  years: string;
+  role: string;
+  company: string;
+  description: string;
+  tags: string[];
+}
+
+const experience: Job[] = [
+  {
+    years: "2024 – Present",
+    role: "Principal Product Designer",
+    company: "Autonomous AI Oversight Platforms",
+    description: "Leading product strategy, complex layout grids, and multi-agent supervision flows. Balancing machine agency and human oversight guidelines for safety-critical configurations.",
+    tags: ["Product Strategy", "AI Systems", "Systems Design"],
+  },
+  {
+    years: "2021 – 2024",
+    role: "Senior Enterprise Product Designer",
+    company: "Logistics & Fleet Systems",
+    description: "Designed dispatcher coordination tools and high-density maps. Redefined layout structures, resulting in a measurable increase in dispatcher task speed.",
+    tags: ["Data Density", "Workflows", "Enterprise SaaS"],
+  },
+  {
+    years: "2018 – 2021",
+    role: "Lead Product Designer",
+    company: "Healthcare Analytics Systems",
+    description: "Spearheaded user experience overhaul for clinical decision dashboards and diagnostics software. Conducted intensive on-site research in clinical operating rooms.",
+    tags: ["Healthcare UX", "Field Research", "Accessibility"],
+  },
+  {
+    years: "2015 – 2018",
+    role: "Product Designer",
+    company: "FinTech & Transactional SaaS",
+    description: "Created dashboard experiences for institutional invoice financing and commercial lending pipelines. Standardized shared component libraries.",
+    tags: ["Design Systems", "FinTech", "Data Visualization"],
+  },
 ];
 
 export default function About() {
   return (
     <section id="about" className="about" aria-labelledby="about-title">
       <div className="about-body">
-        {/* Left Column — Statement + Narrative */}
+        {/* Left Column: Design Philosophy */}
         <div className="about-left">
           <ScrollReveal as="div">
-            <h2 id="about-title" className="about-statement">
-              The work is not to remove complexity. It is to <em>organize it.</em>
+            <p className="about-eyebrow-mini">Design Philosophy</p>
+            <h2 id="about-title" className="about-statement-bold">
+              I design systems that help experts move with <em>clarity.</em>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal as="div" delay={0.1}>
-            <div className="about-narrative">
-              <p>
-                Expert software earns trust when people can see what is happening, understand what matters, and act with confidence. Over the last 13+ years, I have helped design systems that turn heavy data into clear pathways for action.
+            <p className="about-description-text">
+              Complex products do not become easier by hiding information. They become easier when information is organized into predictable, trustworthy patterns. That is the core of my work: reducing uncertainty without stripping away the context people need.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal as="div" delay={0.15} className="about-thesis-card">
+            <span className="about-thesis-label">Thesis</span>
+            <p className="about-thesis-body">
+              The best enterprise software feels invisible because it supports judgment, not distraction.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal as="div" delay={0.2} className="about-principles-list">
+            <div className="about-principle-item">
+              <span className="about-principle-number">[01] Organize, don't hide</span>
+              <p className="about-principle-desc">
+                Hiding information increases risk in expert tools. Safest layouts are often information-dense.
               </p>
-              <p>
-                Whether the user is a clinician diagnosing under pressure, an airport controller managing flight delays, or an analyst overseeing AI operations, the interface should support their existing mental models.
-              </p>
-              <p>
-                My focus is on designing structured environments where people and systems interact predictably, maximizing speed and reducing mental friction.
+            </div>
+            <div className="about-principle-item">
+              <span className="about-principle-number">[02] Trust over delight</span>
+              <p className="about-principle-desc">
+                Trust is a UX problem. Systems build confidence through predictability and transparent feedback.
               </p>
             </div>
           </ScrollReveal>
         </div>
 
-        {/* Right Column — Details + Principles */}
+        {/* Right Column: Experience Timeline */}
         <div className="about-right">
-          <ScrollReveal as="div" delay={0.15}>
-            <div className="about-detail-group">
-              <span className="about-detail-label">Location</span>
-              <span className="about-detail-value">San Francisco Bay Area / Remote</span>
-            </div>
+          <ScrollReveal as="div">
+            <p className="about-eyebrow-mini">Experience Timeline</p>
           </ScrollReveal>
 
-          <ScrollReveal as="div" delay={0.2}>
-            <div className="about-detail-group">
-              <span className="about-detail-label">Inquiries</span>
-              <span className="about-detail-value">
-                <a href="mailto:aboobacker.sidhiqe@example.com" className="about-link">
-                  aboobacker.sidhiqe@example.com
-                </a>
-              </span>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal as="div" delay={0.25} className="about-principles">
-            <span className="about-principles-label">Core design principles</span>
-            <div role="list">
-              {principles.map((principle) => (
-                <div key={principle} className="about-principle" role="listitem">
-                  {principle}
+          <div className="about-timeline">
+            {experience.map((job, idx) => (
+              <ScrollReveal
+                key={job.company}
+                as="div"
+                delay={idx * 0.05}
+                className="about-timeline-entry"
+              >
+                <div className="about-timeline-years">{job.years}</div>
+                <h3 className="about-timeline-role">{job.role}</h3>
+                <div className="about-timeline-company">{job.company}</div>
+                <p className="about-timeline-desc">{job.description}</p>
+                <div className="about-timeline-tags" role="list" aria-label="Skills applied">
+                  {job.tags.map((tag) => (
+                    <span key={tag} className="about-timeline-tag" role="listitem">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </ScrollReveal>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

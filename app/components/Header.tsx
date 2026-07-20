@@ -51,7 +51,6 @@ export default function Header() {
 
       <nav className="header-nav" aria-label="Primary navigation">
         <a href="#selected-work">Work</a>
-        <a href="#experience">Experience</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
