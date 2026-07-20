@@ -1331,8 +1331,8 @@ html.light .work-card-glow {
 
 .experience-timeline-dot {
   position: absolute;
-  left: calc(var(--space-3xl) - 3px);
-  top: 0.5rem;
+  left: -3px;
+  top: 0.55rem;
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -1532,10 +1532,6 @@ html.light .work-card-glow {
 
   .experience-entry {
     padding-left: var(--space-lg);
-  }
-
-  .experience-timeline-dot {
-    left: calc(var(--gutter) - 3px);
   }
   
   .experience-accordion-section {
