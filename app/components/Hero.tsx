@@ -169,6 +169,29 @@ export default function Hero() {
           cta.addEventListener("mouseleave", onMouseLeave);
         }
       }
+
+      // Organic Breathing Background Ambient Glows
+      gsap.to(".glow-1", {
+        x: "20%",
+        y: "-15%",
+        scale: 1.1,
+        opacity: 0.28,
+        duration: 9,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      gsap.to(".glow-2", {
+        x: "-15%",
+        y: "20%",
+        scale: 0.9,
+        opacity: 0.18,
+        duration: 13,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
     },
     { scope: containerRef }
   );
@@ -180,6 +203,10 @@ export default function Hero() {
       aria-labelledby="hero-title"
       ref={containerRef}
     >
+      {/* Background ambient glows */}
+      <div className="hero-ambient-glow glow-1" aria-hidden="true" />
+      <div className="hero-ambient-glow glow-2" aria-hidden="true" />
+
       {/* Left */}
       <div className="hero-left">
         <p className="hero-eyebrow" aria-label="Aboobacker Sidhiqe · Principal Product Designer">
