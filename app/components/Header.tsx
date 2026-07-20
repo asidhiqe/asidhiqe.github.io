@@ -55,6 +55,17 @@ export default function Header() {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
 
+    // Refresh GSAP ScrollTrigger on web font load to prevent layout-shift clipping on mobile
+    if (typeof document !== "undefined") {
+      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+        document.fonts.ready.then(() => {
+          ScrollTrigger.refresh();
+        });
+        // Extra fallback: refresh after a small delay
+        setTimeout(() => ScrollTrigger.refresh(), 400);
+      });
+    }
+
     // Initialize theme from localStorage or system preference
     const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
     const systemTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
