@@ -1271,8 +1271,8 @@ html.light .work-card-glow {
   filter: grayscale(100%) contrast(125%) brightness(75%);
   mix-blend-mode: screen;
   opacity: 0.6;
-  mask-image: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 0) 50%);
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 0) 50%);
+  mask-image: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 1) 36%, rgba(0, 0, 0, 0) 90%);
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 1) 36%, rgba(0, 0, 0, 0) 90%);
   transition: opacity 0.8s var(--ease-out), filter 0.8s var(--ease-out);
 }
 
@@ -1285,7 +1285,7 @@ html.light .work-card-glow {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 45%, transparent 15%, #0a0a0c 50%),
+    radial-gradient(circle at 50% 45%, transparent 36%, #0a0a0c 90%),
     linear-gradient(90deg, #0a0a0c 0%, transparent 15%, transparent 85%, #0a0a0c 100%),
     linear-gradient(180deg, #0a0a0c 0%, transparent 15%, transparent 85%, #0a0a0c 100%);
   pointer-events: none;
