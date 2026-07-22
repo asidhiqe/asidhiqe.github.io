@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { inter, instrumentSerif, jetbrainsMono } from "./fonts";
+import Preloader from "./components/Preloader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <Preloader />
         <div className="film-grain" aria-hidden="true" />
         {children}
       </body>
