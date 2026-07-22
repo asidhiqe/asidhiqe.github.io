@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -99,14 +100,14 @@ export default function Header() {
       ref={headerRef}
       className={`site-header${scrolled ? " scrolled" : ""}`}
     >
-      <a
-        href="#top"
+      <Link
+        href="/"
         className="header-wordmark"
         aria-label="Aboobacker Sidhiqe, home"
       >
         <span className="header-wordmark-text">AS</span>
         <span className="header-wordmark-dot" aria-hidden="true">.</span>
-      </a>
+      </Link>
 
       <div className="header-actions">
         <button
@@ -129,9 +130,9 @@ export default function Header() {
 
       <div className="header-nav-container">
         <nav className="header-nav" aria-label="Primary navigation">
-          <a href="#selected-work">Work</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <Link href="/#selected-work">Work</Link>
+          <Link href="/#about">About</Link>
+          <Link href="/#contact">Contact</Link>
         </nav>
       </div>
     </header>

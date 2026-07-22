@@ -160,6 +160,18 @@ export default async function CaseStudyPage({ params }: PageProps) {
               </p>
             </div>
           </section>
+
+          {/* Case Study Pagination Footer */}
+          <nav className="case-study-pagination-nav" aria-label="Case Study Navigation">
+            <Link href="/#selected-work" className="pagination-btn pagination-prev">
+              <span className="pagination-label">← Return to Homepage</span>
+              <span className="pagination-title">Selected Work Index</span>
+            </Link>
+            <Link href="/work/clinical-workbench" className="pagination-btn pagination-next">
+              <span className="pagination-label">Next Case Study →</span>
+              <span className="pagination-title">Clinical Workbench ERP</span>
+            </Link>
+          </nav>
         </main>
 
         <Footer />
