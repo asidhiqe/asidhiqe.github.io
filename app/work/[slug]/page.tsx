@@ -86,11 +86,28 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </section>
 
           {/* 01. Problem */}
-          <section className="case-study-section">
+          <section id="problem" className="case-study-section">
             <h2 className="case-study-h2">01. The Operational Problem</h2>
             <p className="case-study-p">
               As enterprise clients began deploying autonomous AI agents for partner integrations and automated workflow execution, IT administrators and risk officers faced a critical operational dilemma:
             </p>
+
+            {/* Before vs After Bento Comparison */}
+            <div className="bento-comparison-grid">
+              <div className="bento-card bento-before">
+                <span className="bento-chip status-flaw">Legacy / Before</span>
+                <h3>Opaque Black-Box Execution</h3>
+                <p>IT admins had zero visibility into LLM prompt reasoning loops or tool calls. When data ambiguity occurred, agents either failed silently or hallucinated unverified write actions.</p>
+                <div className="bento-metric-sub">Friction: High Operational Risk</div>
+              </div>
+
+              <div className="bento-card bento-after">
+                <span className="bento-chip status-success">Engineered / After</span>
+                <h3>Control Tower Observability</h3>
+                <p>Centralized real-time status grid, LLM execution trace logs, and automated risk-threshold speed bumps that pause execution for human verification.</p>
+                <div className="bento-metric-sub">Outcome: Audit Transparency & Trust</div>
+              </div>
+            </div>
 
             <div className="case-study-callout-grid">
               <div className="case-study-callout-card">
