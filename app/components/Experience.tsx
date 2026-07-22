@@ -184,22 +184,29 @@ export default function Experience() {
                 <div className="experience-timeline-dot" />
                 
                 {/* Header Row (Clickable Accordion Trigger) */}
-                <button
-                  type="button"
+                <div
+                  role="button"
+                  tabIndex={0}
                   className="experience-entry-trigger"
                   onClick={() => toggleAccordion(idx)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggleAccordion(idx);
+                    }
+                  }}
                   aria-expanded={isOpen}
                 >
                   <div className="experience-time">{job.years}</div>
                   <div className="experience-title-row">
                     <h3 className="experience-role">{job.role}</h3>
-                    <span className="experience-company-chip">{job.company}</span>
                     <span className="experience-accordion-toggle-icon">{isOpen ? "−" : "+"}</span>
                   </div>
-                  <div className="experience-company-meta">
+                  <div className="experience-company-subrow">
+                    <span className="experience-company-chip">{job.company}</span>
                     <span className="experience-type-loc">{job.location} · {job.type}</span>
                   </div>
-                </button>
+                </div>
 
                 {/* Collapsible Details Body */}
                 <div className="experience-entry-details">

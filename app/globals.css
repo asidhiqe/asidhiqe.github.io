@@ -1668,6 +1668,9 @@ html.light .experience-summary-card {
   cursor: pointer;
   color: inherit;
   font-family: inherit;
+  display: block;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .experience-title-row {
@@ -1677,6 +1680,14 @@ html.light .experience-summary-card {
   margin-bottom: 0.35rem;
 }
 
+.experience-company-subrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .experience-company-chip {
   font-family: var(--font-mono), monospace;
   font-size: var(--text-xs);
@@ -1684,9 +1695,10 @@ html.light .experience-summary-card {
   color: var(--accent-warm);
   background: rgba(196, 149, 106, 0.1);
   border: 1px solid rgba(196, 149, 106, 0.25);
-  padding: 0.15rem 0.5rem;
+  padding: 0.15rem 0.55rem;
   border-radius: 999px;
   letter-spacing: 0.04em;
+  display: inline-block;
 }
 
 .experience-accordion-toggle-icon {
