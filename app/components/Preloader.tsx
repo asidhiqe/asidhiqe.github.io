@@ -17,7 +17,11 @@ export default function Preloader() {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Only run preloader once per session or on initial load
+    // In dev mode, or if testing loader, clear session storage to guarantee preview
+    if (typeof window !== "undefined" && window.location.search.includes("loader=true")) {
+      sessionStorage.removeItem("preloader_shown");
+    }
+
     const hasLoaded = sessionStorage.getItem("preloader_shown");
     if (hasLoaded) {
       setLoading(false);
@@ -31,12 +35,12 @@ export default function Preloader() {
           clearInterval(interval);
           return 100;
         }
-        const next = prev + Math.floor(Math.random() * 15) + 10;
+        const next = prev + Math.floor(Math.random() * 12) + 8;
         return next > 100 ? 100 : next;
       });
 
       setStatusIndex((prev) => (prev + 1) % statusMessages.length);
-    }, 280);
+    }, 220);
 
     return () => clearInterval(interval);
   }, []);
