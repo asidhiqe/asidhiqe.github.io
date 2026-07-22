@@ -225,6 +225,181 @@ export default async function CaseStudyPage({ params }: PageProps) {
     );
   }
 
+  if (slug === "sisi-lending" || slug === "invoice-financing") {
+    return (
+      <div className="case-study-root">
+        <Header />
+
+        <main className="case-study-container">
+          {/* Header & Hero Meta */}
+          <header className="case-study-hero">
+            <Link href="/" className="case-study-back-link">
+              ← Return to Selected Work
+            </Link>
+            <p className="case-study-eyebrow">✦ FinTech & Credit Underwriting Platform</p>
+            <h1 className="case-study-title">
+              Sisi Lending: Streamlining Micro-Loans & Automated Underwriting for Emerging Markets
+            </h1>
+            <p className="case-study-subtitle">
+              How user-centered credit application workflows and real-time risk assessment dashboards reduced loan processing turnarounds by 65%.
+            </p>
+
+            <div className="case-study-meta-grid">
+              <div className="case-study-meta-item">
+                <span className="case-study-meta-label">Domain</span>
+                <span className="case-study-meta-val">FinTech & Micro-Lending</span>
+              </div>
+              <div className="case-study-meta-item">
+                <span className="case-study-meta-label">Role</span>
+                <span className="case-study-meta-val">Lead Product Designer</span>
+              </div>
+              <div className="case-study-meta-item">
+                <span className="case-study-meta-label">Impact</span>
+                <span className="case-study-meta-val">65% Faster Processing</span>
+              </div>
+              <div className="case-study-meta-item">
+                <span className="case-study-meta-label">Platform</span>
+                <span className="case-study-meta-val">Mobile App & Admin Console</span>
+              </div>
+            </div>
+
+            {/* Hero Visual Showcase Canvas */}
+            <div className="case-study-hero-canvas">
+              <div className="canvas-header-bar">
+                <span className="canvas-dot red" />
+                <span className="canvas-dot yellow" />
+                <span className="canvas-dot green" />
+                <span className="canvas-title">Sisi Credit Ecosystem — Underwriting & Borrowing Flow</span>
+              </div>
+              <div className="canvas-preview-content">
+                <div className="preview-badge">Live FinTech System Architecture</div>
+                <div className="preview-diagram-wire">
+                  <div className="wire-node active">
+                    <span className="wire-status healthy">COMPLETED</span>
+                    <span className="wire-name">Borrower Onboarding & KYC</span>
+                  </div>
+                  <div className="wire-arrow">➔</div>
+                  <div className="wire-node warning">
+                    <span className="wire-status action">PROCESSING</span>
+                    <span className="wire-name">Automated Risk Scoring</span>
+                  </div>
+                  <div className="wire-arrow">➔</div>
+                  <div className="wire-node">
+                    <span className="wire-status healthy">READY</span>
+                    <span className="wire-name">Instant Disbursement Engine</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* Key Design Lesson Banner */}
+          <section className="case-study-lesson-banner">
+            <span className="case-study-lesson-tag">Core Design Lesson</span>
+            <p className="case-study-lesson-text">
+              In digital lending, friction during onboarding directly increases drop-offs. By chunking complex KYC verifications into progressive disclosures and rendering real-time risk scores transparent to underwriters, speed and safety can coexist.
+            </p>
+          </section>
+
+          {/* 01. The Problem */}
+          <section id="problem" className="case-study-section">
+            <h2 className="case-study-h2">01. The Lending Friction Problem</h2>
+            <p className="case-study-p">
+              Borrowers in emerging markets faced lengthy 48-hour approval wait times due to manual document verifications, while loan officers struggled with fragmented risk assessment tools.
+            </p>
+
+            {/* Before vs After Bento Comparison */}
+            <div className="bento-comparison-grid">
+              <div className="bento-card bento-before">
+                <span className="bento-chip status-flaw">Legacy / Before</span>
+                <h3>High Drop-Off & Manual Verification</h3>
+                <p>Long 14-step onboarding forms, hidden interest rate structures, and manual PDF document reviews leading to a 42% application abandonment rate.</p>
+                <div className="bento-metric-sub">Friction: 48h Average Wait Time</div>
+              </div>
+
+              <div className="bento-card bento-after">
+                <span className="bento-chip status-success">Engineered / After</span>
+                <h3>Automated Underwriting & Clear KYC</h3>
+                <p>3-step progressive KYC, dynamic credit score calculators, and a unified loan officer console with automated risk scoring flags.</p>
+                <div className="bento-metric-sub">Outcome: &lt; 15 Minute Approval Window</div>
+              </div>
+            </div>
+          </section>
+
+          {/* 02. User Archetypes */}
+          <section className="case-study-section">
+            <h2 className="case-study-h2">02. Core User Archetypes</h2>
+            <div className="case-study-persona-grid">
+              <div className="case-study-persona-card">
+                <span className="persona-role">Archetype A</span>
+                <h3>The First-Time Borrower</h3>
+                <ul className="persona-list">
+                  <li><strong>Goal:</strong> Secure working capital fast with transparent repayment schedules.</li>
+                  <li><strong>Friction:</strong> Fear of hidden fees and complicated banking jargon.</li>
+                  <li><strong>Need:</strong> Simple mobile-first application & instant status tracking.</li>
+                </ul>
+              </div>
+
+              <div className="case-study-persona-card">
+                <span className="persona-role">Archetype B</span>
+                <h3>The Underwriting Officer</h3>
+                <ul className="persona-list">
+                  <li><strong>Goal:</strong> Evaluate loan risk rapidly without missing fraud signals.</li>
+                  <li><strong>Friction:</strong> Switching between 5 tools to verify income & credit history.</li>
+                  <li><strong>Need:</strong> Single-screen decision dashboard with automated flags.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* 03. Design Decisions */}
+          <section className="case-study-section">
+            <h2 className="case-study-h2">03. Principal Design Decisions</h2>
+
+            <div className="case-study-matrix-card">
+              <span className="matrix-decision-title">Decision 1: Progressive KYC Chunking</span>
+              <p><strong>Context:</strong> Asking for identity proofs, bank statements, and collateral upfront overwhelmed borrowers.</p>
+              <p><strong>Rationale:</strong> We split onboarding into 3 distinct micro-steps (Basic Profile ➔ Credit Check ➔ Document Upload), unlocking incremental progress.</p>
+            </div>
+
+            <div className="case-study-matrix-card">
+              <span className="matrix-decision-title">Decision 2: Transparent Repayment Calculator</span>
+              <p><strong>Context:</strong> Users abandoned applications when final interest rates were hidden until approval.</p>
+              <p><strong>Rationale:</strong> Designed an interactive slider component showing exact daily/monthly repayment amounts before submission.</p>
+            </div>
+          </section>
+
+          {/* 04. Verified Impact */}
+          <section className="case-study-section">
+            <h2 className="case-study-h2">04. Measured Business Impact</h2>
+            <div className="case-study-impact-box">
+              <h3>Key Outcomes</h3>
+              <p>
+                • <strong>65% Reduction</strong> in loan processing turnaround time (from 48 hours to under 15 minutes).<br />
+                • <strong>38% Increase</strong> in completed mobile application flows.<br />
+                • <strong>94% Underwriter Satisfaction</strong> score for the unified risk dashboard.
+              </p>
+            </div>
+          </section>
+
+          {/* Case Study Pagination Footer */}
+          <nav className="case-study-pagination-nav" aria-label="Case Study Navigation">
+            <Link href="/#selected-work" className="pagination-btn pagination-prev">
+              <span className="pagination-label">← Return to Homepage</span>
+              <span className="pagination-title">Selected Work Index</span>
+            </Link>
+            <Link href="/work/agent-oversight" className="pagination-btn pagination-next">
+              <span className="pagination-label">Next Case Study →</span>
+              <span className="pagination-title">Agent Control Tower</span>
+            </Link>
+          </nav>
+        </main>
+
+        <Footer />
+      </div>
+    );
+  }
+
   // Generic fallback for other slugs
   const title = slug
     .split("-")
