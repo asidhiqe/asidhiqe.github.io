@@ -46,6 +46,35 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 <span className="case-study-meta-val">2023 - Present</span>
               </div>
             </div>
+
+            {/* Hero Visual Showcase Canvas */}
+            <div className="case-study-hero-canvas">
+              <div className="canvas-header-bar">
+                <span className="canvas-dot red" />
+                <span className="canvas-dot yellow" />
+                <span className="canvas-dot green" />
+                <span className="canvas-title">Agent Control Tower — System Observability Canvas</span>
+              </div>
+              <div className="canvas-preview-content">
+                <div className="preview-badge">Live System Architecture Prototype</div>
+                <div className="preview-diagram-wire">
+                  <div className="wire-node active">
+                    <span className="wire-status healthy">HEALTHY</span>
+                    <span className="wire-name">Agent-01: Financial Reconciliation</span>
+                  </div>
+                  <div className="wire-arrow">➔</div>
+                  <div className="wire-node warning">
+                    <span className="wire-status action">PAUSED (Human Gate)</span>
+                    <span className="wire-name">Agent-02: Partner API Ingestion</span>
+                  </div>
+                  <div className="wire-arrow">➔</div>
+                  <div className="wire-node">
+                    <span className="wire-status healthy">HEALTHY</span>
+                    <span className="wire-name">Agent-03: Compliance Auditor</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </header>
 
           {/* Key Design Lesson Banner */}
@@ -56,9 +85,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </p>
           </section>
 
-          {/* 1. Problem */}
+          {/* 01. Problem */}
           <section className="case-study-section">
-            <h2 className="case-study-h2">1. The Operational Problem</h2>
+            <h2 className="case-study-h2">01. The Operational Problem</h2>
             <p className="case-study-p">
               As enterprise clients began deploying autonomous AI agents for partner integrations and automated workflow execution, IT administrators and risk officers faced a critical operational dilemma:
             </p>
@@ -79,9 +108,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* 2. User Archetypes / Personas */}
+          {/* 02. User Archetypes / Personas */}
           <section className="case-study-section">
-            <h2 className="case-study-h2">2. Operational User Archetypes</h2>
+            <h2 className="case-study-h2">02. Operational User Archetypes</h2>
             <div className="case-study-persona-grid">
               <div className="case-study-persona-card">
                 <span className="persona-role">Archetype A</span>
@@ -105,9 +134,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* 3. System IA & Workflow Architecture */}
+          {/* 03. System IA & Workflow Architecture */}
           <section className="case-study-section">
-            <h2 className="case-study-h2">3. Information Architecture & Workflow</h2>
+            <h2 className="case-study-h2">03. Information Architecture & Workflow</h2>
             <p className="case-study-p">
               We consolidated fragmented monitoring views into a structured 3-tier hierarchy designed for real-time operational response:
             </p>
@@ -122,9 +151,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* 4. Principal Design Decisions & Trade-off Matrix */}
+          {/* 04. Principal Design Decisions & Trade-off Matrix */}
           <section className="case-study-section">
-            <h2 className="case-study-h2">4. Principal Design Decisions & Trade-Offs</h2>
+            <h2 className="case-study-h2">04. Principal Design Decisions & Trade-Offs</h2>
 
             <div className="case-study-matrix-card">
               <span className="matrix-decision-title">Decision 1: High-Density Health Grid vs. Minimalist Cards</span>
@@ -143,9 +172,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* 5. Verified Impact & Reflection */}
+          {/* 05. Verified Impact & Reflection */}
           <section className="case-study-section">
-            <h2 className="case-study-h2">5. Verified Adoption & Reflection</h2>
+            <h2 className="case-study-h2">05. Verified Adoption & Reflection</h2>
             <div className="case-study-impact-box">
               <h3>Real-World Outcome</h3>
               <p>
