@@ -2060,23 +2060,32 @@ html.light .experience-summary-card {
 }
 
 .case-study-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 8rem var(--gutter) 6rem;
+  padding: 7.5rem var(--gutter) 6rem;
 }
 
 .case-study-back-link {
   font-family: var(--font-mono), monospace;
   font-size: var(--text-xs);
-  color: var(--accent-warm);
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: var(--accent-teal);
+  background: rgba(91, 191, 181, 0.08);
+  border: 1px solid rgba(91, 191, 181, 0.25);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 2rem;
-  transition: color var(--dur-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 2.25rem;
+  transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast);
 }
 
 .case-study-back-link:hover {
+  background: rgba(91, 191, 181, 0.16);
+  border-color: rgba(91, 191, 181, 0.45);
   color: var(--text-primary);
 }
 
