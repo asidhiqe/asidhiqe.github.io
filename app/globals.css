@@ -586,15 +586,27 @@ html.light .header-nav a.active {
   object-fit: cover;
   object-position: center 35%;
   mix-blend-mode: normal;
-  opacity: 1;
+  opacity: 0.85;
   filter: grayscale(100%) contrast(110%) brightness(95%);
-  transition: filter 0.5s var(--ease-out);
+  mask-image: radial-gradient(circle at 55% 45%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 110%);
+  -webkit-mask-image: radial-gradient(circle at 55% 45%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 110%);
+  transition: opacity 0.5s var(--ease-out), filter 0.5s var(--ease-out);
 }
 
 .hero-right:hover .hero-portrait-blend-img {
   opacity: 1;
   mix-blend-mode: normal;
   filter: grayscale(0%) contrast(100%) brightness(100%);
+}
+
+.hero-portrait-blend-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 55% 45%, transparent 45%, var(--bg-primary) 110%),
+    linear-gradient(90deg, var(--bg-primary) 0%, transparent 20%, transparent 80%, var(--bg-primary) 100%),
+    linear-gradient(180deg, var(--bg-primary) 0%, transparent 20%, transparent 80%, var(--bg-primary) 100%);
+  pointer-events: none;
 }
 
 .hero-scroll-indicator {
