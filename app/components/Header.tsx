@@ -13,6 +13,9 @@ export default function Header() {
     (_, contextSafe) => {
       if (!contextSafe) return;
 
+      const isHoverCapable = typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+      if (!isHoverCapable) return;
+
       const links = headerRef.current?.querySelectorAll(
         ".header-nav a, .header-wordmark, .theme-toggle-btn"
       );
@@ -101,14 +104,9 @@ export default function Header() {
         className="header-wordmark"
         aria-label="Aboobacker Sidhiqe, home"
       >
-        AS<span>.</span>
+        <span className="header-wordmark-text">AS</span>
+        <span className="header-wordmark-dot" aria-hidden="true">.</span>
       </a>
-
-      <nav className="header-nav" aria-label="Primary navigation">
-        <a href="#selected-work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
 
       <div className="header-actions">
         <button
@@ -127,6 +125,14 @@ export default function Header() {
             </svg>
           )}
         </button>
+      </div>
+
+      <div className="header-nav-container">
+        <nav className="header-nav" aria-label="Primary navigation">
+          <a href="#selected-work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
     </header>
   );

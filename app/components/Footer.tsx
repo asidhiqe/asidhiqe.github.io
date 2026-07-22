@@ -12,15 +12,15 @@ export default function Footer() {
         <div>
           <p className="footer-cta-eyebrow">Next chapter</p>
           <ScrollReveal as="h2" id="footer-cta-title" className="footer-cta-headline">
-            Let's design systems that <em>matter.</em>
+            Let&apos;s design decision systems where <em>clarity is a safety feature.</em>
           </ScrollReveal>
 
           <ScrollReveal as="div" delay={0.1} className="footer-links">
-            <a href="mailto:aboobacker.sidhiqe@example.com" className="footer-link-primary">
+            <a href="mailto:sidhiqe0001@gmail.com" className="footer-link-primary">
               Send an inquiry <span aria-hidden="true">→</span>
             </a>
             <a
-              href="https://linkedin.com/in/aboobacker-sidhiqe"
+              href="https://www.linkedin.com/in/asidhiqe/"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-link-secondary"
@@ -40,13 +40,13 @@ export default function Footer() {
           </p>
 
           <div className="footer-social" aria-label="Social connections">
-            <a href="https://linkedin.com/in/aboobacker-sidhiqe" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/asidhiqe/" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
-            <a href="https://github.com/asidhiqe" target="_blank" rel="noopener noreferrer">
-              GitHub
+            <a href="/resume.pdf" download>
+              Resume
             </a>
-            <a href="mailto:aboobacker.sidhiqe@example.com">Email</a>
+            <a href="mailto:sidhiqe0001@gmail.com">Email</a>
           </div>
         </div>
       </div>

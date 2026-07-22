@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -8,18 +9,17 @@ gsap.registerPlugin(useGSAP);
 
 const domains = [
   "Healthcare",
-  "AI Systems",
-  "Airport Analytics",
+  "AI Governance",
+  "Airport Operations",
   "FinTech",
-  "Logistics",
-  "Marketplaces",
+  "Enterprise SaaS",
 ];
 
 const phrases = [
-  "better decisions.",
-  "critical judgments.",
-  "clearer choices.",
-  "confident actions.",
+  "faster clinical decisions.",
+  "confident operations.",
+  "trustworthy financial choices.",
+  "governed AI workflows.",
 ];
 
 export default function Hero() {
@@ -27,8 +27,11 @@ export default function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0);
 
   useEffect(() => {
+    const el = containerRef.current?.querySelector(".hero-rotating-phrase");
+    if (!el) return;
+
     const interval = setInterval(() => {
-      gsap.to(".hero-rotating-phrase", {
+      gsap.to(el, {
         opacity: 0,
         y: -12,
         duration: 0.35,
@@ -36,7 +39,7 @@ export default function Hero() {
         onComplete: () => {
           setPhraseIndex((prev) => (prev + 1) % phrases.length);
           gsap.fromTo(
-            ".hero-rotating-phrase",
+            el,
             { opacity: 0, y: 12 },
             { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
           );
@@ -48,28 +51,31 @@ export default function Hero() {
 
   useGSAP(
     (_, contextSafe) => {
+      const scope = containerRef.current;
+      if (!scope) return;
+
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       // Headline + eyebrow
       tl.fromTo(
-        ".hero-eyebrow",
+        scope.querySelectorAll(".hero-eyebrow"),
         { opacity: 0, y: 12 },
         { opacity: 1, y: 0, duration: 0.6 }
       )
         .fromTo(
-          ".hero-headline",
+          scope.querySelectorAll(".hero-headline"),
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.8 },
           "-=0.2"
         )
         .fromTo(
-          ".hero-domain-tag",
+          scope.querySelectorAll(".hero-domain-tag"),
           { opacity: 0, y: 8 },
           { opacity: 1, y: 0, duration: 0.4, stagger: 0.06 },
           "-=0.4"
         )
         .fromTo(
-          ".hero-meta-item",
+          scope.querySelectorAll(".hero-meta-item"),
           { opacity: 0, y: 8 },
           { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 },
           "-=0.3"
@@ -83,6 +89,8 @@ export default function Hero() {
 
       stats.forEach((stat) => {
         const obj = { value: 0 };
+        const el = scope.querySelector(stat.el) as HTMLElement | null;
+
         tl.to(
           obj,
           {
@@ -90,9 +98,8 @@ export default function Hero() {
             duration: 1.4,
             ease: "power2.out",
             onUpdate: () => {
-              const el = containerRef.current?.querySelector(stat.el);
               if (el) {
-                (el as HTMLElement).innerText = Math.floor(obj.value) + stat.suffix;
+                el.innerText = Math.floor(obj.value) + stat.suffix;
               }
             },
           },
@@ -101,44 +108,15 @@ export default function Hero() {
       });
 
       tl.fromTo(
-        ".hero-cta",
+        scope.querySelectorAll(".hero-cta"),
         { opacity: 0 },
         { opacity: 1, duration: 0.4 },
         "-=0.2"
       );
 
-      // SVG: draw paths
-      const paths = containerRef.current?.querySelectorAll(".diagram-path");
-      if (paths && paths.length > 0) {
-        paths.forEach((path) => {
-          const length = (path as SVGPathElement).getTotalLength?.() ?? 200;
-          gsap.set(path, {
-            strokeDasharray: length,
-            strokeDashoffset: length,
-          });
-        });
-        tl.to(
-          paths,
-          {
-            strokeDashoffset: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power1.inOut",
-          },
-          "-=0.6"
-        );
-      }
-
-      // SVG: fade in nodes
-      tl.fromTo(
-        ".diagram-node, .diagram-node-accent, .diagram-node-teal",
-        { opacity: 0, scale: 0, transformOrigin: "center" },
-        { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08 },
-        "-=0.6"
-      );
-
       // Magnetic hover CTA
-      if (contextSafe) {
+      const isHoverCapable = typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+      if (contextSafe && isHoverCapable) {
         const cta = containerRef.current?.querySelector(".hero-cta");
         if (cta) {
           const onMouseMove = contextSafe((e: MouseEvent) => {
@@ -167,6 +145,64 @@ export default function Hero() {
 
           cta.addEventListener("mousemove", onMouseMove as EventListener);
           cta.addEventListener("mouseleave", onMouseLeave);
+        }
+      }
+
+      const waves = containerRef.current?.querySelectorAll(".wave-line");
+      const waveGroup = containerRef.current?.querySelector(".hero-waves-group") as SVGElement | null;
+
+      if (waveGroup) {
+        gsap.to(waveGroup, {
+          x: -6,
+          y: 4,
+          duration: 6.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      }
+
+      if (waves && waves.length > 0) {
+        gsap.to(waves, {
+          opacity: 0.8,
+          strokeWidth: 1.8,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          stagger: 0.22,
+        });
+      }
+
+      if (contextSafe && isHoverCapable && waveGroup) {
+        const heroSurface = containerRef.current?.querySelector(".hero-right");
+        if (heroSurface) {
+          const onWaveMove = contextSafe((e: MouseEvent) => {
+            const rect = heroSurface.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            gsap.to(waveGroup, {
+              x: x * 10,
+              y: y * 10,
+              duration: 0.35,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          });
+
+          const onWaveLeave = contextSafe(() => {
+            gsap.to(waveGroup, {
+              x: 0,
+              y: 0,
+              duration: 0.45,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          });
+
+          heroSurface.addEventListener("mousemove", onWaveMove as EventListener);
+          heroSurface.addEventListener("mouseleave", onWaveLeave);
         }
       }
 
@@ -214,8 +250,8 @@ export default function Hero() {
         </p>
 
         <h1 id="hero-title" className="hero-headline">
-          Designing systems that help experts make{" "}
-          <em className="hero-rotating-phrase" style={{ display: "inline-block" }}>
+          Designing decision systems for{" "}
+          <em className="hero-rotating-phrase">
             {phrases[phraseIndex]}
           </em>
         </h1>
@@ -230,16 +266,16 @@ export default function Hero() {
 
         <div className="hero-meta" aria-label="Experience summary">
           <div className="hero-meta-item">
-            <span className="hero-meta-value stat-years">0+</span>
-            <span className="hero-meta-label">Years</span>
+            <span className="hero-meta-value stat-years">13+</span>
+            <span className="hero-meta-label">Years Experience</span>
           </div>
           <div className="hero-meta-item">
-            <span className="hero-meta-value stat-domains">0</span>
-            <span className="hero-meta-label">Domains</span>
+            <span className="hero-meta-value stat-domains">6</span>
+            <span className="hero-meta-label">Core Domains</span>
           </div>
           <div className="hero-meta-item">
-            <span className="hero-meta-value stat-products">0+</span>
-            <span className="hero-meta-label">Products</span>
+            <span className="hero-meta-value stat-products">20+</span>
+            <span className="hero-meta-label">Products Shipped</span>
           </div>
         </div>
 
@@ -248,55 +284,18 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* Right — decision-flow diagram */}
-      <div className="hero-right" aria-hidden="true">
-        <div className="hero-diagram">
-          <svg
-            viewBox="0 0 480 440"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="img"
-          >
-            {/* Connecting paths */}
-            <path className="diagram-path" d="M60 90 L200 180" />
-            <path className="diagram-path" d="M420 90 L280 180" />
-            <path className="diagram-path" d="M60 350 L200 260" />
-            <path className="diagram-path" d="M420 350 L280 260" />
-            <path className="diagram-path" d="M200 180 L280 180" />
-            <path className="diagram-path" d="M200 260 L280 260" />
-            <path className="diagram-path" d="M200 180 L200 260" />
-            <path className="diagram-path" d="M280 180 L280 260" />
-            {/* Outer corner indicators */}
-            <path className="diagram-crosshair" d="M44 90 L76 90 M60 74 L60 106" />
-            <path className="diagram-crosshair" d="M404 90 L436 90 M420 74 L420 106" />
-            <path className="diagram-crosshair" d="M44 350 L76 350 M60 334 L60 366" />
-            <path className="diagram-crosshair" d="M404 350 L436 350 M420 334 L420 366" />
-            {/* Center frame */}
-            <rect className="diagram-center" x="180" y="160" width="120" height="120" rx="2" />
-            {/* Center crosshair */}
-            <path className="diagram-crosshair" d="M230 220 L250 220 M240 210 L240 230" />
-            {/* Node dots */}
-            <circle className="diagram-node" cx="60" cy="90" r="8" />
-            <circle className="diagram-node" cx="420" cy="90" r="8" />
-            <circle className="diagram-node" cx="60" cy="350" r="8" />
-            <circle className="diagram-node" cx="420" cy="350" r="8" />
-            <circle className="diagram-node-accent" cx="200" cy="180" r="5" />
-            <circle className="diagram-node-accent" cx="280" cy="180" r="5" />
-            <circle className="diagram-node-teal" cx="200" cy="260" r="5" />
-            <circle className="diagram-node-teal" cx="280" cy="260" r="5" />
-            {/* Center dot */}
-            <circle className="diagram-node-accent" cx="240" cy="220" r="4" />
-            {/* Labels */}
-            <text className="diagram-label" x="44" y="76">01 / Signal</text>
-            <text className="diagram-label" x="390" y="76">02 / Context</text>
-            <text className="diagram-label" x="30" y="374">03 / Judgment</text>
-            <text className="diagram-label" x="382" y="374">04 / Action</text>
-          </svg>
-        </div>
-
-        <div className="hero-scroll-indicator" aria-hidden="true">
-          <span>↓</span>
+      {/* Right — Casual image background blend */}
+      <div className="hero-right" aria-label="Aboobacker Sidhiqe Casual Visual">
+        <div className="hero-portrait-blend-container">
+          <Image
+            src="/Aboobacker_Sidhiqe_Principal_Product_Designer_casual_image.png"
+            alt="Aboobacker Sidhiqe - Principal Product Designer"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+            className="hero-portrait-blend-img"
+          />
+          <div className="hero-portrait-blend-gradient" aria-hidden="true" />
         </div>
       </div>
     </section>

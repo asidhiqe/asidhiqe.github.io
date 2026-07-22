@@ -11,8 +11,8 @@ const systems = [
     code: "01",
     domain: "Healthcare",
     title: "Clinical Workbench",
-    detail: "A workflow and layout system designed to help doctors orient themselves quickly, assess clinical context, and reduce diagnostic errors.",
-    lesson: "Clarity is a safety feature.",
+    detail: "A clinical interface for high-speed decision-making. Doctors need patient history, lab results, imaging, and decision trees visible at once—without cognitive overload.",
+    lesson: "Information density organized by decision priority, not administrative convenience.",
     layout: "work-card--featured-1 work-card--healthcare",
     slug: "clinical-workbench",
   },
@@ -29,8 +29,8 @@ const systems = [
     code: "03",
     domain: "AI Systems",
     title: "Agent Oversight",
-    detail: "An interface system designed to render the probabilistic behaviors of autonomous AI agents legible and actionable for human supervisors.",
-    lesson: "Trust requires meaningful control.",
+    detail: "A control system for probabilistic AI. Supervisors need to see why an agent chose an action, judge if it's safe, and intervene when needed in real time.",
+    lesson: "Trust requires rendering 'why' legible and actionable.",
     layout: "work-card--featured-2 work-card--ai",
     slug: "agent-oversight",
   },
@@ -51,6 +51,9 @@ export default function SelectedWork() {
   useGSAP(
     (_, contextSafe) => {
       if (!contextSafe) return;
+
+      const isHoverCapable = typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+      if (!isHoverCapable) return;
 
       const cards = bentoRef.current?.querySelectorAll(".work-card");
       if (!cards) return;
@@ -104,10 +107,10 @@ export default function SelectedWork() {
         <p className="section-eyebrow">Selected work</p>
         <div>
           <h2 id="work-title" className="section-title">
-            Evidence, arranged by the decisions it supports.
+            Lessons from designing in high-stakes environments.
           </h2>
           <p className="section-header-sub">
-            These selected projects demonstrate how complex enterprise environments — from hospital wards to airport control towers — can be structured for confidence and speed.
+            A featured selection from 20+ shipped enterprise products spanning healthcare, real-time operations, AI governance, and financial systems.
           </p>
         </div>
       </div>

@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
 
+  devIndicators: false,
+
   // Allow HMR WebSocket connections from local network IP for mobile testing
   allowedDevOrigins: ["localhost:3000", "192.168.1.8:3000", "192.168.1.8"]
 } as any as NextConfig;

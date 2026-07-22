@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import ScrollReveal from "./ScrollReveal";
 
 interface Job {
@@ -15,7 +13,7 @@ interface Job {
   tags: string[];
 }
 
-const activeRoles: Job[] = [
+const roles: Job[] = [
   {
     years: "Mar 2023 - Present",
     role: "Product Experience Specialist",
@@ -72,10 +70,7 @@ const activeRoles: Job[] = [
       "Delivered multilingual UI, local regulations compliance, and implemented HL7 support, barcode tracking, and MySQL report generation."
     ],
     tags: ["Healthcare ERP", "Product Ownership", "Mobile App Design", "React Prototyping"]
-  }
-];
-
-const historicalRoles: Job[] = [
+  },
   {
     years: "Oct 2015 - Aug 2018",
     role: "Lead UX/UI Designer",
@@ -132,62 +127,17 @@ const historicalRoles: Job[] = [
 ];
 
 export default function Experience() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0); // Default open: Index 0 (GlobalLogic)
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const toggleExpand = (index: number) => {
-    const isCurrentlyExpanded = expandedIndex === index;
-    const nextIndex = isCurrentlyExpanded ? null : index;
-
-    // Retrieve references to content wrappers
-    const content = containerRef.current?.querySelector(`.accordion-content-${index}`);
-    const arrow = containerRef.current?.querySelector(`.accordion-arrow-${index}`);
-
-    if (content) {
-      if (isCurrentlyExpanded) {
-        // Slide Up
-        gsap.to(content, {
-          height: 0,
-          opacity: 0,
-          duration: 0.35,
-          ease: "power2.inOut",
-        });
-        if (arrow) gsap.to(arrow, { rotation: 0, duration: 0.3 });
-      } else {
-        // Slide Down (Auto calculate scroll height)
-        gsap.set(content, { height: "auto" });
-        gsap.from(content, {
-          height: 0,
-          opacity: 0,
-          duration: 0.45,
-          ease: "power2.out",
-        });
-        if (arrow) gsap.to(arrow, { rotation: 45, duration: 0.3 }); // Rotate 45deg for 'x' feel
-      }
-    }
-
-    // Slide up previous active one if exists
-    if (expandedIndex !== null && expandedIndex !== index) {
-      const prevContent = containerRef.current?.querySelector(`.accordion-content-${expandedIndex}`);
-      const prevArrow = containerRef.current?.querySelector(`.accordion-arrow-${expandedIndex}`);
-      if (prevContent) {
-        gsap.to(prevContent, {
-          height: 0,
-          opacity: 0,
-          duration: 0.35,
-          ease: "power2.inOut",
-        });
-      }
-      if (prevArrow) gsap.to(prevArrow, { rotation: 0, duration: 0.3 });
-    }
-
-    setExpandedIndex(nextIndex);
+  const toggleAccordion = (idx: number) => {
+    setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
   return (
     <section id="experience" className="experience" aria-labelledby="experience-title">
       <div className="experience-body" ref={containerRef}>
-        {/* Left Column: Sticky Title */}
+        {/* Left Column: Sticky Title & Highlights Widget */}
         <div className="experience-sticky">
           <ScrollReveal as="div">
             <p className="experience-eyebrow-mini">Career Pathway</p>
@@ -197,108 +147,79 @@ export default function Experience() {
             <p className="experience-subtitle">
               A timeline showing progression from hands-on frontend web layout scripting to principal design leadership across critical enterprise domains.
             </p>
+
+            {/* Career Summary Highlights Card */}
+            <div className="experience-summary-card">
+              <span className="experience-summary-label">Key Systems Shipped</span>
+              <ul className="experience-summary-list">
+                <li>
+                  <span className="summary-dot" />
+                  <span>3 Enterprise SaaS Platforms</span>
+                </li>
+                <li>
+                  <span className="summary-dot" />
+                  <span>4 Global Logistics & FinTech Products</span>
+                </li>
+                <li>
+                  <span className="summary-dot" />
+                  <span>1 AI Agent Governance Hub</span>
+                </li>
+              </ul>
+            </div>
           </ScrollReveal>
         </div>
 
-        {/* Right Column: Timeline Track */}
+        {/* Right Column: Interactive Accordion Timeline Track */}
         <div className="experience-timeline">
-          
-          {/* Active Senior Roles */}
-          {activeRoles.map((job, idx) => (
-            <ScrollReveal
-              key={job.company}
-              as="div"
-              delay={idx * 0.05}
-              className="experience-entry"
-            >
-              <div className="experience-timeline-dot" />
-              <div className="experience-time">{job.years}</div>
-              <h3 className="experience-role">{job.role}</h3>
-              <div className="experience-company-meta">
-                <span className="experience-company">{job.company}</span>
-                <span className="experience-meta-sep">·</span>
-                <span className="experience-type-loc">{job.location}</span>
-              </div>
-              
-              <ul className="experience-bullets">
-                {job.bullets.map((bullet, bIdx) => (
-                  <li key={bIdx}>{bullet}</li>
-                ))}
-              </ul>
+          {roles.map((job, idx) => {
+            const isOpen = openIndex === idx;
 
-              <div className="experience-tags" role="list" aria-label="Skills applied">
-                {job.tags.map((tag) => (
-                  <span key={tag} className="experience-tag" role="listitem">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </ScrollReveal>
-          ))}
-
-          {/* Collapsible Earlier Roles */}
-          <div className="experience-accordion-section">
-            <ScrollReveal as="h4" className="experience-accordion-heading">
-              Earlier Professional History
-            </ScrollReveal>
-
-            {historicalRoles.map((job, idx) => {
-              const globalIdx = idx + activeRoles.length;
-              const isExpanded = expandedIndex === globalIdx;
-
-              return (
-                <ScrollReveal
-                  key={job.company}
-                  as="div"
-                  className={`experience-accordion-row ${isExpanded ? "is-expanded" : ""}`}
+            return (
+              <ScrollReveal
+                key={job.company}
+                as="div"
+                delay={idx * 0.03}
+                className={`experience-entry ${isOpen ? "is-open" : "is-collapsed"}`}
+              >
+                <div className="experience-timeline-dot" />
+                
+                {/* Header Row (Clickable Accordion Trigger) */}
+                <button
+                  type="button"
+                  className="experience-entry-trigger"
+                  onClick={() => toggleAccordion(idx)}
+                  aria-expanded={isOpen}
                 >
-                  <button
-                    className="experience-accordion-trigger"
-                    onClick={() => toggleExpand(globalIdx)}
-                    aria-expanded={isExpanded}
-                    aria-controls={`accordion-panel-${globalIdx}`}
-                  >
-                    <span className="experience-accordion-years">{job.years}</span>
-                    <span className="experience-accordion-role">{job.role}</span>
-                    <span className="experience-accordion-company">{job.company}</span>
-                    <span
-                      className={`experience-accordion-icon accordion-arrow-${globalIdx}`}
-                      aria-hidden="true"
-                    >
-                      +
-                    </span>
-                  </button>
-
-                  <div
-                    id={`accordion-panel-${globalIdx}`}
-                    className={`experience-accordion-panel accordion-content-${globalIdx}`}
-                    style={{ height: 0, overflow: "hidden", opacity: 0 }}
-                  >
-                    <div className="experience-accordion-inner">
-                      <div className="experience-type-loc" style={{ marginBottom: "0.5rem" }}>
-                        {job.location} · {job.type}
-                      </div>
-                      
-                      <ul className="experience-bullets">
-                        {job.bullets.map((bullet, bIdx) => (
-                          <li key={bIdx}>{bullet}</li>
-                        ))}
-                      </ul>
-
-                      <div className="experience-tags" role="list" aria-label="Skills applied">
-                        {job.tags.map((tag) => (
-                          <span key={tag} className="experience-tag" role="listitem">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="experience-time">{job.years}</div>
+                  <div className="experience-title-row">
+                    <h3 className="experience-role">{job.role}</h3>
+                    <span className="experience-company-chip">{job.company}</span>
+                    <span className="experience-accordion-toggle-icon">{isOpen ? "−" : "+"}</span>
                   </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
+                  <div className="experience-company-meta">
+                    <span className="experience-type-loc">{job.location} · {job.type}</span>
+                  </div>
+                </button>
 
+                {/* Collapsible Details Body */}
+                <div className="experience-entry-details">
+                  <ul className="experience-bullets">
+                    {job.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx}>{bullet}</li>
+                    ))}
+                  </ul>
+
+                  <div className="experience-tags" role="list" aria-label="Skills applied">
+                    {job.tags.map((tag) => (
+                      <span key={tag} className="experience-tag" role="listitem">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>

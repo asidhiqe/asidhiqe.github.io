@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aboobacker Sidhiqe — Principal Product Designer",
     description:
-      "Designing systems that help experts make better decisions in complex environments.",
+      "Designing systems that help make better decisions in complex environments.",
     type: "website",
   },
 };
