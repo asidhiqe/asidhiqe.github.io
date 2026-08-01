@@ -1,301 +1,150 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import BannerScroll from "./BannerScroll";
 
 gsap.registerPlugin(useGSAP);
 
-const domains = [
-  "Healthcare",
-  "AI Governance",
-  "Airport Operations",
-  "FinTech",
-  "Enterprise SaaS",
+const services = [
+  {
+    title: "UI/UX Design",
+    count: "117 Projects",
+    desc: "Crafting intuitive digital product experiences for complex enterprise domains.",
+  },
+  {
+    title: "Front End Develop",
+    count: "84 Projects",
+    desc: "Building high-performance React & Next.js web applications with fluid animations.",
+  },
+  {
+    title: "Mobile App Develop",
+    count: "32 Projects",
+    desc: "Designing cross-platform native iOS & Android interfaces built for scale.",
+  },
 ];
 
-const phrases = [
-  "faster clinical decisions.",
-  "confident operations.",
-  "trustworthy financial choices.",
-  "governed AI workflows.",
+const brands = [
+  { name: "Meta", icon: "∞", color: "#0668E1" },
+  { name: "Google", icon: "G", color: "#EA4335" },
+  { name: "LinkedIn", icon: "in", color: "#0A66C2" },
+  { name: "Slack", icon: "✦", color: "#E01E5A" },
 ];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [phraseIndex, setPhraseIndex] = useState(0);
-
-  useEffect(() => {
-    const el = containerRef.current?.querySelector(".hero-rotating-phrase");
-    if (!el) return;
-
-    const interval = setInterval(() => {
-      gsap.to(el, {
-        opacity: 0,
-        y: -12,
-        duration: 0.35,
-        ease: "power2.in",
-        onComplete: () => {
-          setPhraseIndex((prev) => (prev + 1) % phrases.length);
-          gsap.fromTo(
-            el,
-            { opacity: 0, y: 12 },
-            { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
-          );
-        },
-      });
-    }, 3800);
-    return () => clearInterval(interval);
-  }, []);
 
   useGSAP(
-    (_, contextSafe) => {
+    () => {
       const scope = containerRef.current;
       if (!scope) return;
 
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-      // Headline + eyebrow
       tl.fromTo(
-        scope.querySelectorAll(".hero-eyebrow"),
+        scope.querySelectorAll(".hero-greeting"),
         { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.6 }
+        { opacity: 1, y: 0, duration: 0.5 }
       )
         .fromTo(
-          scope.querySelectorAll(".hero-headline"),
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8 },
+          scope.querySelectorAll(".hero-name"),
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.7 },
           "-=0.2"
         )
         .fromTo(
-          scope.querySelectorAll(".hero-domain-tag"),
-          { opacity: 0, y: 8 },
-          { opacity: 1, y: 0, duration: 0.4, stagger: 0.06 },
-          "-=0.4"
+          scope.querySelectorAll(".mobile-sequence-container"),
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.6 },
+          "-=0.3"
         )
         .fromTo(
-          scope.querySelectorAll(".hero-meta-item"),
-          { opacity: 0, y: 8 },
-          { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 },
+          scope.querySelectorAll(".hero-subtitle"),
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.5 },
           "-=0.3"
+        )
+        .fromTo(
+          scope.querySelectorAll(".brand-badge"),
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08 },
+          "-=0.2"
+        )
+        .fromTo(
+          scope.querySelectorAll(".hero-stat-box"),
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.08 },
+          "-=0.2"
         );
-
-      const stats = [
-        { el: ".stat-years", val: 13, suffix: "+" },
-        { el: ".stat-domains", val: 6, suffix: "" },
-        { el: ".stat-products", val: 20, suffix: "+" },
-      ];
-
-      stats.forEach((stat) => {
-        const obj = { value: 0 };
-        const el = scope.querySelector(stat.el) as HTMLElement | null;
-
-        tl.to(
-          obj,
-          {
-            value: stat.val,
-            duration: 1.4,
-            ease: "power2.out",
-            onUpdate: () => {
-              if (el) {
-                el.innerText = Math.floor(obj.value) + stat.suffix;
-              }
-            },
-          },
-          "-=0.3"
-        );
-      });
-
-      tl.fromTo(
-        scope.querySelectorAll(".hero-cta"),
-        { opacity: 0 },
-        { opacity: 1, duration: 0.4 },
-        "-=0.2"
-      );
-
-      // Magnetic hover CTA
-      const isHoverCapable = typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
-      if (contextSafe && isHoverCapable) {
-        const cta = containerRef.current?.querySelector(".hero-cta");
-        if (cta) {
-          const onMouseMove = contextSafe((e: MouseEvent) => {
-            const rect = (cta as HTMLElement).getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            gsap.to(cta, {
-              x: x * 0.25,
-              y: y * 0.25,
-              duration: 0.35,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          });
-
-          const onMouseLeave = contextSafe(() => {
-            gsap.to(cta, {
-              x: 0,
-              y: 0,
-              duration: 0.55,
-              ease: "elastic.out(1.1, 0.4)",
-              overwrite: "auto",
-            });
-          });
-
-          cta.addEventListener("mousemove", onMouseMove as EventListener);
-          cta.addEventListener("mouseleave", onMouseLeave);
-        }
-      }
-
-      const waves = containerRef.current?.querySelectorAll(".wave-line");
-      const waveGroup = containerRef.current?.querySelector(".hero-waves-group") as SVGElement | null;
-
-      if (waveGroup) {
-        gsap.to(waveGroup, {
-          x: -6,
-          y: 4,
-          duration: 6.5,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      }
-
-      if (waves && waves.length > 0) {
-        gsap.to(waves, {
-          opacity: 0.8,
-          strokeWidth: 1.8,
-          duration: 4,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          stagger: 0.22,
-        });
-      }
-
-      if (contextSafe && isHoverCapable && waveGroup) {
-        const heroSurface = containerRef.current?.querySelector(".hero-right");
-        if (heroSurface) {
-          const onWaveMove = contextSafe((e: MouseEvent) => {
-            const rect = heroSurface.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-            gsap.to(waveGroup, {
-              x: x * 10,
-              y: y * 10,
-              duration: 0.35,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          });
-
-          const onWaveLeave = contextSafe(() => {
-            gsap.to(waveGroup, {
-              x: 0,
-              y: 0,
-              duration: 0.45,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          });
-
-          heroSurface.addEventListener("mousemove", onWaveMove as EventListener);
-          heroSurface.addEventListener("mouseleave", onWaveLeave);
-        }
-      }
-
-      // Organic Breathing Background Ambient Glows
-      gsap.to(".glow-1", {
-        x: "20%",
-        y: "-15%",
-        scale: 1.1,
-        opacity: 0.28,
-        duration: 9,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
-
-      gsap.to(".glow-2", {
-        x: "-15%",
-        y: "20%",
-        scale: 0.9,
-        opacity: 0.18,
-        duration: 13,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
     },
     { scope: containerRef }
   );
 
   return (
-    <section
-      id="top"
-      className="hero"
-      aria-labelledby="hero-title"
-      ref={containerRef}
-    >
-      {/* Background ambient glows */}
-      <div className="hero-ambient-glow glow-1" aria-hidden="true" />
-      <div className="hero-ambient-glow glow-2" aria-hidden="true" />
-
-      {/* Left */}
-      <div className="hero-left">
-        <p className="hero-eyebrow" aria-label="Aboobacker Sidhiqe · Principal Product Designer">
-          Aboobacker Sidhiqe&nbsp;·&nbsp;Principal Product Designer
-        </p>
-
-        <h1 id="hero-title" className="hero-headline">
-          Designing decision systems for{" "}
-          <em className="hero-rotating-phrase">
-            {phrases[phraseIndex]}
-          </em>
+    <section id="top" className="hero-mockup-section" ref={containerRef}>
+      <div className="hero-left-content">
+        <span className="hero-greeting">Hello, I&apos;m</span>
+        <h1 className="hero-name">
+          Aboobacker Sidhiqe
+          <span className="hero-yellow-bar" aria-hidden="true" />
         </h1>
 
-        <div className="hero-domains" role="list" aria-label="Domain expertise">
-          {domains.map((d) => (
-            <span key={d} className="hero-domain-tag" role="listitem">
-              {d}
-            </span>
+        {/* Dedicated Mobile & Tablet Sequence Card Slot (< 1024px) */}
+        <div className="mobile-sequence-container">
+          <BannerScroll />
+        </div>
+
+        <p className="hero-subtitle">
+          Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.
+        </p>
+
+        {/* Brand Badges */}
+        <div className="brand-badges-row">
+          {brands.map((b) => (
+            <div key={b.name} className="brand-badge">
+              <span className="brand-icon" style={{ color: b.color }}>
+                {b.icon}
+              </span>
+              <span className="brand-name">{b.name}</span>
+            </div>
           ))}
         </div>
 
-        <div className="hero-meta" aria-label="Experience summary">
-          <div className="hero-meta-item">
-            <span className="hero-meta-value stat-years">13+</span>
-            <span className="hero-meta-label">Years Experience</span>
+        {/* Metrics Overview */}
+        <div className="hero-stats-grid">
+          <div className="hero-stat-box">
+            <span className="hero-stat-num">250+</span>
+            <span className="hero-stat-lbl">Projects Completed</span>
           </div>
-          <div className="hero-meta-item">
-            <span className="hero-meta-value stat-domains">6</span>
-            <span className="hero-meta-label">Core Domains</span>
+          <div className="hero-stat-box">
+            <span className="hero-stat-num">100+</span>
+            <span className="hero-stat-lbl">Enterprise Clients</span>
           </div>
-          <div className="hero-meta-item">
-            <span className="hero-meta-value stat-products">20+</span>
-            <span className="hero-meta-label">Products Shipped</span>
+          <div className="hero-stat-box">
+            <span className="hero-stat-num">30+</span>
+            <span className="hero-stat-lbl">Global Domains</span>
+          </div>
+          <div className="hero-stat-box">
+            <span className="hero-stat-num">13+</span>
+            <span className="hero-stat-lbl">Years Experience</span>
           </div>
         </div>
 
-        <a href="#selected-work" className="hero-cta">
-          View the work <span aria-hidden="true">↓</span>
-        </a>
-      </div>
-
-      {/* Right — Casual image background blend */}
-      <div className="hero-right" aria-label="Aboobacker Sidhiqe Casual Visual">
-        <div className="hero-portrait-blend-container">
-          <Image
-            src="/Aboobacker_Sidhiqe_Principal_Product_Designer_casual_image.png"
-            alt="Aboobacker Sidhiqe - Principal Product Designer"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-            className="hero-portrait-blend-img"
-          />
-          <div className="hero-portrait-blend-gradient" aria-hidden="true" />
+        {/* Service Cards Showcase */}
+        <div className="hero-services-block">
+          <h2 className="hero-services-title">What I Can Do For Your Needs</h2>
+          <div className="hero-services-list">
+            {services.map((s) => (
+              <div key={s.title} className="hero-service-card">
+                <div className="hero-service-header">
+                  <h3 className="hero-service-name">{s.title}</h3>
+                  <span className="hero-service-count">{s.count}</span>
+                </div>
+                <p className="hero-service-desc">{s.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
