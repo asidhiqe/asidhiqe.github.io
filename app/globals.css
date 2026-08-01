@@ -2935,8 +2935,23 @@ html.light .site-footer {
 .hero-mockup-section {
   padding-top: calc(var(--space-2xl) + 2rem);
   padding-bottom: var(--space-2xl);
-  max-width: 1024px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
+
+@media (max-width: 1279px) {
+  .hero-mockup-section {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-mockup-section {
+    max-width: 100%;
+  }
+}
+
 
 .hero-greeting {
   display: block;
