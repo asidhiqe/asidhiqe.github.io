@@ -51,7 +51,7 @@ export default function BannerScroll() {
     };
   }, []);
 
-  // Draw frame: desktop shifted right to hide logo, bottom-right footer scale, left-side blend
+  // Draw frame with correctly anchored left-edge gradient dissolve
   const renderFrame = (index: number, progress: number = 0) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -91,7 +91,7 @@ export default function BannerScroll() {
     let offsetY = 0;
 
     if (rect.width >= 1024) {
-      // ── DESKTOP PIPELINE (Shifted Right to Hide Corner Logo) ─────────
+      // ── DESKTOP PIPELINE (Shifted Right + Left-Edge Blend Anchored) ────
       const targetAreaWidth = rect.width * 0.52;
       const targetRatio = targetAreaWidth / rect.height;
 
@@ -99,12 +99,10 @@ export default function BannerScroll() {
         drawWidth = targetAreaWidth;
         drawHeight = targetAreaWidth / imgRatio;
         offsetY = (rect.height - drawHeight) / 2;
-        // Shift rightward so bottom-right corner logo is pushed past screen boundary
         offsetX = rect.width - drawWidth + (rect.width * 0.16);
       } else {
         drawHeight = rect.height;
         drawWidth = rect.height * imgRatio;
-        // Shift rightward so bottom-right corner logo is pushed past screen boundary
         offsetX = rect.width - drawWidth + (rect.width * 0.18);
         offsetY = 0;
       }
@@ -120,7 +118,6 @@ export default function BannerScroll() {
 
       ctx.save();
 
-      // Transform origin anchored to bottom-right corner of screen
       const transformOriginX = rect.width;
       const transformOriginY = rect.height;
 
@@ -130,14 +127,18 @@ export default function BannerScroll() {
 
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
 
-      // Desktop Composite Alpha Mask: Left-side blend ONLY into content column
+      // Desktop Composite Alpha Mask: Left-side blend anchored to offsetX
       ctx.globalCompositeOperation = "destination-in";
 
-      const horizAlpha = ctx.createLinearGradient(0, 0, rect.width, 0);
-      // Left 0% -> 36% width: smooth gradient dissolve into text content
+      // Gradient starts at image's left edge (offsetX) and fades over left 42% of image
+      const horizAlpha = ctx.createLinearGradient(
+        offsetX,
+        0,
+        offsetX + (drawWidth * 0.42),
+        0
+      );
       horizAlpha.addColorStop(0, "rgba(0,0,0,0)");
-      horizAlpha.addColorStop(0.36, "rgba(0,0,0,1)");
-      // 36% -> 100% width: 100% SOLID (1.0 opacity) right to the edge
+      horizAlpha.addColorStop(0.45, "rgba(0,0,0,0.6)");
       horizAlpha.addColorStop(1.0, "rgba(0,0,0,1)");
 
       ctx.fillStyle = horizAlpha;
