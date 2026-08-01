@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { inter, instrumentSerif, jetbrainsMono } from "./fonts";
+import { inter, plusJakartaSans, jetbrainsMono } from "./fonts";
 import Preloader from "./components/Preloader";
 import "./globals.css";
 
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
     >
       <body>
         <Preloader />

@@ -51,7 +51,7 @@ export default function BannerScroll() {
     };
   }, []);
 
-  // Draw frame with correctly anchored left-edge gradient dissolve
+  // Draw frame with footer top-edge dissolve and anchored left-edge blend
   const renderFrame = (index: number, progress: number = 0) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -91,7 +91,7 @@ export default function BannerScroll() {
     let offsetY = 0;
 
     if (rect.width >= 1024) {
-      // ── DESKTOP PIPELINE (Shifted Right + Left-Edge Blend Anchored) ────
+      // ── DESKTOP PIPELINE (Shifted Right + Left Blend + Footer Top Dissolve) ─
       const targetAreaWidth = rect.width * 0.52;
       const targetRatio = targetAreaWidth / rect.height;
 
@@ -127,10 +127,10 @@ export default function BannerScroll() {
 
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
 
-      // Desktop Composite Alpha Mask: Left-side blend anchored to offsetX
+      // Desktop Composite Alpha Mask
       ctx.globalCompositeOperation = "destination-in";
 
-      // Gradient starts at image's left edge (offsetX) and fades over left 42% of image
+      // 1. Horizontal Left-edge blend (Anchored to offsetX)
       const horizAlpha = ctx.createLinearGradient(
         offsetX,
         0,
@@ -143,6 +143,17 @@ export default function BannerScroll() {
 
       ctx.fillStyle = horizAlpha;
       ctx.fillRect(0, 0, rect.width, rect.height);
+
+      // 2. Vertical Top dissolve near footer (fades top head/hair boundary at footer)
+      if (progress > 0.60) {
+        const footerFadeProgress = Math.min(1, (progress - 0.60) / 0.40);
+        const vertTopAlpha = ctx.createLinearGradient(0, 0, 0, rect.height * 0.38);
+        vertTopAlpha.addColorStop(0, `rgba(0,0,0,${1 - footerFadeProgress * 0.95})`);
+        vertTopAlpha.addColorStop(1.0, "rgba(0,0,0,1)");
+
+        ctx.fillStyle = vertTopAlpha;
+        ctx.fillRect(0, 0, rect.width, rect.height);
+      }
 
       ctx.restore();
     } else {
