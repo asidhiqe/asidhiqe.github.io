@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { inter, plusJakartaSans, jetbrainsMono } from "./fonts";
 import Preloader from "./components/Preloader";
+import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       className={`${inter.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <CustomCursor />
         <Preloader />
         <div className="film-grain" aria-hidden="true" />
         {children}
