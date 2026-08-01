@@ -1,11 +1,18 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import BannerScroll from "./BannerScroll";
 
 gsap.registerPlugin(useGSAP);
+
+const roles = [
+  "Principal Product Designer",
+  "Enterprise Systems Architect",
+  "AI & High-Trust UI Specialist",
+  "Cross-Platform Product Lead",
+];
 
 const services = [
   {
@@ -27,6 +34,31 @@ const services = [
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const roleRef = useRef<HTMLSpanElement>(null);
+
+  // Dynamic Text Changer Interval
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (roleRef.current) {
+        gsap.to(roleRef.current, {
+          y: -12,
+          opacity: 0,
+          duration: 0.35,
+          onComplete: () => {
+            setRoleIndex((prev) => (prev + 1) % roles.length);
+            gsap.fromTo(
+              roleRef.current,
+              { y: 14, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }
+            );
+          },
+        });
+      }
+    }, 3200);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useGSAP(
     () => {
@@ -45,6 +77,12 @@ export default function Hero() {
           { opacity: 0, y: 18 },
           { opacity: 1, y: 0, duration: 0.7 },
           "-=0.2"
+        )
+        .fromTo(
+          scope.querySelectorAll(".dynamic-role-badge"),
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.5 },
+          "-=0.3"
         )
         .fromTo(
           scope.querySelectorAll(".mobile-sequence-container"),
@@ -78,6 +116,14 @@ export default function Hero() {
             Aboobacker Sidhiqe
             <span className="hero-yellow-bar" aria-hidden="true" />
           </h1>
+
+          {/* Dynamic Rotating Role Badge */}
+          <div className="dynamic-role-badge">
+            <span className="dynamic-role-prefix">Specializing in</span>
+            <span ref={roleRef} className="dynamic-role-text">
+              {roles[roleIndex]}
+            </span>
+          </div>
 
           {/* Dedicated Mobile & Tablet Sequence Card Slot (< 1024px) */}
           <div className="mobile-sequence-container">
