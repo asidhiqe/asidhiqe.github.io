@@ -32,6 +32,13 @@ const services = [
   },
 ];
 
+const metrics = [
+  { value: "13+", label: "Years Experience" },
+  { value: "250+", label: "Projects Completed" },
+  { value: "100+", label: "Enterprise Clients" },
+  { value: "30+", label: "Global Domains" },
+];
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -97,9 +104,9 @@ export default function Hero() {
           "-=0.3"
         )
         .fromTo(
-          scope.querySelectorAll(".hero-stat-box"),
+          scope.querySelectorAll(".inline-metrics-bar"),
           { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.4, stagger: 0.08 },
+          { opacity: 1, y: 0, duration: 0.5 },
           "-=0.2"
         );
     },
@@ -112,11 +119,13 @@ export default function Hero() {
       <section id="top" className="hero-mockup-section fold-one-section">
         <div className="hero-left-content">
           <span className="hero-greeting">Hello, I&apos;m</span>
-          <h1 className="hero-name">Aboobacker Sidhiqe</h1>
+          <h1 className="hero-name">
+            Aboobacker <span className="gradient-text">Sidhiqe</span>
+          </h1>
 
           {/* Dynamic Rotating Role Badge directly below Name Title */}
           <div className="dynamic-role-badge">
-            <span className="dynamic-role-prefix">Specializing in</span>
+            <span className="dynamic-role-prefix">SPECIALIZING IN</span>
             <span ref={roleRef} className="dynamic-role-text">
               {roles[roleIndex]}
             </span>
@@ -131,24 +140,19 @@ export default function Hero() {
             Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.
           </p>
 
-          {/* Metrics Overview — End of Fold 1 */}
-          <div className="hero-stats-grid">
-            <div className="hero-stat-box">
-              <span className="hero-stat-num">250+</span>
-              <span className="hero-stat-lbl">Projects Completed</span>
-            </div>
-            <div className="hero-stat-box">
-              <span className="hero-stat-num">100+</span>
-              <span className="hero-stat-lbl">Enterprise Clients</span>
-            </div>
-            <div className="hero-stat-box">
-              <span className="hero-stat-num">30+</span>
-              <span className="hero-stat-lbl">Global Domains</span>
-            </div>
-            <div className="hero-stat-box">
-              <span className="hero-stat-num">13+</span>
-              <span className="hero-stat-lbl">Years Experience</span>
-            </div>
+          {/* Streamlined Inline Glass Metrics Bar — End of Fold 1 */}
+          <div className="inline-metrics-bar">
+            {metrics.map((m, idx) => (
+              <div key={m.label} className="inline-metric-item">
+                <span className="inline-metric-val">{m.value}</span>
+                <span className="inline-metric-lbl">{m.label}</span>
+                {idx < metrics.length - 1 && (
+                  <span className="inline-metric-divider" aria-hidden="true">
+                    •
+                  </span>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -156,7 +160,9 @@ export default function Hero() {
       {/* ── FOLD 2: Service Cards Showcase (Below Fold 1) ───── */}
       <section className="hero-services-section">
         <div className="hero-services-block">
-          <h2 className="hero-services-title">What I Can Do For Your Needs</h2>
+          <h2 className="hero-services-title">
+            What I Can Do <span className="gradient-text">For Your Needs</span>
+          </h2>
           <div className="hero-services-list">
             {services.map((s) => (
               <div key={s.title} className="hero-service-card">

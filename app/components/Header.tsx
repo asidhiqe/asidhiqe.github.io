@@ -59,18 +59,15 @@ export default function Header() {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // Refresh GSAP ScrollTrigger on web font load to prevent layout-shift clipping on mobile
     if (typeof document !== "undefined") {
       import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
         document.fonts.ready.then(() => {
           ScrollTrigger.refresh();
         });
-        // Extra fallback: refresh after a small delay
         setTimeout(() => ScrollTrigger.refresh(), 400);
       });
     }
 
-    // Initialize theme from localStorage or system preference
     const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
     const systemTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
     const initialTheme = savedTheme || systemTheme;
@@ -100,14 +97,24 @@ export default function Header() {
       ref={headerRef}
       className={`site-header${scrolled ? " scrolled" : ""}`}
     >
+      {/* Prominent Gold-to-Cyan Gradient Logo Wordmark */}
       <Link
         href="/"
         className="header-wordmark"
         aria-label="Aboobacker Sidhiqe, home"
       >
-        <span className="header-wordmark-text">AS</span>
+        <span className="header-wordmark-text gradient-text">AS</span>
         <span className="header-wordmark-dot" aria-hidden="true">.</span>
       </Link>
+
+      {/* Floating Frosted Nav Pill Bar */}
+      <div className="header-nav-container">
+        <nav className="header-nav" aria-label="Primary navigation">
+          <Link href="/#selected-work" className="header-nav-link">Work</Link>
+          <Link href="/#about" className="header-nav-link">About</Link>
+          <Link href="/#contact" className="header-nav-link">Contact</Link>
+        </nav>
+      </div>
 
       <div className="header-actions">
         <button
@@ -126,14 +133,6 @@ export default function Header() {
             </svg>
           )}
         </button>
-      </div>
-
-      <div className="header-nav-container">
-        <nav className="header-nav" aria-label="Primary navigation">
-          <Link href="/#selected-work">Work</Link>
-          <Link href="/#about">About</Link>
-          <Link href="/#contact">Contact</Link>
-        </nav>
       </div>
     </header>
   );

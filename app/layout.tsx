@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { inter, plusJakartaSans, jetbrainsMono } from "./fonts";
+import { inter, outfit, jetbrainsMono } from "./fonts";
 import Preloader from "./components/Preloader";
 import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
     >
       <body>
         <CustomCursor />

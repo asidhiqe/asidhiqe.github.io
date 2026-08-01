@@ -1,4 +1,4 @@
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -6,8 +6,8 @@ export const inter = Inter({
   variable: "--font-body",
 });
 
-export const plusJakartaSans = Plus_Jakarta_Sans({
-  weight: ["500", "600", "700", "800"],
+export const outfit = Outfit({
+  weight: ["500", "600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
