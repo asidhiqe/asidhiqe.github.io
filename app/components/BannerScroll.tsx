@@ -51,7 +51,7 @@ export default function BannerScroll() {
     };
   }, []);
 
-  // Draw frame with footer top-edge dissolve and anchored left-edge blend
+  // Draw frame with top linear gradient dissolve synchronized directly to shrink phase (progress > 0.65)
   const renderFrame = (index: number, progress: number = 0) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -91,7 +91,7 @@ export default function BannerScroll() {
     let offsetY = 0;
 
     if (rect.width >= 1024) {
-      // ── DESKTOP PIPELINE (Shifted Right + Left Blend + Footer Top Dissolve) ─
+      // ── DESKTOP PIPELINE (Shifted Right + Left Blend + Synchronized Top Dissolve) ─
       const targetAreaWidth = rect.width * 0.52;
       const targetRatio = targetAreaWidth / rect.height;
 
@@ -107,7 +107,7 @@ export default function BannerScroll() {
         offsetY = 0;
       }
 
-      // Footer shrink phase: scale down anchored to BOTTOM RIGHT corner
+      // Footer shrink phase: scale down anchored to BOTTOM RIGHT corner starting at progress 0.65
       let scaleFactor = 1;
 
       if (progress > 0.65) {
@@ -144,10 +144,10 @@ export default function BannerScroll() {
       ctx.fillStyle = horizAlpha;
       ctx.fillRect(0, 0, rect.width, rect.height);
 
-      // 2. Vertical Top dissolve near footer (fades top head/hair boundary at footer)
-      if (progress > 0.60) {
-        const footerFadeProgress = Math.min(1, (progress - 0.60) / 0.40);
-        const vertTopAlpha = ctx.createLinearGradient(0, 0, 0, rect.height * 0.38);
+      // 2. Vertical Top dissolve synchronized directly to shrink phase (progress > 0.65)
+      if (progress > 0.65) {
+        const footerFadeProgress = Math.min(1, (progress - 0.65) / 0.35);
+        const vertTopAlpha = ctx.createLinearGradient(0, 0, 0, rect.height * 0.40);
         vertTopAlpha.addColorStop(0, `rgba(0,0,0,${1 - footerFadeProgress * 0.95})`);
         vertTopAlpha.addColorStop(1.0, "rgba(0,0,0,1)");
 
