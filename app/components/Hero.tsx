@@ -32,13 +32,6 @@ const services = [
   },
 ];
 
-const metrics = [
-  { value: "13+", label: "Years Experience" },
-  { value: "250+", label: "Projects Completed" },
-  { value: "100+", label: "Enterprise Clients" },
-  { value: "30+", label: "Global Domains" },
-];
-
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -102,12 +95,6 @@ export default function Hero() {
           { opacity: 0, y: 12 },
           { opacity: 1, y: 0, duration: 0.5 },
           "-=0.3"
-        )
-        .fromTo(
-          scope.querySelectorAll(".inline-metrics-bar"),
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.5 },
-          "-=0.2"
         );
     },
     { scope: containerRef }
@@ -139,21 +126,6 @@ export default function Hero() {
           <p className="hero-subtitle">
             Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.
           </p>
-
-          {/* Streamlined Inline Glass Metrics Bar — End of Fold 1 */}
-          <div className="inline-metrics-bar">
-            {metrics.map((m, idx) => (
-              <div key={m.label} className="inline-metric-item">
-                <span className="inline-metric-val">{m.value}</span>
-                <span className="inline-metric-lbl">{m.label}</span>
-                {idx < metrics.length - 1 && (
-                  <span className="inline-metric-divider" aria-hidden="true">
-                    •
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
