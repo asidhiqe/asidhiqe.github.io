@@ -112,12 +112,9 @@ export default function Hero() {
       <section id="top" className="hero-mockup-section fold-one-section">
         <div className="hero-left-content">
           <span className="hero-greeting">Hello, I&apos;m</span>
-          <h1 className="hero-name">
-            Aboobacker Sidhiqe
-            <span className="hero-yellow-bar" aria-hidden="true" />
-          </h1>
+          <h1 className="hero-name">Aboobacker Sidhiqe</h1>
 
-          {/* Dynamic Rotating Role Badge */}
+          {/* Dynamic Rotating Role Badge directly below Name Title */}
           <div className="dynamic-role-badge">
             <span className="dynamic-role-prefix">Specializing in</span>
             <span ref={roleRef} className="dynamic-role-text">
