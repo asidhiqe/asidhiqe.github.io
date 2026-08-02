@@ -67,15 +67,15 @@ export default function Hero() {
           "-=0.2"
         )
         .fromTo(
-          scope.querySelectorAll(".hero-subtitle"),
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.5 },
-          "-=0.3"
-        )
-        .fromTo(
           scope.querySelectorAll(".dynamic-role-badge"),
           { opacity: 0, scale: 0.95 },
           { opacity: 1, scale: 1, duration: 0.5 },
+          "-=0.3"
+        )
+        .fromTo(
+          scope.querySelectorAll(".hero-subtitle"),
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.5 },
           "-=0.3"
         );
     },
@@ -93,8 +93,8 @@ export default function Hero() {
               <Image
                 src="/my-portfolio-banner/ezgif-frame-001.jpg"
                 alt="Aboobacker Sidhiqe"
-                width={800}
-                height={900}
+                width={600}
+                height={800}
                 priority
                 className="mobile-portrait-img"
               />
@@ -106,17 +106,17 @@ export default function Hero() {
             Aboobacker <span className="gradient-text">Sidhiqe</span>
           </h1>
 
-          <p className="hero-subtitle">
-            Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.
-          </p>
-
-          {/* Dynamic Rotating Role Badge directly below Subtitle */}
+          {/* Dynamic Rotating Role Badge directly under Name Title in Mobile First Fold */}
           <div className="dynamic-role-badge">
             <span className="dynamic-role-prefix">SPECIALIZING IN</span>
             <span ref={roleRef} className="dynamic-role-text">
               {roles[roleIndex]}
             </span>
           </div>
+
+          <p className="hero-subtitle">
+            Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.
+          </p>
         </div>
       </section>
     </div>

@@ -197,9 +197,6 @@ export default function About() {
         <div className="about-right-timeline">
           <ScrollReveal as="div">
             <p className="experience-eyebrow-mini">CAREER PATHWAY</p>
-            <h3 className="about-timeline-headline">
-              15+ Years Designing <span className="gradient-text">Complex Systems</span>
-            </h3>
 
             {/* Clean Simple ↔ Detailed Toggle Pill Switch */}
             <div className="experience-toggle-wrapper">

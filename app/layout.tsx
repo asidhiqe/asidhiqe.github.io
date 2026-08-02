@@ -32,6 +32,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Preloader />
         <div className="film-grain" aria-hidden="true" />
         <div className="global-svg-grid-pattern" aria-hidden="true" />
+        <div className="svg-sprinkles-overlay" aria-hidden="true" />
         {children}
       </body>
     </html>
