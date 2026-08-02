@@ -43,5 +43,6 @@ next-env.d.ts
 # temp skill clones
 .temp-skills
 
-# local vscode config
+# local vscode & claude config
 .vscode/
+.claude/

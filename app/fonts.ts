@@ -1,4 +1,4 @@
-import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono, Langar, Lexend } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -18,3 +18,18 @@ export const jetbrainsMono = JetBrains_Mono({
   display: "swap",
   variable: "--font-mono",
 });
+
+export const langar = Langar({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-langar",
+});
+
+export const lexend = Lexend({
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lexend",
+});
+

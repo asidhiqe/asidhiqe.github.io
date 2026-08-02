@@ -107,7 +107,7 @@ export default function SelectedWork() {
         <p className="section-eyebrow">Selected work</p>
         <div>
           <h2 id="work-title" className="section-title">
-            Lessons from designing in high-stakes environments.
+            Lessons from designing in <span className="gradient-text">high-stakes environments</span>.
           </h2>
           <p className="section-header-sub">
             A featured selection from 20+ shipped enterprise products spanning healthcare, real-time operations, AI governance, and financial systems.

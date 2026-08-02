@@ -238,6 +238,7 @@ export default function BannerScroll() {
 
   return (
     <aside className="banner-fixed-wrapper" aria-label="Animated Portfolio Visual Banner">
+      <div className="banner-backdrop-glow" aria-hidden="true" />
       {!isLoaded && (
         <div className="banner-loading-overlay">
           <div className="banner-loading-pulse" />

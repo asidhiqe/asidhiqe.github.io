@@ -12,7 +12,7 @@ export default function Footer() {
         <div>
           <p className="footer-cta-eyebrow">Next chapter</p>
           <ScrollReveal as="h2" id="footer-cta-title" className="footer-cta-headline">
-            Let&apos;s design decision systems where <em>clarity is a safety feature.</em>
+            Let&apos;s design decision systems where <em className="gradient-text">clarity is a safety feature.</em>
           </ScrollReveal>
 
           <ScrollReveal as="div" delay={0.1} className="footer-links">

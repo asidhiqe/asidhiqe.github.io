@@ -75,22 +75,24 @@ export default function Header() {
       ref={headerRef}
       className={`site-header${scrolled ? " scrolled" : ""}`}
     >
-      {/* Prominent Gold-to-Cyan Gradient Logo Wordmark */}
-      <Link
-        href="/"
-        className="header-wordmark"
-        aria-label="Aboobacker Sidhiqe, home"
-      >
-        <span className="header-wordmark-text gradient-text">AS</span>
-        <span className="header-wordmark-dot" aria-hidden="true">.</span>
-      </Link>
+      <div className="header-inner">
+        {/* Prominent Gold-to-Cyan Gradient Logo Wordmark */}
+        <Link
+          href="/"
+          className="header-wordmark"
+          aria-label="Aboobacker Sidhiqe, home"
+        >
+          <span className="header-wordmark-text gradient-text">AS</span>
+          <span className="header-wordmark-dot" aria-hidden="true">.</span>
+        </Link>
 
-      {/* Spacious Floating Frosted Nav Pill Bar */}
-      <nav className="header-nav" aria-label="Primary navigation">
-        <Link href="/#selected-work" className="header-nav-link">Work</Link>
-        <Link href="/#about" className="header-nav-link">About</Link>
-        <Link href="/#contact" className="header-nav-link">Contact</Link>
-      </nav>
+        {/* Spacious Floating Frosted Nav Pill Bar */}
+        <nav className="header-nav" aria-label="Primary navigation">
+          <Link href="/#selected-work" className="header-nav-link">Work</Link>
+          <Link href="/#about" className="header-nav-link">About</Link>
+          <Link href="/#contact" className="header-nav-link">Contact</Link>
+        </nav>
+      </div>
     </header>
   );
 }
