@@ -4056,7 +4056,13 @@ textarea {
   .hero-mockup-section {
     position: relative !important;
     overflow: hidden !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     padding-top: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(-1 * var(--gutter, 1.25rem)) !important;
+    margin-right: calc(-1 * var(--gutter, 1.25rem)) !important;
   }
 
   .hero-left-content {
@@ -4066,9 +4072,12 @@ textarea {
     align-items: center !important;
     text-align: center !important;
     justify-content: flex-end !important;
-    min-height: 85vh !important;
-    padding-top: 6.5rem !important;
+    min-height: 88vh !important;
+    padding-top: 48vh !important;
     padding-bottom: 2.5rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
     z-index: 5 !important;
   }
 
@@ -4079,13 +4088,10 @@ textarea {
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    width: 100vw !important;
-    max-width: 100vw !important;
+    width: 100% !important;
+    max-width: 100% !important;
     height: 100% !important;
-    margin-left: calc(-1 * var(--gutter, 1.25rem)) !important;
-    margin-right: calc(-1 * var(--gutter, 1.25rem)) !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
     border-radius: 0 !important;
     overflow: hidden !important;
@@ -4100,8 +4106,8 @@ textarea {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
-    mask-image: linear-gradient(to bottom, black 35%, rgba(10, 10, 11, 0.5) 70%, transparent 100%) !important;
-    -webkit-mask-image: linear-gradient(to bottom, black 35%, rgba(10, 10, 11, 0.5) 70%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, black 35%, rgba(10, 10, 11, 0.5) 75%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, black 35%, rgba(10, 10, 11, 0.5) 75%, transparent 100%) !important;
   }
 
   .mobile-portrait-img {
@@ -4111,7 +4117,7 @@ textarea {
     display: block !important;
     object-fit: cover !important;
     object-position: top center !important;
-    opacity: 0.65 !important;
+    opacity: 0.75 !important;
     transform: none !important;
   }
 
