@@ -9,17 +9,21 @@ interface Job {
   company: string;
   type: string;
   location: string;
+  bottomLine: string;
   bullets: string[];
   tags: string[];
+  isEarly?: boolean;
 }
 
-const roles: Job[] = [
+const primaryRoles: Job[] = [
   {
-    years: "Mar 2023 - Present",
+    years: "2023 – Present",
     role: "Product Experience Specialist",
     company: "GlobalLogic",
     type: "Full-time",
-    location: "Bengaluru, Karnataka, India · Hybrid",
+    location: "Bengaluru, India · Hybrid",
+    bottomLine:
+      "Led UX for SaaS ITSM quotation modules and AI Agent Garden / Control Tower for global enterprise governance.",
     bullets: [
       "Led UX across two SaaS platforms: Client-1 (ITSM) and Client-2 (Integration & AI).",
       "For Client-1, redesigned procurement and quotation modules; conducted heuristic reviews and usability testing.",
@@ -29,105 +33,123 @@ const roles: Job[] = [
     tags: ["Figma", "SaaS UX", "AI Governance", "Usability Testing"]
   },
   {
-    years: "Oct 2022 - Mar 2023",
+    years: "2022 – 2023",
     role: "Senior Product Designer",
     company: "Atlassian",
     type: "Part-time",
-    location: "Bengaluru, Karnataka, India · Remote",
+    location: "Bengaluru, India · Remote",
+    bottomLine:
+      "Designed HR offer generation platforms and enterprise Jira/Confluence license management dashboards.",
     bullets: [
       "Designed three internal platforms used by Atlassian’s HR, Sales, and Hackathon teams globally.",
       "Developed a resume review and offer generation system tailored to regional hiring policies across multiple geographies.",
       "Created a license management dashboard to help enterprise clients consolidate usage of Jira, Confluence, and other tools.",
-      "Built a hackathon event tool for internal teams to submit projects and manage judging workflows.",
-      "Ensured all solutions aligned with Atlassian’s design system and accessibility guidelines."
+      "Built a hackathon event tool for internal teams to submit projects and manage judging workflows."
     ],
     tags: ["Atlassian Design System", "Enterprise UX", "Internal Tooling", "Accessibility"]
   },
   {
-    years: "Dec 2021 - Oct 2022",
+    years: "2021 – 2022",
     role: "Senior Product Designer",
-    company: "TruKKer",
+    company: "TruKKer / Moxey.ai",
     type: "Full-time",
-    location: "Bengaluru, Karnataka, India · On-site",
+    location: "Bengaluru, India · On-site",
+    bottomLine:
+      "Built FinTech logistics flows and designed prepaid driver card in collaboration with ADIB and Visa across Middle East.",
     bullets: [
       "Led UX design for digital financial platforms under Moxey.ai, focusing on logistics and payments across the Middle East (UAE, KSA).",
-      "Built scalable design systems and intuitive user flows for Fleet Partners (real-time payments, wallet, 24x7 transfers), Transporters (expense tracking, dashboard, invoice factoring), and Merchants.",
+      "Built scalable design systems and intuitive user flows for Fleet Partners, Transporters (invoice factoring), and Merchants.",
       "Designed a prepaid driver card in collaboration with ADIB and Visa, launched as a new revenue stream.",
-      "Delivered flows for working capital optimization, micro-entrepreneurship, and financial inclusion while supporting Arabic localization."
+      "Delivered flows for working capital optimization and financial inclusion while supporting Arabic localization."
     ],
     tags: ["Moxey.ai", "FinTech Logistics", "Arabic Localization", "Visa ADIB Integration"]
   },
   {
-    years: "Aug 2018 - Dec 2021",
+    years: "2018 – 2021",
     role: "Product Lead / Founding Team Member",
     company: "Algaeh Technologies",
     type: "Full-time",
-    location: "Bengaluru, Karnataka, India · On-site",
+    location: "Bengaluru, India · On-site",
+    bottomLine:
+      "Solely architected Algaeh’s Healthcare ERP (10+ modules); cut patient registration time by 70% with mobile QR onboarding.",
     bullets: [
       "Solely led the design of Algaeh’s Healthcare ERP, spanning 10+ modules: Hospital Information Management, Radiology, Laboratory, Pharmacy, Billing, and Insurance Claims.",
       "Designed UI/UX for Web + iOS/Android, including a mobile patient app with QR onboarding that cut registration time by 70%.",
       "Created all sales and product decks for stakeholders in Saudi Arabia and India.",
-      "Delivered multilingual UI, local regulations compliance, and implemented HL7 support, barcode tracking, and MySQL report generation."
+      "Delivered multilingual UI, local regulations compliance, and implemented HL7 support."
     ],
     tags: ["Healthcare ERP", "Product Ownership", "Mobile App Design", "React Prototyping"]
   },
   {
-    years: "Oct 2015 - Aug 2018",
+    years: "2015 – 2018",
     role: "Lead UX/UI Designer",
     company: "GrayMatter Software Services",
     type: "Full-time",
-    location: "Bengaluru, Karnataka, India · On-site",
+    location: "Bengaluru, India · On-site",
+    bottomLine:
+      "Designed BI analytics dashboards for airport traffic planning and insurance agent performance optimization.",
     bullets: [
       "Led UX for analytics platforms across insurance, aviation, and enterprise domains.",
       "Built BI dashboards used for operational forecasting, airport traffic planning, and agent performance optimization.",
-      "Designed and launched a mobile app for insurance agents using PhoneGap/Cordova, enabling lead tracking, product sales, and visit logging.",
+      "Designed and launched a mobile app for insurance agents using PhoneGap/Cordova.",
       "Mentored junior designers through weekly feedback loops and collaborative design reviews."
     ],
     tags: ["BI Dashboards", "Aviation Analytics", "PhoneGap Cordova", "Team Mentorship"]
   },
   {
-    years: "Jul 2011 - Oct 2015",
+    years: "2011 – 2015",
     role: "UX Engineer",
     company: "Manthan Systems",
     type: "Full-time",
     location: "Bangalore · On-site",
+    bottomLine:
+      "Crafted core UX flows and tablet-optimized HTML5 prototypes for enterprise retail analytics platforms.",
     bullets: [
       "Designed core UX flows for Merchandise, Supply Chain, and Vendor Link analytics products used by enterprise clients.",
       "Collaborated with mobile teams to build tablet-optimized dashboards during the rise of iPad adoption in BI environments.",
-      "Developed interaction flows and working HTML5/CSS3/JavaScript prototypes to support engineering handoff and early-stage testing."
+      "Developed interaction flows and working HTML5/CSS3/JavaScript prototypes."
     ],
     tags: ["UX Engineering", "HTML5 Prototypes", "Tablet UX", "BI Analytics"]
-  },
+  }
+];
+
+const earlyRoles: Job[] = [
   {
-    years: "Jul 2010 - Jun 2011",
+    years: "2010 – 2011",
     role: "UI Designer",
     company: "Aptus",
     type: "Full-time",
-    location: "Bengaluru, Karnataka, India",
+    location: "Bengaluru, India",
+    bottomLine:
+      "Delivered design concepts and responsive wireframes for corporate and e-commerce portals.",
     bullets: [
-      "Delivered completed design concepts for both Corporate and E-commerce portals, including wireframes, mockups, and user testing.",
-      "Collaborated closely with cross-functional teams to ensure that design intent is preserved throughout the project lifecycle.",
-      "Developed and implemented a program to clearly define Interaction Design's deliverables and role in the design process."
+      "Delivered completed design concepts for both Corporate and E-commerce portals.",
+      "Collaborated with cross-functional teams to preserve design intent through project lifecycle."
     ],
-    tags: ["Interaction Design", "Responsive Design", "Web Standards"]
+    tags: ["Interaction Design", "Responsive Design", "Web Standards"],
+    isEarly: true
   },
   {
-    years: "Nov 2008 - Feb 2010",
+    years: "2008 – 2010",
     role: "Graphic & Web Designer",
-    company: "Ipix solutions",
+    company: "Ipix Solutions",
     type: "Full-time",
-    location: "Kozhikode, Kerala, India · On-site",
+    location: "Kozhikode, India · On-site",
+    bottomLine:
+      "Designed web and graphic portals for Middle East clients with early localization exposure.",
     bullets: [
-      "Designed and developed static and dynamic websites using HTML, CSS, JavaScript, and XML, working within the standards of that time.",
-      "Delivered multiple projects for Middle East-based clients, giving early exposure to localization needs, visual preferences, and client communication.",
-      "Created supporting print materials (flyers, brochures, banners) to align digital presence with brand identity."
+      "Designed and developed static and dynamic websites using HTML, CSS, JavaScript, and XML.",
+      "Delivered multiple projects for Middle East-based clients with early exposure to localization needs."
     ],
-    tags: ["Web Design", "Graphic Design", "Localization Basics", "HTML CSS Javascript"]
+    tags: ["Web Design", "Graphic Design", "Localization Basics"],
+    isEarly: true
   }
 ];
 
 export default function Experience() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // Default open: Index 0 (GlobalLogic)
+  const [viewMode, setViewMode] = useState<"simple" | "detailed">("simple");
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [showEarlyCareer, setShowEarlyCareer] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const toggleAccordion = (idx: number) => {
@@ -137,41 +159,43 @@ export default function Experience() {
   return (
     <section id="experience" className="experience" aria-labelledby="experience-title">
       <div className="experience-body" ref={containerRef}>
-        {/* Left Column: Sticky Title & Highlights Widget */}
+        {/* Left Column: Title & Interactive View Mode Toggle Switch */}
         <div className="experience-sticky">
           <ScrollReveal as="div">
-            <p className="experience-eyebrow-mini">Career Pathway</p>
+            <p className="experience-eyebrow-mini">CAREER PATHWAY</p>
             <h2 id="experience-title" className="experience-title-bold">
-              15+ Years Designing Complex Systems
+              15+ Years Designing <span className="gradient-text">Complex Systems</span>
             </h2>
             <p className="experience-subtitle">
-              A timeline showing progression from hands-on frontend web layout scripting to principal design leadership across critical enterprise domains.
+              From hands-on frontend web scripting to principal design leadership across healthcare, AI, airport analytics, FinTech, and enterprise SaaS.
             </p>
 
-            {/* Career Summary Highlights Card */}
-            <div className="experience-summary-card">
-              <span className="experience-summary-label">Key Systems Shipped</span>
-              <ul className="experience-summary-list">
-                <li>
-                  <span className="summary-dot" />
-                  <span>3 Enterprise SaaS Platforms</span>
-                </li>
-                <li>
-                  <span className="summary-dot" />
-                  <span>4 Global Logistics & FinTech Products</span>
-                </li>
-                <li>
-                  <span className="summary-dot" />
-                  <span>1 AI Agent Governance Hub</span>
-                </li>
-              </ul>
+            {/* Simple ↔ Detailed Toggle Switch */}
+            <div className="experience-toggle-wrapper">
+              <span className="experience-toggle-label">View Mode</span>
+              <div className="experience-toggle-pill">
+                <button
+                  type="button"
+                  className={`experience-toggle-btn ${viewMode === "simple" ? "active" : ""}`}
+                  onClick={() => setViewMode("simple")}
+                >
+                  Simple
+                </button>
+                <button
+                  type="button"
+                  className={`experience-toggle-btn ${viewMode === "detailed" ? "active" : ""}`}
+                  onClick={() => setViewMode("detailed")}
+                >
+                  Detailed
+                </button>
+              </div>
             </div>
           </ScrollReveal>
         </div>
 
-        {/* Right Column: Interactive Accordion Timeline Track */}
+        {/* Right Column: Timeline Track */}
         <div className="experience-timeline">
-          {roles.map((job, idx) => {
+          {primaryRoles.map((job, idx) => {
             const isOpen = openIndex === idx;
 
             return (
@@ -179,11 +203,11 @@ export default function Experience() {
                 key={job.company}
                 as="div"
                 delay={idx * 0.03}
-                className={`experience-entry ${isOpen ? "is-open" : "is-collapsed"}`}
+                className={`experience-entry ${viewMode === "detailed" || isOpen ? "is-open" : "is-collapsed"}`}
               >
                 <div className="experience-timeline-dot" />
-                
-                {/* Header Row (Clickable Accordion Trigger) */}
+
+                {/* Header Row */}
                 <div
                   role="button"
                   tabIndex={0}
@@ -195,38 +219,80 @@ export default function Experience() {
                       toggleAccordion(idx);
                     }
                   }}
-                  aria-expanded={isOpen}
+                  aria-expanded={viewMode === "detailed" || isOpen}
                 >
                   <div className="experience-time">{job.years}</div>
                   <div className="experience-title-row">
-                    <h3 className="experience-role">{job.role}</h3>
-                    <span className="experience-accordion-toggle-icon">{isOpen ? "−" : "+"}</span>
+                    <h3 className="experience-role">
+                      {job.role} <span className="experience-at">at</span> <span className="experience-company-name">{job.company}</span>
+                    </h3>
+                    <span className="experience-accordion-toggle-icon">
+                      {viewMode === "detailed" || isOpen ? "−" : "+"}
+                    </span>
                   </div>
-                  <div className="experience-company-subrow">
-                    <span className="experience-company-chip">{job.company}</span>
-                    <span className="experience-type-loc">{job.location} · {job.type}</span>
-                  </div>
+                  <div className="experience-type-loc">{job.location} · {job.type}</div>
                 </div>
 
-                {/* Collapsible Details Body */}
-                <div className="experience-entry-details">
-                  <ul className="experience-bullets">
-                    {job.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx}>{bullet}</li>
-                    ))}
-                  </ul>
-
-                  <div className="experience-tags" role="list" aria-label="Skills applied">
-                    {job.tags.map((tag) => (
-                      <span key={tag} className="experience-tag" role="listitem">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                {/* Bottom Line Impact Highlight (Visible in both Simple & Detailed modes) */}
+                <div className="experience-bottom-line">
+                  <span className="bottom-line-prefix">Bottom Line →</span> {job.bottomLine}
                 </div>
+
+                {/* Collapsible Detailed Body */}
+                {(viewMode === "detailed" || isOpen) && (
+                  <div className="experience-entry-details">
+                    <ul className="experience-bullets">
+                      {job.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx}>{bullet}</li>
+                      ))}
+                    </ul>
+
+                    <div className="experience-tags" role="list" aria-label="Skills applied">
+                      {job.tags.map((tag) => (
+                        <span key={tag} className="experience-tag" role="listitem">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </ScrollReveal>
             );
           })}
+
+          {/* Early Career Expandable Drawer */}
+          {showEarlyCareer && (
+            <div className="early-career-group">
+              {earlyRoles.map((job, idx) => (
+                <div key={job.company} className="experience-entry is-open early-career-item">
+                  <div className="experience-timeline-dot early-dot" />
+                  <div className="experience-entry-trigger">
+                    <div className="experience-time">{job.years}</div>
+                    <div className="experience-title-row">
+                      <h3 className="experience-role">
+                        {job.role} <span className="experience-at">at</span> <span className="experience-company-name">{job.company}</span>
+                      </h3>
+                    </div>
+                    <div className="experience-type-loc">{job.location}</div>
+                  </div>
+                  <div className="experience-bottom-line">
+                    <span className="bottom-line-prefix">Bottom Line →</span> {job.bottomLine}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Early Career Toggle Button */}
+          <div className="early-career-action">
+            <button
+              type="button"
+              className="early-career-btn"
+              onClick={() => setShowEarlyCareer((prev) => !prev)}
+            >
+              {showEarlyCareer ? "↑ Hide Early Career" : "↓ Early Career (2008 – 2011)"}
+            </button>
+          </div>
         </div>
       </div>
     </section>

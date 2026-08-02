@@ -3,9 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
+const TOTAL_FRAMES = 125;
+
 const statusMessages = [
   "INITIALIZING DECISION SYSTEMS...",
-  "LOADING HEALTHCARE & AI MODULES...",
+  "PRELOADING PORTRAIT BANNER FRAMES...",
   "SYNCHRONIZING GOVERNANCE FRAMEWORKS...",
   "SYSTEM READY"
 ];
@@ -17,53 +19,58 @@ export default function Preloader() {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // In dev mode, or if testing loader, clear session storage to guarantee preview
-    if (typeof window !== "undefined" && window.location.search.includes("loader=true")) {
-      sessionStorage.removeItem("preloader_shown");
+    let loadedCount = 0;
+    let isCancelled = false;
+
+    // Track real image preloading of the 125 banner frames
+    const updateProgress = () => {
+      if (isCancelled) return;
+      loadedCount++;
+      const pct = Math.min(100, Math.floor((loadedCount / TOTAL_FRAMES) * 100));
+      setProgress(pct);
+
+      if (pct < 35) {
+        setStatusIndex(0);
+      } else if (pct < 70) {
+        setStatusIndex(1);
+      } else if (pct < 100) {
+        setStatusIndex(2);
+      } else {
+        setStatusIndex(3);
+      }
+    };
+
+    // Preload all 125 images into browser image cache
+    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+      const img = new Image();
+      const frameNum = String(i).padStart(3, "0");
+      img.src = `/my-portfolio-banner/ezgif-frame-${frameNum}.jpg`;
+      img.onload = updateProgress;
+      img.onerror = updateProgress;
     }
 
-    const hasLoaded = sessionStorage.getItem("preloader_shown");
-    if (hasLoaded) {
-      setLoading(false);
-      return;
-    }
-
-    // Status message & progress incrementer
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        const next = prev + Math.floor(Math.random() * 12) + 8;
-        return next > 100 ? 100 : next;
-      });
-
-      setStatusIndex((prev) => (prev + 1) % statusMessages.length);
-    }, 220);
-
-    return () => clearInterval(interval);
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   useEffect(() => {
     if (progress === 100 && overlayRef.current) {
       const tl = gsap.timeline({
         onComplete: () => {
-          sessionStorage.setItem("preloader_shown", "true");
           setLoading(false);
-        }
+        },
       });
 
       tl.to(".preloader-text-wrap", {
         opacity: 0,
         y: -15,
-        duration: 0.4,
-        ease: "power2.in"
-      })
-      .to(overlayRef.current, {
+        duration: 0.35,
+        ease: "power2.in",
+      }).to(overlayRef.current, {
         yPercent: -100,
-        duration: 0.8,
-        ease: "power3.inOut"
+        duration: 0.7,
+        ease: "power3.inOut",
       });
     }
   }, [progress]);
@@ -71,24 +78,35 @@ export default function Preloader() {
   if (!loading) return null;
 
   return (
-    <div ref={overlayRef} className="preloader-overlay" role="dialog" aria-label="System loading">
+    <div
+      ref={overlayRef}
+      className="preloader-overlay"
+      role="dialog"
+      aria-label="System loading"
+    >
       <div className="preloader-content">
         <div className="preloader-text-wrap">
           <div className="preloader-monogram">
-            AS<span className="preloader-dot">.</span>
+            <span className="header-wordmark-text gradient-text">AS</span>
+            <span className="header-wordmark-dot" aria-hidden="true">
+              .
+            </span>
           </div>
 
           <div className="preloader-status-ticker">
-            <span className="preloader-status-text">{statusMessages[statusIndex]}</span>
+            <span className="preloader-status-text">
+              {statusMessages[statusIndex]}
+            </span>
           </div>
 
           <div className="preloader-progress-track">
-            <div className="preloader-progress-bar" style={{ width: `${progress}%` }} />
+            <div
+              className="preloader-progress-bar"
+              style={{ width: `${progress}%` }}
+            />
           </div>
 
-          <div className="preloader-percentage">
-            {progress}%
-          </div>
+          <div className="preloader-percentage">{progress}%</div>
         </div>
       </div>
     </div>

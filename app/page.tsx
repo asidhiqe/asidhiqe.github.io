@@ -1,8 +1,9 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import SelectedWork from "./components/SelectedWork";
-import About from "./components/About";
 import Experience from "./components/Experience";
+import About from "./components/About";
+import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import BannerScroll from "./components/BannerScroll";
 
@@ -25,8 +26,9 @@ export default function Home() {
           <div className="portfolio-content-left">
             <Hero />
             <SelectedWork />
-            <About />
             <Experience />
+            <About />
+            <Testimonials />
           </div>
         </div>
       </main>
