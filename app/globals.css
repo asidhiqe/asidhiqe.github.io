@@ -3946,9 +3946,13 @@ textarea {
 }
 
 @media (max-width: 1023px), (pointer: coarse) {
+  .custom-neon-cursor,
   .custom-cursor,
   .custom-cursor-follower {
     display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
 
@@ -3960,6 +3964,20 @@ textarea {
 .hero-services-title,
 .case-study-title {
   line-height: 1.3 !important;
+}
+
+@media (max-width: 1023px) {
+  .section-title,
+  .section-title-bold,
+  .experience-title-bold,
+  .about-statement-bold,
+  .footer-cta-headline,
+  .hero-name,
+  .hero-services-title,
+  .case-study-title {
+    font-size: clamp(1.75rem, 4.5vw, 2.25rem) !important;
+    line-height: 1.2 !important;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -3984,6 +4002,18 @@ textarea {
 
 /* ── MOBILE RESPONSIVE RE-ARCHITECTURE (< 1024px) ───────── */
 @media (max-width: 1023px) {
+  .portfolio-content-left,
+  .hero-mockup-section,
+  .selected-work-section,
+  .about,
+  .testimonials-section,
+  .site-footer {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   .desktop-banner-wrapper {
     display: none !important;
   }
@@ -4054,6 +4084,7 @@ textarea {
     object-fit: cover !important;
     object-position: top center !important;
   }
+
 
   .hero-greeting {
     display: block !important;

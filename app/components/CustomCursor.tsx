@@ -6,8 +6,20 @@ export default function CustomCursor() {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is touch or mobile
+    const checkMobile = () => {
+      const mobile =
+        window.matchMedia("(max-width: 1023px)").matches ||
+        window.matchMedia("(pointer: coarse)").matches;
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const handleMouseMove = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
@@ -40,13 +52,15 @@ export default function CustomCursor() {
     document.body.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
+      window.removeEventListener("resize", checkMobile);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [isVisible]);
 
-  if (!isVisible) return null;
+  // Return null on touch/mobile screens so cursor never renders or gets stuck
+  if (isMobile || !isVisible) return null;
 
   return (
     <div
