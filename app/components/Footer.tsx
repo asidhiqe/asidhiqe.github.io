@@ -33,21 +33,12 @@ export default function Footer() {
           </ScrollReveal>
         </div>
 
-        {/* Bottom — Copyright and social links */}
+        {/* Bottom — Copyright */}
         <div className="footer-bottom">
           <p className="footer-copy">
-            &copy; {new Date().getFullYear()} Aboobacker Sidhiqe. Designed and built with focus.
+            <span>&copy; {new Date().getFullYear()} Aboobacker Sidhiqe.</span>{" "}
+            <span className="footer-copy-tagline">Designed and built with focus.</span>
           </p>
-
-          <div className="footer-social" aria-label="Social connections">
-            <a href="https://www.linkedin.com/in/asidhiqe/" target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-            <a href="/resume.pdf" download>
-              Resume
-            </a>
-            <a href="mailto:sidhiqe0001@gmail.com">Email</a>
-          </div>
         </div>
       </div>
     </footer>

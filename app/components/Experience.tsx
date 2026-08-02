@@ -138,8 +138,8 @@ export default function Experience() {
       // Expand all in detailed mode
       setOpenIndices(primaryRoles.map((_, i) => i));
     } else {
-      // Collapse to only first item in simple mode
-      setOpenIndices([0]);
+      // Collapse all accordions in simple mode
+      setOpenIndices([]);
     }
   };
 

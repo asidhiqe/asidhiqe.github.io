@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Langar&family=Lexend:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap');
+
 /* ============================================================
    DESIGN SYSTEM — Aboobacker Sidhiqe Portfolio
    ============================================================ */
 
 /* ── Tokens ─────────────────────────────────────────────── */
 :root {
+  /* Fonts */
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-langar: 'Langar', cursive, sans-serif;
+  --font-lexend: 'Lexend', sans-serif;
+
   /* Backgrounds */
   --bg-primary: #0a0a0b;
   --bg-elevated: #111113;
@@ -316,8 +325,8 @@ h5,
 h6,
 .font-display,
 .font-heading {
-  font-family: var(--font-langar), cursive, sans-serif;
-  font-weight: 400;
+  font-family: var(--font-display), 'Outfit', var(--font-lexend), sans-serif;
+  font-weight: 700;
 }
 
 .font-mono {
@@ -4272,9 +4281,168 @@ textarea {
 
   .experience-timeline::before {
     left: 0.5rem !important;
+    text-align: center !important;
   }
 
-  .experience-timeline-dot {
-    left: 0.5rem !important;
+  .footer-links {
+    justify-content: center !important;
   }
+
+  .footer-copy {
+    text-align: center !important;
+  }
+
+  .footer-copy-tagline {
+    display: block !important;
+    margin-top: 0.35rem !important;
+  }
+}
+
+/* ── EXPERIENCE TOGGLE PILL STYLING ───────────────────────── */
+.experience-toggle-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.experience-toggle-pill {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-mid);
+  padding: 4px;
+  border-radius: 999px;
+  gap: 4px;
+}
+
+.experience-toggle-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  transition: all 0.25s var(--ease-out);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.experience-toggle-btn:hover {
+  color: var(--text-primary);
+}
+
+.experience-toggle-btn.active {
+  background: var(--accent-warm);
+  color: #000000;
+  box-shadow: 0 4px 14px rgba(234, 179, 8, 0.35);
+}
+
+.early-career-action {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.early-career-btn {
+  padding: 0.65rem 1.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line-mid);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+}
+
+.early-career-btn:hover {
+  background: var(--accent-warm);
+  color: #000000;
+}
+
+/* ── SITE FOOTER STYLING ──────────────────────────────────── */
+.site-footer {
+  position: relative;
+  background: #080809;
+  border-top: 1px solid var(--line);
+  padding: clamp(3rem, 6vw, 5rem) 0 1.5rem 0;
+  overflow: hidden;
+}
+
+.footer-inner {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-cta-eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  color: var(--accent-warm);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.footer-cta-headline {
+  font-family: var(--font-display), 'Outfit', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  max-width: 800px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.footer-link-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  background: var(--accent-warm);
+  color: #000000;
+  font-weight: 700;
+  font-size: var(--text-md);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+
+.footer-link-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(234, 179, 8, 0.4);
+}
+
+.footer-link-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-mid);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: var(--text-md);
+  transition: all 0.2s var(--ease-out);
+}
+
+.footer-link-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--line-light);
+}
+
+.footer-bottom {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer-copy {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
 }
