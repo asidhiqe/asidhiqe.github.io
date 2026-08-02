@@ -91,7 +91,7 @@ export default function Hero() {
           <div className="mobile-portrait-wrapper">
             <div className="mobile-portrait-card">
               <Image
-                src="/my-portfolio-banner/ezgif-frame-001.jpg"
+                src="/mobile-portrait.jpg"
                 alt="Aboobacker Sidhiqe"
                 width={600}
                 height={800}

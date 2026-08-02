@@ -4084,6 +4084,8 @@ textarea {
     display: block !important;
     object-fit: cover !important;
     object-position: top center !important;
+    transform: scale(1.38) !important;
+    transform-origin: top 20% !important;
   }
 
 
