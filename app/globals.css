@@ -4014,18 +4014,25 @@ textarea {
   #about,
   #contact,
   .selected-work-section,
-  .selected-work-block,
-  .about,
   .about-section,
   .testimonials-section,
-  .site-footer,
-  .footer-inner {
-    width: calc(100% - 2.5rem) !important;
-    max-width: calc(100% - 2.5rem) !important;
-    margin-left: 1.25rem !important;
-    margin-right: 1.25rem !important;
+  .site-footer {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .footer-inner,
+  .selected-work-block {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
