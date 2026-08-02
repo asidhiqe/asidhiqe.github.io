@@ -4102,8 +4102,8 @@ textarea {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
-    mask-image: linear-gradient(to bottom, black 55%, transparent 100%) !important;
-    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 60%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 60%, transparent 100%) !important;
   }
 
   .mobile-portrait-img {
@@ -4122,6 +4122,7 @@ textarea {
     position: relative !important;
     z-index: 10 !important;
     text-align: center !important;
+    margin-top: -4.5rem !important;
     margin-bottom: 0.5rem !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
   }
