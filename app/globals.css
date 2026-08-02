@@ -4363,14 +4363,20 @@ textarea {
   position: relative;
   background: #080809;
   border-top: 1px solid var(--line);
-  padding: clamp(3rem, 6vw, 5rem) 0 1.5rem 0;
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem 2rem 1.5rem;
   overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
 }
 
 .footer-inner {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .footer-cta-eyebrow {
@@ -4379,49 +4385,39 @@ textarea {
   letter-spacing: 0.2em;
   color: var(--accent-warm);
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
+  margin: 0 auto 0.75rem auto;
+  text-align: center;
 }
 
 .footer-cta-headline {
   font-family: var(--font-display), 'Outfit', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.18;
   color: var(--text-primary);
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem auto;
   max-width: 800px;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.footer-link-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: 999px;
-  background: var(--accent-warm);
-  color: #000000;
-  font-weight: 700;
-  font-size: var(--text-md);
-  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
-}
-
-.footer-link-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(234, 179, 8, 0.4);
+  margin: 0 auto 2.5rem auto;
+  width: 100%;
 }
 
 .footer-link-secondary {
   display: inline-flex;
   align-items: center;
-  padding: 0.85rem 1.5rem;
+  padding: 0.85rem 1.75rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--line-mid);
@@ -4437,12 +4433,33 @@ textarea {
 }
 
 .footer-bottom {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--line);
+  box-sizing: border-box;
 }
 
 .footer-copy {
   font-size: var(--text-xs);
   color: var(--text-tertiary);
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 3rem 1.25rem 2rem 1.25rem !important;
+  }
+
+  .footer-copy-tagline {
+    display: block !important;
+    margin: 0.35rem auto 0 auto !important;
+    text-align: center !important;
+  }
 }

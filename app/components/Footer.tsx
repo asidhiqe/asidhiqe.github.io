@@ -16,9 +16,6 @@ export default function Footer() {
           </ScrollReveal>
 
           <ScrollReveal as="div" delay={0.1} className="footer-links">
-            <a href="mailto:sidhiqe0001@gmail.com" className="footer-link-primary">
-              Send an inquiry <span aria-hidden="true">→</span>
-            </a>
             <a
               href="https://www.linkedin.com/in/asidhiqe/"
               target="_blank"
@@ -31,6 +28,7 @@ export default function Footer() {
               Resume PDF
             </a>
           </ScrollReveal>
+
         </div>
 
         {/* Bottom — Copyright */}
