@@ -4003,12 +4003,19 @@ textarea {
 /* ── MOBILE RESPONSIVE RE-ARCHITECTURE (< 1024px) ───────── */
 @media (max-width: 1023px) {
 
-  .portfolio-content-left,
-  .hero-mockup-section,
+  .portfolio-content-left {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   .selected-work-section,
   .about,
   .testimonials-section,
   .site-footer {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
