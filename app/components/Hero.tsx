@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import BannerScroll from "./BannerScroll";
 
 gsap.registerPlugin(useGSAP);
 
@@ -12,24 +12,6 @@ const roles = [
   "Enterprise Systems Architect",
   "AI & High-Trust UI Specialist",
   "Cross-Platform Product Lead",
-];
-
-const services = [
-  {
-    title: "UI/UX Design",
-    count: "117 Projects",
-    desc: "Crafting intuitive digital product experiences for complex enterprise domains.",
-  },
-  {
-    title: "Front End Develop",
-    count: "84 Projects",
-    desc: "Building high-performance React & Next.js web applications with fluid animations.",
-  },
-  {
-    title: "Mobile App Develop",
-    count: "32 Projects",
-    desc: "Designing cross-platform native iOS & Android interfaces built for scale.",
-  },
 ];
 
 export default function Hero() {
@@ -68,7 +50,7 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       tl.fromTo(
-        scope.querySelectorAll(".mobile-sequence-card"),
+        scope.querySelectorAll(".mobile-portrait-wrapper"),
         { opacity: 0, scale: 0.95 },
         { opacity: 1, scale: 1, duration: 0.6 }
       )
@@ -105,10 +87,17 @@ export default function Hero() {
       {/* ── FOLD 1: Hero Above-the-Fold View ────────────────── */}
       <section id="top" className="hero-mockup-section fold-one-section">
         <div className="hero-left-content">
-          {/* Mobile Sequence Card Slot (< 1024px) - Positioned at VERY TOP on mobile */}
-          <div className="mobile-sequence-container">
-            <div className="mobile-sequence-card">
-              <BannerScroll />
+          {/* Mobile Single Static Portrait Image Slot (< 1024px) */}
+          <div className="mobile-portrait-wrapper">
+            <div className="mobile-portrait-card">
+              <Image
+                src="/my-portfolio-banner/ezgif-frame-001.jpg"
+                alt="Aboobacker Sidhiqe"
+                width={800}
+                height={900}
+                priority
+                className="mobile-portrait-img"
+              />
             </div>
           </div>
 
@@ -127,26 +116,6 @@ export default function Hero() {
             <span ref={roleRef} className="dynamic-role-text">
               {roles[roleIndex]}
             </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOLD 2: Service Cards Showcase (Below Fold 1) ───── */}
-      <section className="hero-services-section">
-        <div className="hero-services-block">
-          <h2 className="hero-services-title">
-            What I Can Do <span className="gradient-text">For Your Needs</span>
-          </h2>
-          <div className="hero-services-list">
-            {services.map((s) => (
-              <div key={s.title} className="hero-service-card">
-                <div className="hero-service-header">
-                  <h3 className="hero-service-name">{s.title}</h3>
-                  <span className="hero-service-count">{s.count}</span>
-                </div>
-                <p className="hero-service-desc">{s.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

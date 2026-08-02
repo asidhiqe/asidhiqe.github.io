@@ -3912,9 +3912,21 @@ textarea {
   background: linear-gradient(90deg, #eab308 0%, #06b6d4 100%);
 }
 
+/* ── FOOTER PADDING FIX ──────────────────────────────────── */
+.site-footer {
+  padding: 4rem var(--gutter) 2rem var(--gutter) !important;
+}
+
+.experience-toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.75rem auto 0 auto !important;
+}
+
 /* ── MOBILE RESPONSIVE RE-ARCHITECTURE (< 1024px) ───────── */
 @media (max-width: 1023px) {
   .site-header {
+    display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
@@ -3937,20 +3949,21 @@ textarea {
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    padding-top: 1rem !important;
+    padding-top: 0.5rem !important;
   }
 
-  .mobile-sequence-container {
+  .mobile-portrait-wrapper {
     width: 100vw !important;
     margin-left: calc(-1 * var(--gutter)) !important;
     margin-right: calc(-1 * var(--gutter)) !important;
     margin-top: -0.5rem !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.75rem !important;
     padding: 0 !important;
     overflow: hidden !important;
+    text-align: center !important;
   }
 
-  .mobile-sequence-card {
+  .mobile-portrait-card {
     width: 100% !important;
     border-radius: 0 !important;
     border: none !important;
@@ -3960,29 +3973,45 @@ textarea {
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
   }
 
+  .mobile-portrait-img {
+    width: 100% !important;
+    max-width: 460px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+    object-fit: cover !important;
+  }
+
   .hero-greeting {
+    display: block !important;
     text-align: center !important;
+    margin-bottom: 0.5rem !important;
   }
 
   .hero-name {
+    display: block !important;
+    position: relative !important;
     text-align: center !important;
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
   }
 
   .hero-subtitle {
+    display: block !important;
+    position: relative !important;
     text-align: center !important;
-    margin-bottom: 1.75rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 2.25rem !important;
     max-width: 100% !important;
   }
 
   .dynamic-role-badge {
+    margin: 1.5rem auto 3rem auto !important;
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
     gap: 0.35rem !important;
     padding: 0.75rem 1.4rem !important;
     width: fit-content !important;
-    margin: 0 auto 2.5rem auto !important;
   }
 
   .dynamic-role-prefix {
@@ -3993,5 +4022,29 @@ textarea {
   .dynamic-role-text {
     text-align: center !important;
     font-size: 0.95rem !important;
+  }
+
+  /* Work Cards Spacing on Mobile */
+  .work-card,
+  .work-card--featured-1,
+  .work-card--healthcare {
+    margin-bottom: 2.5rem !important;
+  }
+
+  .selected-work-grid {
+    gap: 2.5rem !important;
+  }
+
+  /* Experience section cleanup on Mobile */
+  .experience-timeline {
+    padding-left: 0.5rem !important;
+  }
+
+  .experience-timeline::before {
+    left: 0.5rem !important;
+  }
+
+  .experience-timeline-dot {
+    left: 0.5rem !important;
   }
 }
