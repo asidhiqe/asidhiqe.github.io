@@ -1950,7 +1950,7 @@ html.light .experience-summary-card {
 
 .experience-entry {
   position: relative;
-  padding-left: 1.75rem;
+  padding-left: 2.75rem !important;
   padding-bottom: 2rem;
   transition: padding-bottom var(--dur-base) var(--ease-out);
 }
@@ -1962,24 +1962,25 @@ html.light .experience-summary-card {
 .experience-timeline-dot {
   position: absolute;
   left: 0.5rem;
-  top: 0.25rem;
+  top: 0.35rem;
   transform: translateX(-50%);
-  width: 9px;
-  height: 9px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: var(--accent-warm);
+  background: #eab308;
   border: 2px solid var(--bg-primary);
-  box-shadow: 0 0 0 1px var(--accent-warm);
+  box-shadow: 0 0 0 2px #eab308, 0 0 12px rgba(234, 179, 8, 0.6);
   transition: transform var(--dur-base) var(--ease-out), background var(--dur-base);
   z-index: 2;
 }
 
 .experience-entry:hover .experience-timeline-dot,
 .experience-entry.is-open .experience-timeline-dot {
-  transform: translateX(-50%) scale(1.3);
-  background: var(--accent-teal);
-  box-shadow: 0 0 0 1px var(--accent-teal);
+  transform: translateX(-50%) scale(1.25);
+  background: #06b6d4;
+  box-shadow: 0 0 0 2px #06b6d4, 0 0 14px rgba(6, 182, 212, 0.7);
 }
+
 
 .experience-time {
   font-family: var(--font-mono), monospace;
@@ -2649,7 +2650,7 @@ html.light .experience-summary-card {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #09090b;
+  background: #070708;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2657,69 +2658,167 @@ html.light .experience-summary-card {
   height: 100vh;
 }
 
-.preloader-content {
+.preloader-center-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  width: 100%;
-  max-width: 420px;
-  padding: 0 1.5rem;
+  gap: 2rem;
 }
 
-.preloader-text-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+.preloader-percentage-counter {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #eab308;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 16px rgba(234, 179, 8, 0.6);
 }
 
-.preloader-monogram {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: 3.5rem;
-  font-weight: 400;
-  color: var(--text-primary);
-  letter-spacing: -0.04em;
-  margin-bottom: 2rem;
-}
-
-.preloader-dot {
-  color: var(--accent-warm);
-}
-
-.preloader-status-ticker {
-  font-family: var(--font-mono), monospace;
-  font-size: var(--text-xs);
-  color: var(--accent-teal);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  min-height: 1.5rem;
-}
-
-.preloader-progress-track {
-  width: 100%;
-  height: 3px;
-  background: var(--line-mid);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 1rem;
+/* ── UIVERSE POLYGON SVG LOADER CSS ──────────────────────── */
+.uiverse-loader {
+  --color-one: #eab308;
+  --color-two: #06b6d4;
+  --color-three: rgba(234, 179, 8, 0.5);
+  --color-four: rgba(6, 182, 212, 0.5);
+  --color-five: rgba(234, 179, 8, 0.25);
+  --time-animation: 2s;
+  --size: 1.1;
   position: relative;
+  border-radius: 50%;
+  transform: scale(var(--size));
+  box-shadow:
+    0 0 25px 0 var(--color-three),
+    0 20px 50px 0 var(--color-four);
+  animation: colorize calc(var(--time-animation) * 3) ease-in-out infinite;
 }
 
-.preloader-progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-warm), var(--accent-teal));
-  border-radius: 999px;
-  transition: width 0.25s ease-out;
+.uiverse-loader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-top: solid 1px var(--color-one);
+  border-bottom: solid 1px var(--color-two);
+  background: linear-gradient(180deg, var(--color-five), var(--color-four));
+  box-shadow:
+    inset 0 10px 10px 0 var(--color-three),
+    inset 0 -10px 10px 0 var(--color-four);
 }
 
-.preloader-percentage {
-  font-family: var(--font-mono), monospace;
-  font-size: var(--text-xs);
-  color: var(--text-tertiary);
-  letter-spacing: 0.1em;
+.uiverse-loader .box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(
+    180deg,
+    var(--color-one) 30%,
+    var(--color-two) 70%
+  );
+  mask: url(#clipping);
+  -webkit-mask: url(#clipping);
 }
+
+.uiverse-loader svg {
+  position: absolute;
+}
+
+.uiverse-loader svg #clipping {
+  filter: contrast(15);
+  animation: roundness calc(var(--time-animation) / 2) linear infinite;
+}
+
+.uiverse-loader svg #clipping polygon {
+  filter: blur(7px);
+}
+
+.uiverse-loader svg #clipping polygon:nth-child(1) {
+  transform-origin: 75% 25%;
+  transform: rotate(90deg);
+}
+
+.uiverse-loader svg #clipping polygon:nth-child(2) {
+  transform-origin: 50% 50%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.uiverse-loader svg #clipping polygon:nth-child(3) {
+  transform-origin: 50% 60%;
+  animation: rotation var(--time-animation) linear infinite;
+  animation-delay: calc(var(--time-animation) / -3);
+}
+
+.uiverse-loader svg #clipping polygon:nth-child(4) {
+  transform-origin: 40% 40%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.uiverse-loader svg #clipping polygon:nth-child(5) {
+  transform-origin: 40% 40%;
+  animation: rotation var(--time-animation) linear infinite reverse;
+  animation-delay: calc(var(--time-animation) / -2);
+}
+
+.uiverse-loader svg #clipping polygon:nth-child(6) {
+  transform-origin: 60% 40%;
+  animation: rotation var(--time-animation) linear infinite;
+}
+
+.uiverse-loader svg #clipping polygon:nth-child(7) {
+  transform-origin: 60% 40%;
+  animation: rotation var(--time-animation) linear infinite;
+  animation-delay: calc(var(--time-animation) / -1.5);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes roundness {
+  0% {
+    filter: contrast(15);
+  }
+  20% {
+    filter: contrast(3);
+  }
+  40% {
+    filter: contrast(3);
+  }
+  60% {
+    filter: contrast(15);
+  }
+  100% {
+    filter: contrast(15);
+  }
+}
+
+@keyframes colorize {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    filter: hue-rotate(-30deg);
+  }
+  40% {
+    filter: hue-rotate(-60deg);
+  }
+  60% {
+    filter: hue-rotate(-90deg);
+  }
+  80% {
+    filter: hue-rotate(-45deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
 
 /* Responsive updates for 1024px layout overrides */
 @media (max-width: 1024px) {

@@ -9,10 +9,8 @@ interface Job {
   company: string;
   type: string;
   location: string;
-  bottomLine: string;
   bullets: string[];
   tags: string[];
-  isEarly?: boolean;
 }
 
 const primaryRoles: Job[] = [
@@ -22,8 +20,6 @@ const primaryRoles: Job[] = [
     company: "GlobalLogic",
     type: "Full-time",
     location: "Bengaluru, India · Hybrid",
-    bottomLine:
-      "Led UX for SaaS ITSM quotation modules and AI Agent Garden / Control Tower for global enterprise governance.",
     bullets: [
       "Led UX across two SaaS platforms: Client-1 (ITSM) and Client-2 (Integration & AI).",
       "For Client-1, redesigned procurement and quotation modules; conducted heuristic reviews and usability testing.",
@@ -38,8 +34,6 @@ const primaryRoles: Job[] = [
     company: "Atlassian",
     type: "Part-time",
     location: "Bengaluru, India · Remote",
-    bottomLine:
-      "Designed HR offer generation platforms and enterprise Jira/Confluence license management dashboards.",
     bullets: [
       "Designed three internal platforms used by Atlassian’s HR, Sales, and Hackathon teams globally.",
       "Developed a resume review and offer generation system tailored to regional hiring policies across multiple geographies.",
@@ -54,8 +48,6 @@ const primaryRoles: Job[] = [
     company: "TruKKer / Moxey.ai",
     type: "Full-time",
     location: "Bengaluru, India · On-site",
-    bottomLine:
-      "Built FinTech logistics flows and designed prepaid driver card in collaboration with ADIB and Visa across Middle East.",
     bullets: [
       "Led UX design for digital financial platforms under Moxey.ai, focusing on logistics and payments across the Middle East (UAE, KSA).",
       "Built scalable design systems and intuitive user flows for Fleet Partners, Transporters (invoice factoring), and Merchants.",
@@ -70,8 +62,6 @@ const primaryRoles: Job[] = [
     company: "Algaeh Technologies",
     type: "Full-time",
     location: "Bengaluru, India · On-site",
-    bottomLine:
-      "Solely architected Algaeh’s Healthcare ERP (10+ modules); cut patient registration time by 70% with mobile QR onboarding.",
     bullets: [
       "Solely led the design of Algaeh’s Healthcare ERP, spanning 10+ modules: Hospital Information Management, Radiology, Laboratory, Pharmacy, Billing, and Insurance Claims.",
       "Designed UI/UX for Web + iOS/Android, including a mobile patient app with QR onboarding that cut registration time by 70%.",
@@ -86,8 +76,6 @@ const primaryRoles: Job[] = [
     company: "GrayMatter Software Services",
     type: "Full-time",
     location: "Bengaluru, India · On-site",
-    bottomLine:
-      "Designed BI analytics dashboards for airport traffic planning and insurance agent performance optimization.",
     bullets: [
       "Led UX for analytics platforms across insurance, aviation, and enterprise domains.",
       "Built BI dashboards used for operational forecasting, airport traffic planning, and agent performance optimization.",
@@ -102,8 +90,6 @@ const primaryRoles: Job[] = [
     company: "Manthan Systems",
     type: "Full-time",
     location: "Bangalore · On-site",
-    bottomLine:
-      "Crafted core UX flows and tablet-optimized HTML5 prototypes for enterprise retail analytics platforms.",
     bullets: [
       "Designed core UX flows for Merchandise, Supply Chain, and Vendor Link analytics products used by enterprise clients.",
       "Collaborated with mobile teams to build tablet-optimized dashboards during the rise of iPad adoption in BI environments.",
@@ -120,14 +106,11 @@ const earlyRoles: Job[] = [
     company: "Aptus",
     type: "Full-time",
     location: "Bengaluru, India",
-    bottomLine:
-      "Delivered design concepts and responsive wireframes for corporate and e-commerce portals.",
     bullets: [
       "Delivered completed design concepts for both Corporate and E-commerce portals.",
       "Collaborated with cross-functional teams to preserve design intent through project lifecycle."
     ],
-    tags: ["Interaction Design", "Responsive Design", "Web Standards"],
-    isEarly: true
+    tags: ["Interaction Design", "Responsive Design", "Web Standards"]
   },
   {
     years: "2008 – 2010",
@@ -135,31 +118,41 @@ const earlyRoles: Job[] = [
     company: "Ipix Solutions",
     type: "Full-time",
     location: "Kozhikode, India · On-site",
-    bottomLine:
-      "Designed web and graphic portals for Middle East clients with early localization exposure.",
     bullets: [
       "Designed and developed static and dynamic websites using HTML, CSS, JavaScript, and XML.",
       "Delivered multiple projects for Middle East-based clients with early exposure to localization needs."
     ],
-    tags: ["Web Design", "Graphic Design", "Localization Basics"],
-    isEarly: true
+    tags: ["Web Design", "Graphic Design", "Localization Basics"]
   }
 ];
 
 export default function Experience() {
-  const [viewMode, setViewMode] = useState<"simple" | "detailed">("simple");
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [viewMode, setViewMode] = useState<"simple" | "detailed">("detailed");
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
   const [showEarlyCareer, setShowEarlyCareer] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const handleToggleMode = (mode: "simple" | "detailed") => {
+    setViewMode(mode);
+    if (mode === "detailed") {
+      // Expand all in detailed mode
+      setOpenIndices(primaryRoles.map((_, i) => i));
+    } else {
+      // Collapse to only first item in simple mode
+      setOpenIndices([0]);
+    }
+  };
+
   const toggleAccordion = (idx: number) => {
-    setOpenIndex((prev) => (prev === idx ? null : idx));
+    setOpenIndices((prev) =>
+      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
+    );
   };
 
   return (
     <section id="experience" className="experience" aria-labelledby="experience-title">
       <div className="experience-body" ref={containerRef}>
-        {/* Left Column: Title & Interactive View Mode Toggle Switch */}
+        {/* Left Column: Title & Clean Toggle Pill Switch */}
         <div className="experience-sticky">
           <ScrollReveal as="div">
             <p className="experience-eyebrow-mini">CAREER PATHWAY</p>
@@ -170,21 +163,20 @@ export default function Experience() {
               From hands-on frontend web scripting to principal design leadership across healthcare, AI, airport analytics, FinTech, and enterprise SaaS.
             </p>
 
-            {/* Simple ↔ Detailed Toggle Switch */}
+            {/* Clean Simple ↔ Detailed Toggle Pill Switch */}
             <div className="experience-toggle-wrapper">
-              <span className="experience-toggle-label">View Mode</span>
               <div className="experience-toggle-pill">
                 <button
                   type="button"
                   className={`experience-toggle-btn ${viewMode === "simple" ? "active" : ""}`}
-                  onClick={() => setViewMode("simple")}
+                  onClick={() => handleToggleMode("simple")}
                 >
                   Simple
                 </button>
                 <button
                   type="button"
                   className={`experience-toggle-btn ${viewMode === "detailed" ? "active" : ""}`}
-                  onClick={() => setViewMode("detailed")}
+                  onClick={() => handleToggleMode("detailed")}
                 >
                   Detailed
                 </button>
@@ -196,14 +188,14 @@ export default function Experience() {
         {/* Right Column: Timeline Track */}
         <div className="experience-timeline">
           {primaryRoles.map((job, idx) => {
-            const isOpen = openIndex === idx;
+            const isOpen = openIndices.includes(idx);
 
             return (
               <ScrollReveal
                 key={job.company}
                 as="div"
                 delay={idx * 0.03}
-                className={`experience-entry ${viewMode === "detailed" || isOpen ? "is-open" : "is-collapsed"}`}
+                className={`experience-entry ${isOpen ? "is-open" : "is-collapsed"}`}
               >
                 <div className="experience-timeline-dot" />
 
@@ -219,7 +211,7 @@ export default function Experience() {
                       toggleAccordion(idx);
                     }
                   }}
-                  aria-expanded={viewMode === "detailed" || isOpen}
+                  aria-expanded={isOpen}
                 >
                   <div className="experience-time">{job.years}</div>
                   <div className="experience-title-row">
@@ -227,19 +219,14 @@ export default function Experience() {
                       {job.role} <span className="experience-at">at</span> <span className="experience-company-name">{job.company}</span>
                     </h3>
                     <span className="experience-accordion-toggle-icon">
-                      {viewMode === "detailed" || isOpen ? "−" : "+"}
+                      {isOpen ? "−" : "+"}
                     </span>
                   </div>
                   <div className="experience-type-loc">{job.location} · {job.type}</div>
                 </div>
 
-                {/* Bottom Line Impact Highlight (Visible in both Simple & Detailed modes) */}
-                <div className="experience-bottom-line">
-                  <span className="bottom-line-prefix">Bottom Line →</span> {job.bottomLine}
-                </div>
-
                 {/* Collapsible Detailed Body */}
-                {(viewMode === "detailed" || isOpen) && (
+                {isOpen && (
                   <div className="experience-entry-details">
                     <ul className="experience-bullets">
                       {job.bullets.map((bullet, bIdx) => (
@@ -263,7 +250,7 @@ export default function Experience() {
           {/* Early Career Expandable Drawer */}
           {showEarlyCareer && (
             <div className="early-career-group">
-              {earlyRoles.map((job, idx) => (
+              {earlyRoles.map((job) => (
                 <div key={job.company} className="experience-entry is-open early-career-item">
                   <div className="experience-timeline-dot early-dot" />
                   <div className="experience-entry-trigger">
@@ -273,10 +260,14 @@ export default function Experience() {
                         {job.role} <span className="experience-at">at</span> <span className="experience-company-name">{job.company}</span>
                       </h3>
                     </div>
-                    <div className="experience-type-loc">{job.location}</div>
+                    <div className="experience-type-loc">{job.location} · {job.type}</div>
                   </div>
-                  <div className="experience-bottom-line">
-                    <span className="bottom-line-prefix">Bottom Line →</span> {job.bottomLine}
+                  <div className="experience-entry-details">
+                    <ul className="experience-bullets">
+                      {job.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx}>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}

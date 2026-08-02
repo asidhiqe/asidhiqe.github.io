@@ -5,16 +5,8 @@ import gsap from "gsap";
 
 const TOTAL_FRAMES = 125;
 
-const statusMessages = [
-  "INITIALIZING DECISION SYSTEMS...",
-  "PRELOADING PORTRAIT BANNER FRAMES...",
-  "SYNCHRONIZING GOVERNANCE FRAMEWORKS...",
-  "SYSTEM READY"
-];
-
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
-  const [statusIndex, setStatusIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -22,25 +14,15 @@ export default function Preloader() {
     let loadedCount = 0;
     let isCancelled = false;
 
-    // Track real image preloading of the 125 banner frames
+    // Track real image preloading of the 125 banner sequence frames
     const updateProgress = () => {
       if (isCancelled) return;
       loadedCount++;
       const pct = Math.min(100, Math.floor((loadedCount / TOTAL_FRAMES) * 100));
       setProgress(pct);
-
-      if (pct < 35) {
-        setStatusIndex(0);
-      } else if (pct < 70) {
-        setStatusIndex(1);
-      } else if (pct < 100) {
-        setStatusIndex(2);
-      } else {
-        setStatusIndex(3);
-      }
     };
 
-    // Preload all 125 images into browser image cache
+    // Preload all 125 images into browser cache
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
       const frameNum = String(i).padStart(3, "0");
@@ -62,10 +44,10 @@ export default function Preloader() {
         },
       });
 
-      tl.to(".preloader-text-wrap", {
+      tl.to(".preloader-center-box", {
         opacity: 0,
-        y: -15,
-        duration: 0.35,
+        scale: 0.85,
+        duration: 0.4,
         ease: "power2.in",
       }).to(overlayRef.current, {
         yPercent: -100,
@@ -84,30 +66,27 @@ export default function Preloader() {
       role="dialog"
       aria-label="System loading"
     >
-      <div className="preloader-content">
-        <div className="preloader-text-wrap">
-          <div className="preloader-monogram">
-            <span className="header-wordmark-text gradient-text">AS</span>
-            <span className="header-wordmark-dot" aria-hidden="true">
-              .
-            </span>
-          </div>
-
-          <div className="preloader-status-ticker">
-            <span className="preloader-status-text">
-              {statusMessages[statusIndex]}
-            </span>
-          </div>
-
-          <div className="preloader-progress-track">
-            <div
-              className="preloader-progress-bar"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
-          <div className="preloader-percentage">{progress}%</div>
+      <div className="preloader-center-box">
+        {/* Custom Uiverse Animated Polygon SVG Loader */}
+        <div className="uiverse-loader">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <defs>
+              <mask id="clipping">
+                <polygon points="0,0 100,0 100,100 0,100" fill="black" />
+                <polygon points="25,25 75,25 50,75" fill="white" />
+                <polygon points="50,25 75,75 25,75" fill="white" />
+                <polygon points="35,35 65,35 50,65" fill="white" />
+                <polygon points="35,35 65,35 50,65" fill="white" />
+                <polygon points="35,35 65,35 50,65" fill="white" />
+                <polygon points="35,35 65,35 50,65" fill="white" />
+              </mask>
+            </defs>
+          </svg>
+          <div className="box" />
         </div>
+
+        {/* Real Percentage Progress Count */}
+        <div className="preloader-percentage-counter">{progress}%</div>
       </div>
     </div>
   );

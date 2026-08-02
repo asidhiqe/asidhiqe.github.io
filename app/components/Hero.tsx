@@ -79,13 +79,7 @@ export default function Hero() {
           "-=0.2"
         )
         .fromTo(
-          scope.querySelectorAll(".dynamic-role-badge"),
-          { opacity: 0, scale: 0.95 },
-          { opacity: 1, scale: 1, duration: 0.5 },
-          "-=0.3"
-        )
-        .fromTo(
-          scope.querySelectorAll(".mobile-sequence-container"),
+          scope.querySelectorAll(".mobile-sequence-card"),
           { opacity: 0, scale: 0.95 },
           { opacity: 1, scale: 1, duration: 0.6 },
           "-=0.3"
@@ -94,6 +88,12 @@ export default function Hero() {
           scope.querySelectorAll(".hero-subtitle"),
           { opacity: 0, y: 12 },
           { opacity: 1, y: 0, duration: 0.5 },
+          "-=0.3"
+        )
+        .fromTo(
+          scope.querySelectorAll(".dynamic-role-badge"),
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.5 },
           "-=0.3"
         );
     },
@@ -110,22 +110,24 @@ export default function Hero() {
             Aboobacker <span className="gradient-text">Sidhiqe</span>
           </h1>
 
-          {/* Dynamic Rotating Role Badge directly below Name Title */}
+          {/* Mobile Sequence Card Slot (< 1024px) - Portrait cutout top, text cleanly below */}
+          <div className="mobile-sequence-container">
+            <div className="mobile-sequence-card">
+              <BannerScroll />
+            </div>
+          </div>
+
+          <p className="hero-subtitle">
+            Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.
+          </p>
+
+          {/* Dynamic Rotating Role Badge directly below Subtitle */}
           <div className="dynamic-role-badge">
             <span className="dynamic-role-prefix">SPECIALIZING IN</span>
             <span ref={roleRef} className="dynamic-role-text">
               {roles[roleIndex]}
             </span>
           </div>
-
-          {/* Dedicated Mobile & Tablet Sequence Card Slot (< 1024px) */}
-          <div className="mobile-sequence-container">
-            <BannerScroll />
-          </div>
-
-          <p className="hero-subtitle">
-            Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.
-          </p>
         </div>
       </section>
 
