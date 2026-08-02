@@ -4053,65 +4053,89 @@ textarea {
     padding: 0.35rem 0.85rem !important;
   }
 
+  .hero-mockup-section {
+    position: relative !important;
+    overflow: hidden !important;
+    padding-top: 0 !important;
+  }
+
   .hero-left-content {
+    position: relative !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    padding-top: 0 !important;
+    justify-content: flex-end !important;
+    min-height: 85vh !important;
+    padding-top: 6.5rem !important;
+    padding-bottom: 2.5rem !important;
+    z-index: 5 !important;
   }
 
   .mobile-portrait-wrapper {
     display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
     width: 100vw !important;
     max-width: 100vw !important;
+    height: 100% !important;
     margin-left: calc(-1 * var(--gutter, 1.25rem)) !important;
     margin-right: calc(-1 * var(--gutter, 1.25rem)) !important;
     margin-top: 0 !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
     padding: 0 !important;
     border-radius: 0 !important;
     overflow: hidden !important;
-    position: relative !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
   }
 
   .mobile-portrait-card {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     border-radius: 0 !important;
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 72%, transparent 100%) !important;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 72%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, black 35%, rgba(10, 10, 11, 0.5) 70%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, black 35%, rgba(10, 10, 11, 0.5) 70%, transparent 100%) !important;
   }
 
   .mobile-portrait-img {
     width: 100% !important;
     max-width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     display: block !important;
     object-fit: cover !important;
     object-position: top center !important;
+    opacity: 0.65 !important;
     transform: none !important;
   }
 
-
-
   .hero-greeting {
     display: block !important;
+    position: relative !important;
+    z-index: 10 !important;
     text-align: center !important;
     margin-bottom: 0.5rem !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
   }
 
   .hero-name {
     display: block !important;
     position: relative !important;
+    z-index: 10 !important;
     text-align: center !important;
     margin-bottom: 0.75rem !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9) !important;
   }
 
   .dynamic-role-badge {
+    position: relative !important;
+    z-index: 10 !important;
     margin: 0.75rem auto 1.5rem auto !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -4124,10 +4148,12 @@ textarea {
   .hero-subtitle {
     display: block !important;
     position: relative !important;
+    z-index: 10 !important;
     text-align: center !important;
     margin-top: 0 !important;
-    margin-bottom: 2.25rem !important;
+    margin-bottom: 1.5rem !important;
     max-width: 100% !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
   }
 
 
