@@ -3997,7 +3997,7 @@ textarea {
 .experience-toggle-wrapper {
   display: flex;
   justify-content: center;
-  margin: 1.75rem auto 0 auto !important;
+  margin: 2.75rem auto 2.25rem auto !important;
 }
 
 /* ── MOBILE RESPONSIVE RE-ARCHITECTURE (< 1024px) ───────── */
@@ -4011,13 +4011,19 @@ textarea {
   }
 
   .selected-work-section,
+  .selected-work-block,
   .about,
+  .about-section,
   .testimonials-section,
-  .site-footer {
+  .site-footer,
+  .footer-inner {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
   .desktop-banner-wrapper {
@@ -4120,7 +4126,7 @@ textarea {
     position: relative !important;
     z-index: 10 !important;
     text-align: center !important;
-    margin-top: -6.5rem !important;
+    margin-top: -8.5rem !important;
     margin-bottom: 0.5rem !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
   }
