@@ -4012,7 +4012,6 @@ textarea {
 
   #selected-work,
   #about,
-  #contact,
   .selected-work-section,
   .about-section,
   .testimonials-section {
@@ -4036,12 +4035,16 @@ textarea {
   }
 
   .site-footer {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    display: block !important;
+    position: relative !important;
     width: 100% !important;
     max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 2.5rem !important;
     box-sizing: border-box !important;
   }
 
