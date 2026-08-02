@@ -517,7 +517,6 @@ html.light .header-nav a.active {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   padding-top: 5rem;
-  border-bottom: 1px solid var(--line);
 }
 
 .hero-left {
@@ -950,7 +949,7 @@ html.light .glow-2 {
   .about-left {
     padding: 2.75rem var(--gutter) 1.5rem;
     border-right: 0;
-    border-bottom: 1px solid var(--line);
+
   }
 
   .about-right {
@@ -963,7 +962,7 @@ html.light .glow-2 {
 
   .experience-sticky {
     border-right: none;
-    border-bottom: 1px solid var(--line);
+
     padding: 2.5rem var(--gutter) 1.5rem;
   }
 
@@ -1642,7 +1641,7 @@ html.light .work-card-glow {
 
   .hero-left {
     border-right: none;
-    border-bottom: 1px solid var(--line);
+
     padding: 4rem var(--gutter) 2rem;
   }
 
@@ -1687,7 +1686,7 @@ html.light .work-card-glow {
   }
 
   .about-left {
-    border-bottom: 1px solid var(--line);
+
     padding: 3.5rem var(--gutter) 2rem;
   }
 
@@ -1716,7 +1715,7 @@ html.light .work-card-glow {
   .work-card--wide,
   .work-card--full {
     grid-column: span 1;
-    border-bottom: 1px solid var(--line);
+
   }
 
   .work-card {
@@ -1742,7 +1741,7 @@ html.light .work-card-glow {
 .experience {
   background: var(--bg-primary);
   color: var(--text-primary);
-  border-bottom: 1px solid var(--line);
+
 }
 
 .experience-body {
@@ -2080,11 +2079,11 @@ html.light .experience-summary-card {
   color: var(--text-tertiary);
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-xs);
-  border-bottom: 1px solid var(--line);
+
 }
 
 .experience-accordion-row {
-  border-bottom: 1px solid var(--line);
+
   transition: background-color var(--dur-fast);
 }
 
@@ -2269,7 +2268,7 @@ html.light .experience-summary-card {
   color: var(--text-primary);
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--line);
+
 }
 
 .case-study-p {
@@ -2468,7 +2467,7 @@ html.light .experience-summary-card {
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
   background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid var(--line);
+
 }
 
 .canvas-dot {
@@ -2711,11 +2710,9 @@ html.light .experience-summary-card {
 .uiverse-loader .box {
   width: 100px;
   height: 100px;
-  background: linear-gradient(
-    180deg,
-    var(--color-one) 30%,
-    var(--color-two) 70%
-  );
+  background: linear-gradient(180deg,
+      var(--color-one) 30%,
+      var(--color-two) 70%);
   mask: url(#clipping);
   -webkit-mask: url(#clipping);
 }
@@ -2775,6 +2772,7 @@ html.light .experience-summary-card {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -2784,15 +2782,19 @@ html.light .experience-summary-card {
   0% {
     filter: contrast(15);
   }
+
   20% {
     filter: contrast(3);
   }
+
   40% {
     filter: contrast(3);
   }
+
   60% {
     filter: contrast(15);
   }
+
   100% {
     filter: contrast(15);
   }
@@ -2802,18 +2804,23 @@ html.light .experience-summary-card {
   0% {
     filter: hue-rotate(0deg);
   }
+
   20% {
     filter: hue-rotate(-30deg);
   }
+
   40% {
     filter: hue-rotate(-60deg);
   }
+
   60% {
     filter: hue-rotate(-90deg);
   }
+
   80% {
     filter: hue-rotate(-45deg);
   }
+
   100% {
     filter: hue-rotate(0deg);
   }
@@ -2829,7 +2836,7 @@ html.light .experience-summary-card {
   .experience-sticky {
     position: static;
     border-right: none;
-    border-bottom: 1px solid var(--line);
+
     padding: var(--space-2xl) var(--gutter);
   }
 
@@ -3912,6 +3919,25 @@ textarea {
   background: linear-gradient(90deg, #eab308 0%, #06b6d4 100%);
 }
 
+/* ── GLOBAL TITLE LINE-HEIGHT & RESPONSIVE DESKTOP/MOBILE ISOLATION ── */
+.section-title,
+.section-title-bold,
+.experience-title-bold,
+.hero-name,
+.hero-services-title,
+.case-study-title {
+  line-height: 1.3 !important;
+}
+
+@media (min-width: 1024px) {
+  .mobile-portrait-wrapper {
+    display: none !important;
+  }
+  .desktop-banner-wrapper {
+    display: block !important;
+  }
+}
+
 /* ── FOOTER PADDING FIX ──────────────────────────────────── */
 .site-footer {
   padding: 4rem var(--gutter) 2rem var(--gutter) !important;
@@ -3925,21 +3951,35 @@ textarea {
 
 /* ── MOBILE RESPONSIVE RE-ARCHITECTURE (< 1024px) ───────── */
 @media (max-width: 1023px) {
+  .desktop-banner-wrapper {
+    display: none !important;
+  }
+
   .site-header {
+    padding: 0.75rem 1rem !important;
+    width: 100% !important;
+  }
+
+  .header-inner {
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;
     align-items: center !important;
+    justify-content: center !important;
     gap: 0.75rem !important;
-    padding: 0.85rem 1rem !important;
+    width: 100% !important;
+    margin: 0 auto !important;
   }
 
   .header-wordmark {
     margin: 0 auto !important;
+    display: inline-block !important;
   }
 
   .header-nav {
     margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     gap: 1.25rem !important;
     padding: 0.4rem 1.2rem !important;
   }
@@ -3953,6 +3993,7 @@ textarea {
   }
 
   .mobile-portrait-wrapper {
+    display: block !important;
     width: 100vw !important;
     margin-left: calc(-1 * var(--gutter)) !important;
     margin-right: calc(-1 * var(--gutter)) !important;
@@ -3975,11 +4016,14 @@ textarea {
 
   .mobile-portrait-img {
     width: 100% !important;
-    max-width: 460px !important;
+    max-width: 500px !important;
     height: auto !important;
     margin: 0 auto !important;
     display: block !important;
     object-fit: cover !important;
+    object-position: top center !important;
+    transform: scale(1.2) !important; /* Zoom portrait to hide Gemini watermark */
+    transform-origin: top center !important;
   }
 
   .hero-greeting {
@@ -4036,6 +4080,31 @@ textarea {
   }
 
   /* Experience section cleanup on Mobile */
+  .experience-body {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    gap: 2.25rem !important;
+  }
+
+  .experience-sticky {
+    position: relative !important;
+    top: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    border-right: none !important;
+    padding: 0 0 1.5rem 0 !important;
+    margin: 0 auto !important;
+  }
+
+  .experience-eyebrow-mini,
+  .experience-title-bold,
+  .experience-subtitle {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
   .experience-timeline {
     padding-left: 0.5rem !important;
   }
