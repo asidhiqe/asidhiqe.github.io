@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import SelectedWork from "./components/SelectedWork";
-import Experience from "./components/Experience";
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
@@ -26,7 +25,6 @@ export default function Home() {
           <div className="portfolio-content-left">
             <Hero />
             <SelectedWork />
-            <Experience />
             <About />
             <Testimonials />
           </div>

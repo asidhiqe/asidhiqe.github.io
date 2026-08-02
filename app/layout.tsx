@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { inter, outfit, jetbrainsMono } from "./fonts";
+import { inter, outfit, jetbrainsMono, langar, lexend } from "./fonts";
 import Preloader from "./components/Preloader";
 import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
@@ -25,12 +25,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable} ${langar.variable} ${lexend.variable}`}
     >
       <body>
         <CustomCursor />
         <Preloader />
         <div className="film-grain" aria-hidden="true" />
+        <div className="global-svg-grid-pattern" aria-hidden="true" />
         {children}
       </body>
     </html>

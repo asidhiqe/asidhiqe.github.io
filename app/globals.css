@@ -3919,6 +3919,27 @@ textarea {
   background: linear-gradient(90deg, #eab308 0%, #06b6d4 100%);
 }
 
+/* ── GLOBAL SVG BLUEPRINT GRID & DOT BACKGROUND PATTERN ───── */
+.global-svg-grid-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+  background-size: 40px 40px, 40px 40px, 100% 100%;
+  opacity: 0.85;
+}
+
+@media (max-width: 1023px), (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
+}
+
 /* ── GLOBAL TITLE LINE-HEIGHT & RESPONSIVE DESKTOP/MOBILE ISOLATION ── */
 .section-title,
 .section-title-bold,
@@ -3962,26 +3983,24 @@ textarea {
 
   .header-inner {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
     align-items: center !important;
-    justify-content: center !important;
-    gap: 0.75rem !important;
     width: 100% !important;
-    margin: 0 auto !important;
   }
 
   .header-wordmark {
-    margin: 0 auto !important;
+    margin: 0 !important;
     display: inline-block !important;
   }
 
   .header-nav {
-    margin: 0 auto !important;
+    margin: 0 !important;
     display: flex !important;
-    justify-content: center !important;
+    flex-direction: row !important;
     align-items: center !important;
-    gap: 1.25rem !important;
-    padding: 0.4rem 1.2rem !important;
+    gap: 1rem !important;
+    padding: 0.35rem 0.85rem !important;
   }
 
   .hero-left-content {
@@ -4010,21 +4029,22 @@ textarea {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
+    mask-image: radial-gradient(ellipse at 50% 35%, black 45%, transparent 85%), linear-gradient(to bottom, black 50%, transparent 98%) !important;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 35%, black 45%, transparent 85%), linear-gradient(to bottom, black 50%, transparent 98%) !important;
   }
 
   .mobile-portrait-img {
     width: 100% !important;
-    max-width: 500px !important;
+    max-width: 520px !important;
     height: auto !important;
     margin: 0 auto !important;
     display: block !important;
     object-fit: cover !important;
     object-position: top center !important;
-    transform: scale(1.2) !important; /* Zoom portrait to hide Gemini watermark */
+    transform: scale(1.32) !important; /* Zooms portrait further & blends seamless */
     transform-origin: top center !important;
   }
+
 
   .hero-greeting {
     display: block !important;
