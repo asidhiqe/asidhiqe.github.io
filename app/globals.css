@@ -1505,7 +1505,7 @@ html.light .work-card-glow {
   z-index: 1;
   display: grid;
   grid-template-rows: auto auto;
-  gap: var(--space-3xl);
+  gap: var(--space-1xl);
 }
 
 .footer-cta-eyebrow {
@@ -2982,8 +2982,6 @@ html.light .experience-summary-card {
   z-index: 10;
   width: 100%;
   max-width: 1280px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
   padding-left: var(--container-padding) !important;
   padding-right: var(--container-padding) !important;
   box-sizing: border-box !important;
@@ -3016,7 +3014,7 @@ html.light .site-footer {
 }
 
 .footer-bottom {
-  margin-top: 3rem !important;
+  margin-top: 1rem !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -4048,8 +4046,6 @@ textarea {
     position: relative !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
     padding-top: 4rem !important;
