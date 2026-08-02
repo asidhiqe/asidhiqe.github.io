@@ -103,7 +103,7 @@ export default function Hero() {
 
           <span className="hero-greeting">Hello, I&apos;m</span>
           <h1 className="hero-name">
-            Aboobacker <span className="gradient-text">Sidhiqe</span>
+            Aboobacker <span style={{ color: "#ffffff" }}>Sidhiqe</span>
           </h1>
 
           {/* Dynamic Rotating Role Badge directly under Name Title in Mobile First Fold */}
