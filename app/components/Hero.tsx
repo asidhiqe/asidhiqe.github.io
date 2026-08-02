@@ -68,21 +68,21 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       tl.fromTo(
-        scope.querySelectorAll(".hero-greeting"),
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.5 }
+        scope.querySelectorAll(".mobile-sequence-card"),
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 0.6 }
       )
+        .fromTo(
+          scope.querySelectorAll(".hero-greeting"),
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.5 },
+          "-=0.3"
+        )
         .fromTo(
           scope.querySelectorAll(".hero-name"),
           { opacity: 0, y: 18 },
           { opacity: 1, y: 0, duration: 0.7 },
           "-=0.2"
-        )
-        .fromTo(
-          scope.querySelectorAll(".mobile-sequence-card"),
-          { opacity: 0, scale: 0.95 },
-          { opacity: 1, scale: 1, duration: 0.6 },
-          "-=0.3"
         )
         .fromTo(
           scope.querySelectorAll(".hero-subtitle"),
@@ -105,17 +105,17 @@ export default function Hero() {
       {/* ── FOLD 1: Hero Above-the-Fold View ────────────────── */}
       <section id="top" className="hero-mockup-section fold-one-section">
         <div className="hero-left-content">
-          <span className="hero-greeting">Hello, I&apos;m</span>
-          <h1 className="hero-name">
-            Aboobacker <span className="gradient-text">Sidhiqe</span>
-          </h1>
-
-          {/* Mobile Sequence Card Slot (< 1024px) - Portrait cutout top, text cleanly below */}
+          {/* Mobile Sequence Card Slot (< 1024px) - Positioned at VERY TOP on mobile */}
           <div className="mobile-sequence-container">
             <div className="mobile-sequence-card">
               <BannerScroll />
             </div>
           </div>
+
+          <span className="hero-greeting">Hello, I&apos;m</span>
+          <h1 className="hero-name">
+            Aboobacker <span className="gradient-text">Sidhiqe</span>
+          </h1>
 
           <p className="hero-subtitle">
             Principal Product Designer who crafts high-trust decision systems, digital programming, and design solutions with 13+ years of experience across healthcare, AI, and enterprise SaaS.

@@ -3911,3 +3911,87 @@ textarea {
   border-radius: 999px;
   background: linear-gradient(90deg, #eab308 0%, #06b6d4 100%);
 }
+
+/* ── MOBILE RESPONSIVE RE-ARCHITECTURE (< 1024px) ───────── */
+@media (max-width: 1023px) {
+  .site-header {
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.85rem 1rem !important;
+  }
+
+  .header-wordmark {
+    margin: 0 auto !important;
+  }
+
+  .header-nav {
+    margin: 0 auto !important;
+    gap: 1.25rem !important;
+    padding: 0.4rem 1.2rem !important;
+  }
+
+  .hero-left-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding-top: 1rem !important;
+  }
+
+  .mobile-sequence-container {
+    width: 100vw !important;
+    margin-left: calc(-1 * var(--gutter)) !important;
+    margin-right: calc(-1 * var(--gutter)) !important;
+    margin-top: -0.5rem !important;
+    margin-bottom: 1.5rem !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .mobile-sequence-card {
+    width: 100% !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
+  }
+
+  .hero-greeting {
+    text-align: center !important;
+  }
+
+  .hero-name {
+    text-align: center !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .hero-subtitle {
+    text-align: center !important;
+    margin-bottom: 1.75rem !important;
+    max-width: 100% !important;
+  }
+
+  .dynamic-role-badge {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.35rem !important;
+    padding: 0.75rem 1.4rem !important;
+    width: fit-content !important;
+    margin: 0 auto 2.5rem auto !important;
+  }
+
+  .dynamic-role-prefix {
+    text-align: center !important;
+    font-size: 0.7rem !important;
+  }
+
+  .dynamic-role-text {
+    text-align: center !important;
+    font-size: 0.95rem !important;
+  }
+}
